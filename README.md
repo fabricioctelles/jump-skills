@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🥷 Jump Skills Ninjas
+<img src="assets/ninja-logo.png" alt="Jump Skills Ninjas" width="400"/>
 
 ### Multi-Tenant Ninja System for AI Agent Orchestration
 
