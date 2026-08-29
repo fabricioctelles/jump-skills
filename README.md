@@ -420,6 +420,16 @@ Jump Skills is a **meta-repository** — it orchestrates skills from multiple ex
 
 <div align="center">
 
+<img src="assets/ninjas-repairing-robot.gif" alt="Ninjas repairing overwhelmed robot" width="640"/>
+
+*Ninjas to the rescue! 🥷*
+
+</div>
+
+---
+
+<div align="center">
+
 **Made with 🥷 by [Fabricio Telles](https://ft.ia.br)**
 
 </div>
