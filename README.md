@@ -10,6 +10,10 @@
 
 <br/>
 
+<img src="assets/jump-skills-ninja.gif" alt="Jump Skills Ninja in action" width="640"/>
+
+<br/>
+
 **Intelligent routing skills that orchestrate specialized agent capabilities from multiple cloud providers**
 
 [AWS Ninja](#-aws-ninja) •
