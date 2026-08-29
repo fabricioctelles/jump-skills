@@ -83,7 +83,7 @@ Think of Ninjas as **expert dispatchers** — they understand the entire landsca
 Simply copy and paste this prompt to your AI coding agent:
 
 ```
-Clone https://github.com/fabriciotelles/jump-skills to ~/GIT/jump-skills,
+Clone https://github.com/fabricioctelles/jump-skills to ~/GIT/jump-skills,
 then run ./sync-repos.sh to clone all skill repositories,
 and ./install-ninjas.sh to install the Ninjas.
 ```
@@ -92,7 +92,7 @@ and ./install-ninjas.sh to install the Ninjas.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/fabriciotelles/jump-skills.git ~/GIT/jump-skills
+git clone https://github.com/fabricioctelles/jump-skills.git ~/GIT/jump-skills
 cd ~/GIT/jump-skills
 
 # 2. Sync all source repositories (clones ~15 repos, ~500MB)
@@ -406,7 +406,7 @@ Jump Skills is a **meta-repository** — it orchestrates skills from multiple ex
 **Fabricio Telles**
 
 [![Website](https://img.shields.io/badge/Website-ft.ia.br-blue?style=flat-square&logo=google-chrome&logoColor=white)](https://ft.ia.br)
-[![GitHub](https://img.shields.io/badge/GitHub-fabriciotelles-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/fabriciotelles)
+[![GitHub](https://img.shields.io/badge/GitHub-fabricioctelles-181717?style=flat-square&logo=github&logoColor=white)](https://github.com/fabricioctelles)
 
 *Building tools for AI-assisted development*
 

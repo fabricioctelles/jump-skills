@@ -38,7 +38,7 @@ See the detailed guide below: [Adding a New Ninja](#adding-a-new-ninja-full-guid
 
 ```bash
 # Clone the repository
-git clone https://github.com/fabriciotelles/jump-skills.git
+git clone https://github.com/fabricioctelles/jump-skills.git
 cd jump-skills
 
 # Make scripts executable
