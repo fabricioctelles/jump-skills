@@ -1,0 +1,174 @@
+# ============================================
+# .gitignore - Jump Skills
+# ============================================
+
+# --------------------------------------------
+# Cloned Repositories (re-cloneable via sync-repos.sh)
+# --------------------------------------------
+repos/
+
+# --------------------------------------------
+# Generated Files
+# --------------------------------------------
+.skills-map
+
+# --------------------------------------------
+# Credentials & Secrets
+# --------------------------------------------
+.env
+.env.*
+*.env
+.env.local
+.env.development
+.env.production
+.env.*.local
+
+# API keys and tokens
+*.api_key
+*apikey*
+*.secret
+token.json
+tokens.json
+*_token.json
+client_secret*.json
+oauth*.json
+credentials.json
+
+# AWS credentials
+.aws/
+credentials
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# SOPS decrypted files
+*.decrypted
+*.decrypted.*
+*.plaintext
+*.unencrypted
+
+# --------------------------------------------
+# SSH & GPG Keys
+# --------------------------------------------
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_dsa
+id_dsa.pub
+*.ppk
+known_hosts
+authorized_keys
+*.gpg
+*.asc
+secring.*
+
+# --------------------------------------------
+# Temporary & Cache Files
+# --------------------------------------------
+*.tmp
+*.temp
+*.cache
+*.bak
+*.backup
+*.swp
+*.swo
+*~
+.cache/
+tmp/
+temp/
+.tmp/
+
+# --------------------------------------------
+# OS Generated Files
+# --------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+*.lnk
+
+# --------------------------------------------
+# IDE & Editor Files
+# --------------------------------------------
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+.project
+.settings/
+*.iml
+.classpath
+*.suo
+*.ntvs*
+*.njsproj
+*.sln.docstates
+
+# --------------------------------------------
+# Logs
+# --------------------------------------------
+*.log
+logs/
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --------------------------------------------
+# Package Manager & Dependencies
+# --------------------------------------------
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+.venv/
+env/
+ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.eggs/
+*.egg-info/
+*.egg
+
+# --------------------------------------------
+# Build Outputs
+# --------------------------------------------
+dist/
+build/
+out/
+target/
+*.o
+*.so
+*.dylib
+
+# --------------------------------------------
+# Test & Coverage
+# --------------------------------------------
+.coverage
+htmlcov/
+.pytest_cache/
+.nyc_output/
+coverage/
+*.cover
+
+# --------------------------------------------
+# Miscellaneous
+# --------------------------------------------
+*.dump
+*.sql
+*.sqlite
+*.db
+.history/
+.ionide/
