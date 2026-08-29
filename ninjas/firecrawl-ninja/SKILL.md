@@ -19,6 +19,36 @@ This skill routes Firecrawl tasks to the most relevant specialized skill:
 3. Load full instructions on-demand
 4. Execute with specialized knowledge
 
+## Firecrawl Keyless (API V2)
+
+As of V2, the Firecrawl API is **keyless** — no account, no signup, no API key required.
+
+| Aspect | Detail |
+|--------|--------|
+| **Free endpoints** | `/scrape`, `/search`, `/interact`, `/parse` |
+| **Limit** | 1,000 credits/month per developer (automatic, per IP) |
+| **Requirements** | None — zero config |
+| **When to use API key** | Higher limits, additional endpoints, or unattended connections |
+
+### Quick Start (no API key)
+
+```bash
+# Install CLI
+npm install -g firecrawl
+
+# Use directly — works without configuration
+firecrawl scrape "https://example.com"
+firecrawl search "my query"
+firecrawl parse document.pdf
+```
+
+### MCP (Model Context Protocol)
+
+- **Keyless:** `https://mcp.firecrawl.dev/v2/mcp`
+- **With API key:** `https://mcp.firecrawl.dev/YOUR_API_KEY/v2/mcp`
+
+The keyless endpoint exposes only Search, Scrape, and Parse. Use an API key for the full tool surface.
+
 ## Skill Catalog
 
 ### Core
