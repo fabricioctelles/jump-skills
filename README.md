@@ -83,7 +83,7 @@ Think of Ninjas as **expert dispatchers** — they understand the entire landsca
 Simply copy and paste this prompt to your AI coding agent:
 
 ```
-Clone https://github.com/fabricioctelles/jump-skills to ~/GIT/jump-skills,
+Clone https://github.com/fabricioctelles/jump-skills,
 then run ./sync-repos.sh to clone all skill repositories,
 and ./install-ninjas.sh to install the Ninjas.
 ```
@@ -92,8 +92,8 @@ and ./install-ninjas.sh to install the Ninjas.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/fabricioctelles/jump-skills.git ~/GIT/jump-skills
-cd ~/GIT/jump-skills
+git clone https://github.com/fabricioctelles/jump-skills.git
+cd jump-skills
 
 # 2. Sync all source repositories (clones ~15 repos, ~500MB)
 ./sync-repos.sh
