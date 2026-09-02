@@ -66,6 +66,24 @@ https://github.com/firecrawl/skills
 
 ---
 
+## [datadog-ninja]
+
+Skills Datadog - observability, APM, logs, monitors, incidents, CI visibility e segurança.
+
+```repos
+https://github.com/DataDog/pup
+https://github.com/Kirneill/DataDogAdditions
+```
+
+| Repositório | Org | Descrição |
+|-------------|-----|-----------|
+| pup | DataDog | CLI oficial Datadog (`pup`) + skills oficiais: APM, logs, monitors, debugger, symdb, docs, triage de testes flaky |
+| DataDogAdditions | Kirneill | Skills portáveis da comunidade: métricas, incidents, synthetics, CI visibility, security, AI observability |
+
+**Skills incluídas:** dd-apm, dd-logs, dd-monitors, dd-debugger, dd-symdb, dd-docs, dd-pup, dd-code-generation, dd-file-issue, dd-triage-flaky-test, dd-unblock-pr, datadog-metrics, datadog-incidents, datadog-synthetics, datadog-ci-visibility, datadog-security, datadog-ai-observability.
+
+---
+
 ## [google-cloud-ninja]
 
 Skills Google Cloud Platform - infraestrutura, databases, networking, observability, segurança e Well-Architected Framework.
