@@ -5,8 +5,8 @@
 ### Multi-Tenant Ninja System for AI Agent Orchestration
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Ninjas](https://img.shields.io/badge/Ninjas-3-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
-[![Skills](https://img.shields.io/badge/Skills-300+-green?style=for-the-badge&logo=github)](#-available-ninjas)
+[![Ninjas](https://img.shields.io/badge/Ninjas-9-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
+[![Skills](https://img.shields.io/badge/Skills-500+-green?style=for-the-badge&logo=github)](#-available-ninjas)
 
 <br/>
 
@@ -18,7 +18,9 @@
 
 [AWS Ninja](#-aws-ninja) •
 [Azure Ninja](#-azure-ninja) •
-[Firecrawl Ninja](#-firecrawl-ninja) •
+[Google Cloud Ninja](#-google-cloud-ninja) •
+[Google AI Ninja](#-google-ai-ninja) •
+[More...](#-available-ninjas) •
 [Installation](#-installation)
 
 <br/>
@@ -99,7 +101,7 @@ and ./install-ninjas.sh to install the Ninjas.
 git clone https://github.com/fabricioctelles/jump-skills.git
 cd jump-skills
 
-# 2. Sync all source repositories (clones ~15 repos, ~500MB)
+# 2. Sync all source repositories (clones ~20 repos, ~800MB)
 ./sync-repos.sh
 
 # 3. Install Ninjas to your agents (Claude Code, Kiro, Cursor, etc.)
@@ -193,14 +195,138 @@ The Firecrawl Ninja is your specialist for web data operations:
 
 ---
 
+### <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=flat&logo=googlecloud&logoColor=white" height="20"/> Google Cloud Ninja
+
+> **85+ skills** from official Google repositories
+
+The Google Cloud Ninja orchestrates GCP infrastructure, databases, networking, and operations:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **GKE/Kubernetes** | 25+ | Cluster creation, networking, security, scaling, upgrades |
+| **Databases** | 10+ | BigQuery, Spanner, AlloyDB, Cloud SQL, Bigtable |
+| **Storage** | 5+ | Cloud Storage, Filestore, GCS FUSE |
+| **Observability** | 10+ | Cloud Logging, Monitoring, PromQL, alerting |
+| **Security & IAM** | 8+ | IAM policies, PAM, Security Command Center |
+| **Serverless** | 3+ | Cloud Run, Cloud Build |
+| **Well-Architected** | 6 | All 6 WAF pillars (cost, security, reliability, etc.) |
+| **Networking** | 5+ | Global ALB, Cloud Armor, VPC observability |
+
+**Source repository:**
+- [google/skills](https://github.com/google/skills) — Official Google Cloud skills
+
+---
+
+### <img src="https://img.shields.io/badge/Google_AI-8E75B2?style=flat&logo=googlegemini&logoColor=white" height="20"/> Google AI Ninja
+
+> **25+ skills** for Gemini API, Agent Platform, and Genkit
+
+The Google AI Ninja is your expert for AI/ML on Google Cloud:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **Gemini API** | 5+ | Inference, LiveAPI, Interactions API, multimodal |
+| **Agent Platform** | 12+ | Deploy, tuning, RAG, eval, endpoints, prompts |
+| **Genkit** | 4 | JS, Python, Go, Dart SDKs |
+| **Solutions** | 8+ | Multi-agent security, RAG search, AI migrations |
+| **ADK** | 4+ | Create, run, deploy, evaluate agents |
+
+**Source repositories:**
+- [google/skills](https://github.com/google/skills) — AI/ML skills
+- [google/agents-cli](https://github.com/google/agents-cli) — ADK skills
+
+---
+
+### <img src="https://img.shields.io/badge/Google_Ads-4285F4?style=flat&logo=googleads&logoColor=white" height="20"/> Google Ads Ninja
+
+> **15+ skills** for advertising APIs and SDKs
+
+The Google Ads Ninja handles all advertising and monetization tasks:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **Ads API** | 3 | Quickstart, MCP setup, account diagnostics |
+| **Mobile Ads SDK** | 5 | Banner, interstitial, rewarded, migration |
+| **IMA SDK** | 2 | Client-side VAST/VMAP, DAI streaming |
+| **Data Manager** | 3 | Audience ingestion, event tracking, setup |
+
+**Source repository:**
+- [google/skills](https://github.com/google/skills) — Ads skills
+
+---
+
+### <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white" height="20"/> Google Mobile Ninja
+
+> **35+ skills** for Android, Flutter, and Dart development
+
+The Google Mobile Ninja covers native and cross-platform mobile development:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **Android/Jetpack** | 10+ | Compose, Navigation 3, CameraX, Identity |
+| **Build & Performance** | 5+ | AGP 9 upgrade, R8 analyzer, profiler |
+| **Flutter** | 12+ | Create app, widgets, state, testing, platform channels |
+| **Dart** | 6+ | Unit tests, packages, analysis, fixes |
+| **Play Services** | 3+ | Play Store, in-app updates |
+
+**Source repositories:**
+- [android/skills](https://github.com/android/skills) — Official Android skills
+- [flutter/agent-plugins](https://github.com/flutter/agent-plugins) — Official Flutter plugins
+- [dart-lang/skills](https://github.com/dart-lang/skills) — Official Dart skills
+
+---
+
+### <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black" height="20"/> Google Firebase Ninja
+
+> **18+ skills** for Firebase backend services
+
+The Google Firebase Ninja orchestrates Firebase BaaS:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **Core & CLI** | 3 | Setup, init, deploy |
+| **Firestore** | 4+ | Queries, security rules, indexes |
+| **Auth** | 4+ | Email, social, phone authentication |
+| **Hosting & Functions** | 4+ | Static hosting, Cloud Functions, triggers |
+| **Storage & Config** | 4+ | File storage, Remote Config, App Check |
+
+**Source repositories:**
+- [firebase/agent-skills](https://github.com/firebase/agent-skills) — Official Firebase skills
+- [google/skills](https://github.com/google/skills) — Firebase basics
+
+---
+
+### <img src="https://img.shields.io/badge/Google_Analytics-E37400?style=flat&logo=googleanalytics&logoColor=white" height="20"/> Google Analytics Ninja
+
+> **3+ skills** for Analytics APIs and reporting
+
+The Google Analytics Ninja handles GA4 configuration and reporting:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **Admin API** | 1 | Accounts, properties, data streams, conversions |
+| **Data API** | 1 | Reports, metrics, dimensions, real-time |
+| **Integration** | 1+ | Firebase links, Ads links, Measurement Protocol |
+
+**Source repository:**
+- [google/skills](https://github.com/google/skills) — Analytics skills
+
+---
+
 ## 🗂️ Repository Structure
 
 ```
 jump-skills/
-├── ninjas/                    # Ninja definitions
-│   ├── aws-ninja/SKILL.md     # AWS orchestrator (230+ skills)
-│   ├── azure-ninja/SKILL.md   # Azure orchestrator (40 skills)
-│   └── firecrawl-ninja/SKILL.md # Firecrawl orchestrator (33 skills)
+├── ninjas/                           # Ninja definitions
+│   ├── aws-ninja/SKILL.md            # AWS orchestrator (230+ skills)
+│   ├── azure-ninja/SKILL.md          # Azure orchestrator (40 skills)
+│   ├── firecrawl-ninja/SKILL.md      # Firecrawl orchestrator (33 skills)
+│   ├── google-cloud-ninja/SKILL.md   # Google Cloud orchestrator (85+ skills)
+│   ├── google-ai-ninja/SKILL.md      # Google AI orchestrator (25+ skills)
+│   ├── google-ads-ninja/SKILL.md     # Google Ads orchestrator (15+ skills)
+│   ├── google-mobile-ninja/SKILL.md  # Mobile dev orchestrator (35+ skills)
+│   ├── google-firebase-ninja/SKILL.md # Firebase orchestrator (18+ skills)
+│   └── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
 ├── repos.md                   # Repository definitions per Ninja
@@ -210,7 +336,13 @@ jump-skills/
 ├── repos/                     # 📁 Cloned source repositories (git-ignored)
 │   ├── aws-ninja/             #    └── 10 AWS repos
 │   ├── azure-ninja/           #    └── 2 Azure repos
-│   └── firecrawl-ninja/       #    └── 1 Firecrawl repo
+│   ├── firecrawl-ninja/       #    └── 1 Firecrawl repo
+│   ├── google-cloud-ninja/    #    └── 1 Google repo
+│   ├── google-ai-ninja/       #    └── 2 Google repos
+│   ├── google-ads-ninja/      #    └── 1 Google repo
+│   ├── google-mobile-ninja/   #    └── 3 Google repos
+│   ├── google-firebase-ninja/ #    └── 2 Google repos
+│   └── google-analytics-ninja/#    └── 1 Google repo
 └── .skills-map                # 📄 Auto-generated skill→path mapping
 ```
 
@@ -325,6 +457,9 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) for de
 The source skill repositories have their own licenses:
 - AWS repositories: Apache 2.0 / MIT-0
 - Microsoft repositories: MIT
+- Google repositories: Apache 2.0
+- Firebase repositories: Apache 2.0
+- Android/Flutter/Dart repositories: BSD-3-Clause
 - Firecrawl repository: MIT
 
 ---
@@ -334,7 +469,7 @@ The source skill repositories have their own licenses:
 <details>
 <summary><strong>Why not install all skills directly?</strong></summary>
 
-**Context window efficiency.** If you installed all 300+ skills directly, your AI agent would load all of them at startup, consuming your entire context window before you even ask a question.
+**Context window efficiency.** If you installed all 500+ skills directly, your AI agent would load all of them at startup, consuming your entire context window before you even ask a question.
 
 Ninjas are **Jump Skills** — they load only metadata (~500 tokens), then load full skill instructions **on-demand** when needed. This means:
 
@@ -358,6 +493,10 @@ Think of it like a library index vs. carrying all the books at once.
 All skills are from official repositories:
 - **AWS skills**: `aws/` and `aws-samples/` orgs — written by AWS Solutions Architects
 - **Azure skills**: `microsoft/azure-skills` — official Microsoft plugin
+- **Google Cloud skills**: `google/skills` — official Google Cloud skills
+- **Google AI skills**: `google/skills`, `google/agents-cli` — Gemini, Genkit, ADK
+- **Google Mobile skills**: `android/skills`, `flutter/agent-plugins`, `dart-lang/skills`
+- **Firebase skills**: `firebase/agent-skills` — official Firebase skills
 - **Firecrawl skills**: `firecrawl/skills` — official Firecrawl repository
 </details>
 
@@ -391,6 +530,10 @@ Jump Skills is a **meta-repository** — it orchestrates skills from multiple ex
 
 - **[AWS](https://github.com/aws)** — For open-sourcing comprehensive agent skills
 - **[Microsoft](https://github.com/microsoft)** — For the Azure Skills plugin
+- **[Google](https://github.com/google)** — For Google Cloud, AI, and Analytics skills
+- **[Android](https://github.com/android)** — For Android development skills
+- **[Flutter](https://github.com/flutter)** — For Flutter agent plugins
+- **[Firebase](https://github.com/firebase)** — For Firebase agent skills
 - **[GitHub](https://github.com/github)** — For the awesome-copilot community collection
 - **[Firecrawl](https://github.com/firecrawl)** — For web scraping skills
 - **[Agent Skills Specification](https://github.com/awslabs/agent-plugins)** — Standard skill format
