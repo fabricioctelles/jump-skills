@@ -7,8 +7,8 @@ Lista de Jump Skills disponíveis. Cada ninja é um roteador inteligente que orq
 ```ninjas
 aws-ninja
 azure-ninja
-firecrawl-ninja
 datadog-ninja
+firecrawl-ninja
 google-cloud-ninja
 google-ai-ninja
 google-ads-ninja
@@ -23,8 +23,8 @@ google-analytics-ninja
 |-------|-----------|--------|
 | `aws-ninja` | Orquestra 230+ skills AWS oficiais (EKS, Lambda, DynamoDB, CDK, Security, etc.) | 230+ |
 | `azure-ninja` | Orquestra 40 skills Azure (AKS, App Service, Entra, Foundry, DevOps, Cost, etc.) | 40 |
+| `datadog-ninja` | Orquestra 11 skills Datadog oficiais (APM, logs, monitors, live debugger, CI/flaky tests) | 11 |
 | `firecrawl-ninja` | Orquestra skills Firecrawl (scrape, search, crawl, workflows, etc.) | 33 |
-| `datadog-ninja` | Orquestra skills Datadog (APM, logs, monitors, incidents, synthetics, CI visibility, security) | 20+ |
 | `google-cloud-ninja` | Orquestra 85+ skills Google Cloud (GKE, Cloud Run, BigQuery, IAM, Storage, WAF) | 85+ |
 | `google-ai-ninja` | Orquestra 25+ skills Google AI (Gemini API, Agent Platform, Genkit, RAG) | 25+ |
 | `google-ads-ninja` | Orquestra 15+ skills Google Ads (Ads API, Mobile Ads SDK, IMA SDK) | 15+ |

@@ -52,6 +52,22 @@ https://github.com/github/awesome-copilot
 
 ---
 
+## [datadog-ninja]
+
+Skills Datadog oficiais - observabilidade via CLI `pup`: APM, logs, monitors, live debugger e CI/test optimization.
+
+```repos
+https://github.com/DataDog/pup
+```
+
+| Repositório | Org | Descrição |
+|-------------|-----|-----------|
+| pup | DataDog | CLI oficial Datadog (`pup`) + skills oficiais: APM, logs, monitors, live debugger, symbol database, docs e triage de CI/testes flaky |
+
+**Skills incluídas:** dd-pup (auth OAuth2), dd-docs, dd-code-generation, dd-file-issue, dd-apm, dd-logs, dd-monitors, dd-debugger, dd-symdb, dd-triage-flaky-test, dd-unblock-pr.
+
+---
+
 ## [firecrawl-ninja]
 
 Repositório oficial Firecrawl com skills para web scraping e research.
@@ -63,24 +79,6 @@ https://github.com/firecrawl/skills
 | Repositório | Org | Descrição |
 |-------------|-----|-----------|
 | skills | firecrawl | Skills core, build e workflows do Firecrawl CLI |
-
----
-
-## [datadog-ninja]
-
-Skills Datadog - observability, APM, logs, monitors, incidents, CI visibility e segurança.
-
-```repos
-https://github.com/DataDog/pup
-https://github.com/Kirneill/DataDogAdditions
-```
-
-| Repositório | Org | Descrição |
-|-------------|-----|-----------|
-| pup | DataDog | CLI oficial Datadog (`pup`) + skills oficiais: APM, logs, monitors, debugger, symdb, docs, triage de testes flaky |
-| DataDogAdditions | Kirneill | Skills portáveis da comunidade: métricas, incidents, synthetics, CI visibility, security, AI observability |
-
-**Skills incluídas:** dd-apm, dd-logs, dd-monitors, dd-debugger, dd-symdb, dd-docs, dd-pup, dd-code-generation, dd-file-issue, dd-triage-flaky-test, dd-unblock-pr, datadog-metrics, datadog-incidents, datadog-synthetics, datadog-ci-visibility, datadog-security, datadog-ai-observability.
 
 ---
 

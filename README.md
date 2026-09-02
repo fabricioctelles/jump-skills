@@ -177,6 +177,26 @@ The Azure Ninja orchestrates Azure expertise across the full deployment lifecycl
 
 ---
 
+### <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white" height="20"/> Datadog Ninja
+
+> **11 skills** from the official `DataDog/pup` repository
+
+The Datadog Ninja routes observability work to the right Datadog specialist:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **CLI & Foundation** | 4 | `pup` OAuth2 auth, docs lookup, API client code generation |
+| **APM & Tracing** | 1 | Traces, services, dependencies, latency analysis |
+| **Logs** | 1 | Log search, pipelines, archives, cost control |
+| **Monitors** | 1 | Alert creation, updates, muting |
+| **Live Debugging** | 2 | Runtime log probes, symbol database lookup |
+| **CI & Test Optimization** | 2 | Unblock failing PRs, triage flaky tests |
+
+**Source repository:**
+- [DataDog/pup](https://github.com/DataDog/pup) — Official Datadog CLI and bundled agent skills
+
+---
+
 ### <img src="https://img.shields.io/badge/Firecrawl-FF6B35?style=flat&logo=firebase&logoColor=white" height="20"/> Firecrawl Ninja
 
 > **33 skills** for web scraping, research, and data extraction
@@ -192,33 +212,6 @@ The Firecrawl Ninja is your specialist for web data operations:
 
 **Source repository:**
 - [firecrawl/skills](https://github.com/firecrawl/skills)
-
----
-
-### <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white" height="20"/> Datadog Ninja
-
-> **20+ skills** from the official `DataDog/pup` repository + community collection
-
-The Datadog Ninja routes observability and incident work to the right Datadog specialist:
-
-| Category | Skills | Examples |
-|----------|--------|----------|
-| **CLI & Foundation** | 4 | `pup` auth, docs lookup, API client code generation |
-| **APM & Tracing** | 2 | Traces, service maps, latency analysis, profiling |
-| **Logs** | 2 | Log search, pipelines, archives, cost control |
-| **Metrics & SLOs** | 1 | Custom metrics, SLIs, performance baselines |
-| **Monitors** | 2 | Alert creation, muting, notification routing |
-| **Incidents** | 1 | Declare, coordinate, postmortem |
-| **CI Visibility** | 3 | Unblock PRs, triage flaky tests, quality gates |
-| **Live Debugging** | 2 | Runtime probes, symbol database |
-| **Synthetics** | 1 | API tests, browser tests, uptime checks |
-| **Security** | 1 | Cloud SIEM signals, CSPM, vulnerability triage |
-| **AI Observability** | 1 | LLM tracing, token usage, evaluations |
-| **Sales Engineering** | 3 | Demo scenarios, SE demos, competitive battlecards |
-
-**Source repositories:**
-- [DataDog/pup](https://github.com/DataDog/pup) — Official Datadog CLI + skills
-- [Kirneill/DataDogAdditions](https://github.com/Kirneill/DataDogAdditions) — Community Datadog skills
 
 ---
 
@@ -347,8 +340,8 @@ jump-skills/
 ├── ninjas/                           # Ninja definitions
 │   ├── aws-ninja/SKILL.md            # AWS orchestrator (230+ skills)
 │   ├── azure-ninja/SKILL.md          # Azure orchestrator (40 skills)
+│   ├── datadog-ninja/SKILL.md        # Datadog orchestrator (11 skills)
 │   ├── firecrawl-ninja/SKILL.md      # Firecrawl orchestrator (33 skills)
-│   ├── datadog-ninja/SKILL.md        # Datadog orchestrator (20+ skills)
 │   ├── google-cloud-ninja/SKILL.md   # Google Cloud orchestrator (85+ skills)
 │   ├── google-ai-ninja/SKILL.md      # Google AI orchestrator (25+ skills)
 │   ├── google-ads-ninja/SKILL.md     # Google Ads orchestrator (15+ skills)
@@ -364,8 +357,8 @@ jump-skills/
 ├── repos/                     # 📁 Cloned source repositories (git-ignored)
 │   ├── aws-ninja/             #    └── 10 AWS repos
 │   ├── azure-ninja/           #    └── 2 Azure repos
+│   ├── datadog-ninja/         #    └── 1 Datadog repo
 │   ├── firecrawl-ninja/       #    └── 1 Firecrawl repo
-│   ├── datadog-ninja/         #    └── 2 Datadog repos
 │   ├── google-cloud-ninja/    #    └── 1 Google repo
 │   ├── google-ai-ninja/       #    └── 2 Google repos
 │   ├── google-ads-ninja/      #    └── 1 Google repo
