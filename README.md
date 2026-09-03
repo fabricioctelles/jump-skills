@@ -5,7 +5,7 @@
 ### Multi-Tenant Ninja System for AI Agent Orchestration
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Ninjas](https://img.shields.io/badge/Ninjas-9-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
+[![Ninjas](https://img.shields.io/badge/Ninjas-10-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
 [![Skills](https://img.shields.io/badge/Skills-500+-green?style=for-the-badge&logo=github)](#-available-ninjas)
 
 <br/>
@@ -177,6 +177,26 @@ The Azure Ninja orchestrates Azure expertise across the full deployment lifecycl
 
 ---
 
+### <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white" height="20"/> Datadog Ninja
+
+> **11 skills** from the official `DataDog/pup` repository
+
+The Datadog Ninja routes observability work to the right Datadog specialist:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **CLI & Foundation** | 4 | `pup` OAuth2 auth, docs lookup, API client code generation |
+| **APM & Tracing** | 1 | Traces, services, dependencies, latency analysis |
+| **Logs** | 1 | Log search, pipelines, archives, cost control |
+| **Monitors** | 1 | Alert creation, updates, muting |
+| **Live Debugging** | 2 | Runtime log probes, symbol database lookup |
+| **CI & Test Optimization** | 2 | Unblock failing PRs, triage flaky tests |
+
+**Source repository:**
+- [DataDog/pup](https://github.com/DataDog/pup) — Official Datadog CLI and bundled agent skills
+
+---
+
 ### <img src="https://img.shields.io/badge/Firecrawl-FF6B35?style=flat&logo=firebase&logoColor=white" height="20"/> Firecrawl Ninja
 
 > **33 skills** for web scraping, research, and data extraction
@@ -320,6 +340,7 @@ jump-skills/
 ├── ninjas/                           # Ninja definitions
 │   ├── aws-ninja/SKILL.md            # AWS orchestrator (230+ skills)
 │   ├── azure-ninja/SKILL.md          # Azure orchestrator (40 skills)
+│   ├── datadog-ninja/SKILL.md        # Datadog orchestrator (11 skills)
 │   ├── firecrawl-ninja/SKILL.md      # Firecrawl orchestrator (33 skills)
 │   ├── google-cloud-ninja/SKILL.md   # Google Cloud orchestrator (85+ skills)
 │   ├── google-ai-ninja/SKILL.md      # Google AI orchestrator (25+ skills)
@@ -336,6 +357,7 @@ jump-skills/
 ├── repos/                     # 📁 Cloned source repositories (git-ignored)
 │   ├── aws-ninja/             #    └── 10 AWS repos
 │   ├── azure-ninja/           #    └── 2 Azure repos
+│   ├── datadog-ninja/         #    └── 1 Datadog repo
 │   ├── firecrawl-ninja/       #    └── 1 Firecrawl repo
 │   ├── google-cloud-ninja/    #    └── 1 Google repo
 │   ├── google-ai-ninja/       #    └── 2 Google repos
@@ -536,6 +558,7 @@ Jump Skills is a **meta-repository** — it orchestrates skills from multiple ex
 - **[Firebase](https://github.com/firebase)** — For Firebase agent skills
 - **[GitHub](https://github.com/github)** — For the awesome-copilot community collection
 - **[Firecrawl](https://github.com/firecrawl)** — For web scraping skills
+- **[Datadog](https://github.com/DataDog)** — For the `pup` CLI and official Datadog skills
 - **[Agent Skills Specification](https://github.com/awslabs/agent-plugins)** — Standard skill format
 - **[skills.sh](https://skills.sh)** — Multi-agent installer inspiration
 - **[Shields.io](https://shields.io)** — Beautiful badges
