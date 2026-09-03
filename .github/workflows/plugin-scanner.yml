@@ -1,0 +1,27 @@
+name: Plugin Scanner
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scan AI Plugin Repository
+        uses: hashgraph-online/ai-plugin-scanner-action@v1
+        with:
+          plugin_dir: "."
+          mode: scan
+          format: sarif
+          min_score: 70
+          fail_on_severity: high
+          upload_sarif: true
