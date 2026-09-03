@@ -54,17 +54,27 @@ https://github.com/github/awesome-copilot
 
 ## [datadog-ninja]
 
-Skills Datadog oficiais - observabilidade via CLI `pup`: APM, logs, monitors, live debugger e CI/test optimization.
+Skills Datadog oficiais - observabilidade completa via CLI `pup`: APM, logs, monitors, live debugger, CI/test optimization, audit trail, browser SDK, cloud integrations e Agent Observability (LLM Ops).
 
 ```repos
 https://github.com/DataDog/pup
+https://github.com/datadog-labs/agent-skills
 ```
 
 | Repositório | Org | Descrição |
 |-------------|-----|-----------|
-| pup | DataDog | CLI oficial Datadog (`pup`) + skills oficiais: APM, logs, monitors, live debugger, symbol database, docs e triage de CI/testes flaky |
+| pup | DataDog | CLI oficial Datadog (`pup`) + 11 skills bundled: APM, logs, monitors, live debugger, symbol database, docs, code generation, CI/flaky tests |
+| agent-skills | datadog-labs | 46 skills adicionais: Agent Observability (LLM Ops), audit trail, browser SDK, cloud integrations (AWS/Azure/GCP/OCI), SSI onboarding, Datadog Apps |
 
-**Skills incluídas:** dd-pup (auth OAuth2), dd-docs, dd-code-generation, dd-file-issue, dd-apm, dd-logs, dd-monitors, dd-debugger, dd-symdb, dd-triage-flaky-test, dd-unblock-pr.
+**Skills incluídas (57 total):**
+- **CLI & Core (pup):** dd-pup, dd-docs, dd-code-generation, dd-file-issue, dd-apm, dd-logs, dd-monitors, dd-debugger, dd-symdb, dd-triage-flaky-test, dd-unblock-pr
+- **Agent Observability (LLM Ops):** experiment-analyzer, experiment-bootstrap, trace-rca, eval-bootstrap, eval-pipeline, session-classify, auto-experiment, replay-trace
+- **Audit Trail:** security-investigation, key-compromise, cost-spike-investigation, compliance-report, ai-activity-audit
+- **Browser SDK:** dd-browser-sdk, upgrade-v5, upgrade-v6, upgrade-v7, dd-instrument-rum
+- **APM SSI (K8s + Linux):** agent-install, enable-ssi, verify-ssi, troubleshoot-ssi, onboarding-summary, service-remapping
+- **Cloud Integrations:** dd-aws-integration, dd-azure-integration, dd-gcp-integration, dd-oci-integration
+- **Software Delivery:** unblock-pr, triage-flaky-test
+- **Other:** dd-apps (Datadog App Builder), dd-security/csm, dd-product-recommender, dd-account-setup
 
 ---
 

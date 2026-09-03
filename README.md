@@ -179,21 +179,27 @@ The Azure Ninja orchestrates Azure expertise across the full deployment lifecycl
 
 ### <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white" height="20"/> Datadog Ninja
 
-> **11 skills** from the official `DataDog/pup` repository
+> **57 skills** from official Datadog repositories
 
 The Datadog Ninja routes observability work to the right Datadog specialist:
 
 | Category | Skills | Examples |
 |----------|--------|----------|
 | **CLI & Foundation** | 4 | `pup` OAuth2 auth, docs lookup, API client code generation |
-| **APM & Tracing** | 1 | Traces, services, dependencies, latency analysis |
-| **Logs** | 1 | Log search, pipelines, archives, cost control |
-| **Monitors** | 1 | Alert creation, updates, muting |
+| **APM & Tracing** | 12 | Traces, services, dependencies, SSI onboarding (K8s + Linux) |
+| **Logs** | 2 | Log search, pipelines, archives, cost control |
+| **Monitors** | 2 | Alert creation, updates, muting |
 | **Live Debugging** | 2 | Runtime log probes, symbol database lookup |
-| **CI & Test Optimization** | 2 | Unblock failing PRs, triage flaky tests |
+| **CI & Test Optimization** | 4 | Unblock failing PRs, triage flaky tests (pup + MCP) |
+| **Audit Trail** | 6 | Security investigations, key compromise, compliance reports (SOC 2/PCI) |
+| **Browser SDK & RUM** | 5 | SDK setup, v5/v6/v7 upgrades, RUM instrumentation |
+| **Agent Observability (LLM Ops)** | 8 | Experiments, evaluators, trace RCA, eval pipelines |
+| **Cloud Integrations** | 4 | AWS, Azure, GCP, OCI integrations |
+| **Apps & Security** | 4 | Datadog Apps, CSM, product recommender, account setup |
 
-**Source repository:**
-- [DataDog/pup](https://github.com/DataDog/pup) — Official Datadog CLI and bundled agent skills
+**Source repositories:**
+- [DataDog/pup](https://github.com/DataDog/pup) — Official Datadog CLI and 11 bundled agent skills
+- [datadog-labs/agent-skills](https://github.com/datadog-labs/agent-skills) — 46 extended skills for LLM Ops, Audit, Browser SDK, SSI
 
 ---
 
@@ -340,7 +346,7 @@ jump-skills/
 ├── ninjas/                           # Ninja definitions
 │   ├── aws-ninja/SKILL.md            # AWS orchestrator (230+ skills)
 │   ├── azure-ninja/SKILL.md          # Azure orchestrator (40 skills)
-│   ├── datadog-ninja/SKILL.md        # Datadog orchestrator (11 skills)
+│   ├── datadog-ninja/SKILL.md        # Datadog orchestrator (57 skills)
 │   ├── firecrawl-ninja/SKILL.md      # Firecrawl orchestrator (33 skills)
 │   ├── google-cloud-ninja/SKILL.md   # Google Cloud orchestrator (85+ skills)
 │   ├── google-ai-ninja/SKILL.md      # Google AI orchestrator (25+ skills)
@@ -357,7 +363,7 @@ jump-skills/
 ├── repos/                     # 📁 Cloned source repositories (git-ignored)
 │   ├── aws-ninja/             #    └── 10 AWS repos
 │   ├── azure-ninja/           #    └── 2 Azure repos
-│   ├── datadog-ninja/         #    └── 1 Datadog repo
+│   ├── datadog-ninja/         #    └── 2 Datadog repos
 │   ├── firecrawl-ninja/       #    └── 1 Firecrawl repo
 │   ├── google-cloud-ninja/    #    └── 1 Google repo
 │   ├── google-ai-ninja/       #    └── 2 Google repos

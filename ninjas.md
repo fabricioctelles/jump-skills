@@ -1,8 +1,8 @@
 # Ninjas
 
-Lista de Jump Skills disponíveis. Cada ninja é um roteador inteligente que orquestra múltiplas skills especializadas.
+List of available Jump Skills. Each ninja is an intelligent router that orchestrates multiple specialized skills.
 
-## Ninjas Ativos
+## Active Ninjas
 
 ```ninjas
 aws-ninja
@@ -17,24 +17,24 @@ google-firebase-ninja
 google-analytics-ninja
 ```
 
-## Descrições
+## Descriptions
 
-| Ninja | Descrição | Skills |
-|-------|-----------|--------|
-| `aws-ninja` | Orquestra 230+ skills AWS oficiais (EKS, Lambda, DynamoDB, CDK, Security, etc.) | 230+ |
-| `azure-ninja` | Orquestra 40 skills Azure (AKS, App Service, Entra, Foundry, DevOps, Cost, etc.) | 40 |
-| `datadog-ninja` | Orquestra 11 skills Datadog oficiais (APM, logs, monitors, live debugger, CI/flaky tests) | 11 |
-| `firecrawl-ninja` | Orquestra skills Firecrawl (scrape, search, crawl, workflows, etc.) | 33 |
-| `google-cloud-ninja` | Orquestra 85+ skills Google Cloud (GKE, Cloud Run, BigQuery, IAM, Storage, WAF) | 85+ |
-| `google-ai-ninja` | Orquestra 25+ skills Google AI (Gemini API, Agent Platform, Genkit, RAG) | 25+ |
-| `google-ads-ninja` | Orquestra 15+ skills Google Ads (Ads API, Mobile Ads SDK, IMA SDK) | 15+ |
-| `google-mobile-ninja` | Orquestra 35+ skills Mobile (Android, Flutter, Dart, Jetpack Compose) | 35+ |
-| `google-firebase-ninja` | Orquestra 18+ skills Firebase (Firestore, Auth, Hosting, Functions) | 18+ |
-| `google-analytics-ninja` | Orquestra skills Google Analytics (Admin API, Data API, Reports) | 3+ |
+| Ninja | Description | Skills |
+|-------|-------------|--------|
+| `aws-ninja` | Orchestrates 230+ official AWS skills (EKS, Lambda, DynamoDB, CDK, Security, etc.) | 230+ |
+| `azure-ninja` | Orchestrates 40 Azure skills (AKS, App Service, Entra, Foundry, DevOps, Cost, etc.) | 40 |
+| `datadog-ninja` | Orchestrates 57 official Datadog skills (APM, logs, monitors, audit trail, browser SDK, Agent Observability/LLM Ops, cloud integrations) | 57 |
+| `firecrawl-ninja` | Orchestrates Firecrawl skills (scrape, search, crawl, workflows, etc.) | 33 |
+| `google-cloud-ninja` | Orchestrates 85+ Google Cloud skills (GKE, Cloud Run, BigQuery, IAM, Storage, WAF) | 85+ |
+| `google-ai-ninja` | Orchestrates 25+ Google AI skills (Gemini API, Agent Platform, Genkit, RAG) | 25+ |
+| `google-ads-ninja` | Orchestrates 15+ Google Ads skills (Ads API, Mobile Ads SDK, IMA SDK) | 15+ |
+| `google-mobile-ninja` | Orchestrates 35+ Mobile skills (Android, Flutter, Dart, Jetpack Compose) | 35+ |
+| `google-firebase-ninja` | Orchestrates 18+ Firebase skills (Firestore, Auth, Hosting, Functions) | 18+ |
+| `google-analytics-ninja` | Orchestrates Google Analytics skills (Admin API, Data API, Reports) | 3+ |
 
-## Como Adicionar um Novo Ninja
+## How to Add a New Ninja
 
-1. Adicione o nome do ninja no bloco `ninjas` acima
-2. Adicione a seção correspondente em `repos.md` com os repositórios fonte
-3. Execute `./sync-repos.sh` para clonar os repositórios
-4. Execute `./install-ninjas.sh` para gerar e instalar a Jump Skill
+1. Add the ninja name to the `ninjas` block above
+2. Add the corresponding section in `repos.md` with source repositories
+3. Run `./sync-repos.sh` to clone the repositories
+4. Run `./install-ninjas.sh` to generate and install the Jump Skill
