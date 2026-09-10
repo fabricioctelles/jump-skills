@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v7
 
       - name: Scan AI Plugin Repository
-        uses: hashgraph-online/ai-plugin-scanner-action@v1.2.578
+        uses: hashgraph-online/ai-plugin-scanner-action@v1.2.640
         with:
           plugin_dir: "."
           mode: scan
