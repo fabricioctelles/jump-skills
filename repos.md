@@ -196,6 +196,22 @@ https://github.com/google/skills
 
 ---
 
+## [yylo-ninja]
+
+Skills YYLO oficiais para orquestração de agentes de código: gestão de tarefas Kanban no YYLO Ledger, planejamento (PDR + tasks), wiki/workflow/artifact Records duráveis e execução autônoma single-task (Ralph loop).
+
+```repos
+https://github.com/yylo-dev/yylo-skills
+```
+
+| Repositório | Org | Descrição |
+|-------------|-----|-----------|
+| yylo-skills | yylo-dev | Fonte canônica das skills oficiais YYLO CLI / YYLO Ledger: ledger-tasks, wiki, workflow, artifact Records, planejamento, Ralph loop |
+
+**Skills incluídas:** ledger-tasks-yylo (board Kanban), plan-ledger-tasks-yylo (PDR + tasks), understand-project-yylo (inspeção do projeto), wiki-yylo (conhecimento durável), workflow-yylo (workflows validados), artifact-yylo (evidência com provenance), ralph-loop-yylo (execução single-task).
+
+---
+
 ## Formato
 
 Cada seção segue o formato:

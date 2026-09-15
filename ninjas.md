@@ -15,6 +15,7 @@ google-ads-ninja
 google-mobile-ninja
 google-firebase-ninja
 google-analytics-ninja
+yylo-ninja
 ```
 
 ## Descriptions
@@ -31,6 +32,7 @@ google-analytics-ninja
 | `google-mobile-ninja` | Orchestrates 35+ Mobile skills (Android, Flutter, Dart, Jetpack Compose) | 35+ |
 | `google-firebase-ninja` | Orchestrates 18+ Firebase skills (Firestore, Auth, Hosting, Functions) | 18+ |
 | `google-analytics-ninja` | Orchestrates Google Analytics skills (Admin API, Data API, Reports) | 3+ |
+| `yylo-ninja` | Orchestrates 7 official YYLO skills (Ledger Kanban tasks, PDR planning, wiki/workflow/artifact Records, Ralph loop) | 7 |
 
 ## How to Add a New Ninja
 

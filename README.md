@@ -5,7 +5,7 @@
 ### Multi-Tenant Ninja System for AI Agent Orchestration
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Ninjas](https://img.shields.io/badge/Ninjas-10-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
+[![Ninjas](https://img.shields.io/badge/Ninjas-11-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
 [![Skills](https://img.shields.io/badge/Skills-500+-green?style=for-the-badge&logo=github)](#-available-ninjas)
 
 <br/>
@@ -329,7 +329,24 @@ The Google Firebase Ninja orchestrates Firebase BaaS:
 The Google Analytics Ninja handles GA4 configuration and reporting:
 
 | Category | Skills | Examples |
+|----### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja
+
+> **7 skills** from the official `yylo-dev/yylo-skills` repository
+
+The YYLO Ninja routes git-native agent-workflow tasks to the right YYLO specialist:
+
+| Category | Skills | Examples |
 |----------|--------|----------|
+| **Task Management** | 3 | Kanban board operations, PDR planning, pre-change project inspection |
+| **Durable Records** | 3 | Wiki Records, validated workflows, artifact evidence with provenance |
+| **Autonomous Execution** | 1 | Single-task Ralph loop to a validated queued commit |
+
+**Source repository:**
+- [yylo-dev/yylo-skills](https://github.com/yylo-dev/yylo-skills) — Canonical skills for YYLO CLI and YYLO Ledger
+
+---
+
+------|--------|----------|
 | **Admin API** | 1 | Accounts, properties, data streams, conversions |
 | **Data API** | 1 | Reports, metrics, dimensions, real-time |
 | **Integration** | 1+ | Firebase links, Ads links, Measurement Protocol |
@@ -353,7 +370,8 @@ jump-skills/
 │   ├── google-ads-ninja/SKILL.md     # Google Ads orchestrator (15+ skills)
 │   ├── google-mobile-ninja/SKILL.md  # Mobile dev orchestrator (35+ skills)
 │   ├── google-firebase-ninja/SKILL.md # Firebase orchestrator (18+ skills)
-│   └── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
+│   ├── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
+│   └── yylo-ninja/SKILL.md           # YYLO orchestrator (7 skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
 ├── repos.md                   # Repository definitions per Ninja
@@ -370,7 +388,8 @@ jump-skills/
 │   ├── google-ads-ninja/      #    └── 1 Google repo
 │   ├── google-mobile-ninja/   #    └── 3 Google repos
 │   ├── google-firebase-ninja/ #    └── 2 Google repos
-│   └── google-analytics-ninja/#    └── 1 Google repo
+│   ├── google-analytics-ninja/#    └── 1 Google repo
+│   └── yylo-ninja/             #    └── 1 YYLO repo
 └── .skills-map                # 📄 Auto-generated skill→path mapping
 ```
 
@@ -565,6 +584,7 @@ Jump Skills is a **meta-repository** — it orchestrates skills from multiple ex
 - **[GitHub](https://github.com/github)** — For the awesome-copilot community collection
 - **[Firecrawl](https://github.com/firecrawl)** — For web scraping skills
 - **[Datadog](https://github.com/DataDog)** — For the `pup` CLI and official Datadog skills
+- **[YYLO](https://github.com/yylo-dev)** — For the canonical YYLO CLI / YYLO Ledger agent skills
 - **[Agent Skills Specification](https://github.com/awslabs/agent-plugins)** — Standard skill format
 - **[skills.sh](https://skills.sh)** — Multi-agent installer inspiration
 - **[Shields.io](https://shields.io)** — Beautiful badges
