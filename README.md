@@ -329,7 +329,17 @@ The Google Firebase Ninja orchestrates Firebase BaaS:
 The Google Analytics Ninja handles GA4 configuration and reporting:
 
 | Category | Skills | Examples |
-|----### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja
+|----------|--------|----------|
+| **Admin API** | 1 | Accounts, properties, data streams, conversions |
+| **Data API** | 1 | Reports, metrics, dimensions, real-time |
+| **Integration** | 1+ | Firebase links, Ads links, Measurement Protocol |
+
+**Source repository:**
+- [google/skills](https://github.com/google/skills) — Analytics skills
+
+---
+
+### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja
 
 > **7 skills** from the official `yylo-dev/yylo-skills` repository
 
@@ -343,16 +353,6 @@ The YYLO Ninja routes git-native agent-workflow tasks to the right YYLO speciali
 
 **Source repository:**
 - [yylo-dev/yylo-skills](https://github.com/yylo-dev/yylo-skills) — Canonical skills for YYLO CLI and YYLO Ledger
-
----
-
-------|--------|----------|
-| **Admin API** | 1 | Accounts, properties, data streams, conversions |
-| **Data API** | 1 | Reports, metrics, dimensions, real-time |
-| **Integration** | 1+ | Firebase links, Ads links, Measurement Protocol |
-
-**Source repository:**
-- [google/skills](https://github.com/google/skills) — Analytics skills
 
 ---
 
