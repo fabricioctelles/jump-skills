@@ -58,11 +58,29 @@ get_repo_name() {
     basename "$1"
 }
 
-# Check if a ninja opts out of cloning (contains "no-sync" marker in its section)
-# Use when the repo's skills are already consumed as installed agent skills,
-# so cloning would be dead weight (e.g. multi-hundred-MB repos).
+# Ninjas that must NEVER be cloned, hardcoded outside repos.md.
+#
+# Why hardcoded: the `no-sync` marker in repos.md is a comment and is easy to
+# delete in an innocent edit (reordering sections, reformatting, a generator
+# rewriting the file). That would silently start cloning multi-hundred-MB
+# repos. This list cannot be removed by editing content, only by editing code.
+#
+# Keep in sync with the `no-sync` marker in repos.md.
+NEVER_CLONE_NINJAS=(
+    "video-ninja|hyperframes is 489 MB; its 42 skills ship installed as agent skills"
+)
+
+# Check if a ninja opts out of cloning
 ninja_opts_out() {
     local ninja="$1"
+    local entry
+
+    # 1. Hardcoded, unforgeable by content edits
+    for entry in "${NEVER_CLONE_NINJAS[@]}"; do
+        [[ "${entry%%|*}" == "$ninja" ]] && return 0
+    done
+
+    # 2. Marker in repos.md — secondary, so a NEW ninja can opt out without code
     awk -v ninja="$ninja" '
         $0 ~ "^## \\[" ninja "\\]" { in_section=1; next }
         /^## \[/ && in_section { in_section=0 }

@@ -407,6 +407,8 @@ jump-skills/
 │   └── yylo-ninja/SKILL.md           # YYLO orchestrator (7 skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
+├── tests/                     # Guard tests (run in CI)
+│   └── test-no-sync.sh        #    └── no-sync ninjas are never cloned
 ├── repos.md                   # Repository definitions per Ninja
 ├── ninjas.md                  # Ninja registry
 │

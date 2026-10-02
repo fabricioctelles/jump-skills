@@ -290,3 +290,16 @@ o `sync-repos.sh` pula o ninja — tanto no sync quanto no `--status`:
 ```
 
 Único uso hoje: `video-ninja` (489 MB de repo para skills que já estão em `~/.agents/skills/`).
+
+#### A garantia tem duas camadas
+
+O marcador `no-sync` é um **comentário** — fácil de apagar numa edição inocente (reordenar seções,
+reformatar, um gerador reescrever o arquivo). Por isso ele **não** é a única proteção:
+
+1. **`NEVER_CLONE_NINJAS`** em `sync-repos.sh` — lista hardcoded. Não some por editar conteúdo,
+   só por editar código.
+2. **Marcador `no-sync`** em `repos.md` — secundário, permite que um ninja **novo** faça opt-out
+   sem tocar em código.
+
+O teste `tests/test-no-sync.sh` cobre os dois cenários (com e sem o marcador) e roda no CI
+(`.github/workflows/no-sync-guard.yml`). Rode local: `./tests/test-no-sync.sh`.

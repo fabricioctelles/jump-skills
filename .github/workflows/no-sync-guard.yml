@@ -1,0 +1,35 @@
+name: No-Sync Guard
+
+# Impede regressão na garantia de que ninjas no-sync não são clonados.
+# Clonar os repos do video-ninja adicionaria ~483 MB sem ganho funcional.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sync-repos.sh"
+      - "repos.md"
+      - "ninjas.md"
+      - "tests/**"
+      - ".github/workflows/no-sync-guard.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "sync-repos.sh"
+      - "repos.md"
+      - "ninjas.md"
+      - "tests/**"
+      - ".github/workflows/no-sync-guard.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check that no-sync ninjas are never cloned
+        run: ./tests/test-no-sync.sh
