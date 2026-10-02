@@ -254,6 +254,16 @@ tempo e herda a corretude de render.
 | Refresh de uma skill específica | `npx hyperframes skills update <name>` | |
 | Diagnosticar staleness | `npx hyperframes skills check` | Sai != 0 se stale |
 | Atualizar os outros repos | `npx skills update -g` | Atualiza pelo lockfile |
+| Sync dos repos-fonte (não faz nada aqui) | `./sync-repos.sh` | Este ninja é `no-sync` — ver abaixo |
+
+### Este ninja é `no-sync`
+
+As 42 skills já são consumidas como agent skills instaladas. Clonar os 5 repos-fonte adicionaria
+~506 MB (489 MB só do `hyperframes`) sem ganho funcional. Por isso o `video-ninja` está na lista
+`NEVER_CLONE_NINJAS` do `sync-repos.sh` e marcado com `no-sync` no `repos.md` — um
+`./sync-repos.sh` (todos ou `video-ninja`) o **pula**.
+
+A garantia é testada: `./tests/test-no-sync.sh` (roda no CI via `no-sync-guard.yml`).
 
 > ⚠️ **As 6 skills de doutrina interna** (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
 > `oversized-cursor`, `captions-overlay`, `changelog-video`) são `metadata: internal: true` no

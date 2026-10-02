@@ -161,6 +161,12 @@ This creates:
 grep "^platform-ninja|" .skills-map
 ```
 
+> **Skills already installed as agent skills?** Then don't clone them. Add a `no-sync` marker to
+> the section in `repos.md` and `sync-repos.sh` will skip it — no need to run the clone step above.
+> This is how `video-ninja` avoids a ~506 MB clone. The guard is enforced by
+> `tests/test-no-sync.sh`, which runs in CI — see
+> [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync).
+
 ### Step 5: Create the Ninja SKILL.md
 
 ```bash

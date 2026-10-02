@@ -73,12 +73,18 @@ Think of Ninjas as **expert dispatchers** — they understand the entire landsca
 > [!CAUTION]
 > **This repository cannot be installed via `npx skills`**
 > 
-> Jump Skills is a **meta-repository** that orchestrates skills from multiple external repositories. The Ninja skills reference paths to cloned repositories that must exist locally.
+> Jump Skills is a **meta-repository** that orchestrates skills from multiple external repositories. Most Ninja skills reference paths to cloned repositories that must exist locally.
 > 
 > **To use Jump Skills, you must:**
 > 1. Clone this repository
-> 2. Run `./sync-repos.sh` to clone all source repositories
+> 2. Run `./sync-repos.sh` to clone the source repositories
 > 3. Run `./install-ninjas.sh` to install Ninjas to your agents
+
+> [!NOTE]
+> **One exception: Video Ninja.** Its 42 skills are consumed as already-installed agent skills, so
+> it needs **no cloning** — cloning its sources would add ~506 MB with zero functional gain.
+> The `sync-repos.sh` step still works; it just skips that Ninja (see
+> [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync)).
 
 ---
 
@@ -90,7 +96,7 @@ Simply copy and paste this prompt to your AI coding agent:
 
 ```
 Clone https://github.com/fabricioctelles/jump-skills,
-then run ./sync-repos.sh to clone all skill repositories,
+then run ./sync-repos.sh to clone the skill repositories,
 and ./install-ninjas.sh to install the Ninjas.
 ```
 
@@ -101,7 +107,7 @@ and ./install-ninjas.sh to install the Ninjas.
 git clone https://github.com/fabricioctelles/jump-skills.git
 cd jump-skills
 
-# 2. Sync all source repositories (clones ~20 repos, ~800MB)
+# 2. Sync source repositories (one shallow clone per declared repo, see repos.md)
 ./sync-repos.sh
 
 # 3. Install Ninjas to your agents (Claude Code, Kiro, Cursor, etc.)
@@ -339,23 +345,6 @@ The Google Analytics Ninja handles GA4 configuration and reporting:
 
 ---
 
-### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja
-
-> **7 skills** from the official `yylo-dev/yylo-skills` repository
-
-The YYLO Ninja routes git-native agent-workflow tasks to the right YYLO specialist:
-
-| Category | Skills | Examples |
-|----------|--------|----------|
-| **Task Management** | 3 | Kanban board operations, PDR planning, pre-change project inspection |
-| **Durable Records** | 3 | Wiki Records, validated workflows, artifact evidence with provenance |
-| **Autonomous Execution** | 1 | Single-task Ralph loop to a validated queued commit |
-
-**Source repository:**
-- [yylo-dev/yylo-skills](https://github.com/yylo-dev/yylo-skills) — Canonical skills for YYLO CLI and YYLO Ledger
-
----
-
 ### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja
 
 > **42 skills** from 5 repositories + a proven video-pipeline methodology layer
@@ -383,8 +372,27 @@ the video frame by frame.
 - [Rieranthony/product-film-skill](https://github.com/Rieranthony/product-film-skill) — Screen capture → film (MIT)
 - [tugrawork-creator/saas-motion-kit](https://github.com/tugrawork-creator/saas-motion-kit) — SaaS promo, anti-repetition
 
-> Unlike the other Ninjas, Video Ninja does **not** use `sync-repos.sh`: all 42 skills are already
-> installed globally as agent skills. Cloning would add ~506 MB with no functional gain.
+> Unlike the other Ninjas, Video Ninja does **not** clone its sources. All 42 skills are already
+> installed as agent skills (~23 MB), so `sync-repos.sh` skips it. Cloning would download ~506 MB
+> (489 MB from `hyperframes` alone) purely to duplicate what is already installed. See
+> [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync).
+
+---
+
+### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja
+
+> **7 skills** from the official `yylo-dev/yylo-skills` repository
+
+The YYLO Ninja routes git-native agent-workflow tasks to the right YYLO specialist:
+
+| Category | Skills | Examples |
+|----------|--------|----------|
+| **Task Management** | 3 | Kanban board operations, PDR planning, pre-change project inspection |
+| **Durable Records** | 3 | Wiki Records, validated workflows, artifact evidence with provenance |
+| **Autonomous Execution** | 1 | Single-task Ralph loop to a validated queued commit |
+
+**Source repository:**
+- [yylo-dev/yylo-skills](https://github.com/yylo-dev/yylo-skills) — Canonical skills for YYLO CLI and YYLO Ledger
 
 ---
 
@@ -443,6 +451,11 @@ Reads `repos.md` and clones all source repositories into `repos/<ninja-name>/`:
 ./sync-repos.sh --status        # Show sync status
 ```
 
+Ninjas marked **`no-sync`** are skipped (their skills are already installed as agent skills, so
+cloning would be dead weight). Currently only `video-ninja` — skipping it avoids ~506 MB. The
+guarantee has two layers (a hardcoded list in the script plus the `repos.md` marker) and is
+covered by `tests/test-no-sync.sh`. See [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync).
+
 ### 2. Skill Mapping
 
 During sync, the script discovers all `SKILL.md` files and creates `.skills-map`:
@@ -490,6 +503,10 @@ Copies Ninja SKILL.md files to detected agents, replacing `{{JUMP_SKILLS_DIR}}` 
    ```bash
    ./sync-repos.sh my-ninja
    ```
+
+   > If your Ninja's skills are **already installed** as agent skills, skip cloning: add a
+   > `no-sync` marker to the section (see
+   > [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync)). `sync-repos.sh` will skip it.
 
 4. **Create the Ninja SKILL.md**:
    ```bash
