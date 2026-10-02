@@ -212,6 +212,54 @@ https://github.com/yylo-dev/yylo-skills
 
 ---
 
+## [video-ninja]
+
+<!-- no-sync: as 42 skills dos 5 repositórios já estão instaladas globalmente como agent skills.
+     Clonar aqui adicionaria ~506 MB (489 MB só do hyperframes) sem ganho funcional.
+     sync-repos.sh detecta este marcador e pula a seção. -->
+
+Cinco repositórios de vídeo que se complementam: um motor de render, uma doutrina de qualidade,
+uma framework alternativa e dois nichos (captura de tela e anti-repetição).
+
+```repos
+https://github.com/heygen-com/hyperframes
+https://github.com/echris6/motion-video-kit
+https://github.com/remotion-dev/skills
+https://github.com/Rieranthony/product-film-skill
+https://github.com/tugrawork-creator/saas-motion-kit
+```
+
+| Repositório | Org | Skills | Descrição |
+|-------------|-----|--------|-----------|
+| hyperframes | heygen-com | 27 | Motor: HTML → vídeo via Chrome headless + FFmpeg. 21 skills publicadas (roteador + 8 domínios + 10 workflows + CLI) + 6 de doutrina interna. 173 blocos no registry. Apache-2.0 |
+| motion-video-kit | echris6 | 1 | Doutrina: loop de crítico separado, princípios de 28 filmes de launch, quality bar, sound design. MIT |
+| skills | remotion-dev | 12 | Remotion oficial (4.0.529) — 2ª framework, port e projetos existentes |
+| product-film-skill | Rieranthony | 1 | Captura de tela → product film com AVFoundation, sem ffmpeg. MIT |
+| saas-motion-kit | tugrawork-creator | 1 | Promo SaaS: tone matrix, variety audit, 24 transições, 100 temas de storyboard |
+
+**Skills incluídas:** 42 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
+`-keyframes`, `-creative`, `-audio`, `-cli`, `-registry`, `-studio`, `media-use`,
+`motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`,
+`changelog-video`, `general-video`, `product-launch-video`, `talking-head-recut`,
+`embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`,
+`slideshow`, `figma`, `remotion-to-hyperframes`, `business-motion-film`, `saas-motion-video`,
+`product-film`, `remotion-*` (12).
+
+> ⚠️ **Este ninja não usa `sync-repos.sh`.** As 42 skills dos 5 repositórios já estão instaladas
+> globalmente (`~/.agents/skills/`, espelhadas em `~/.claude/` e por symlink em `~/.codex`,
+> `~/.gemini`, `~/.cursor`). Clonar aqui adicionaria ~506 MB sem ganho funcional — o `hyperframes`
+> sozinho tem 489 MB.
+>
+> As 6 skills de doutrina interna (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
+> `oversized-cursor`, `captions-overlay`, `changelog-video`) são `metadata: internal: true` no
+> upstream: a CLI não as instala e `npx hyperframes skills` faz prune das não-publicadas.
+> Estão registradas no lockfile como `internal-doctrine`; se sumirem, reinstalar copiando de
+> `.agents/skills/<nome>/` do repo.
+
+Detalhe completo: `ninjas/video-ninja/references/repos.md`.
+
+---
+
 ## Formato
 
 Cada seção segue o formato:
@@ -228,3 +276,17 @@ https://github.com/org/repo2
 ```
 
 O script `sync-repos.sh` parseia os blocos `repos` de cada seção.
+
+### Opt-out de clonagem (`no-sync`)
+
+Se as skills de um ninja já são consumidas como **agent skills instaladas globalmente**, a
+clonagem é peso morto. Adicione `no-sync` em qualquer lugar da seção (um comentário HTML basta) e
+o `sync-repos.sh` pula o ninja — tanto no sync quanto no `--status`:
+
+```markdown
+## [meu-ninja]
+
+<!-- no-sync: skills já instaladas globalmente; clonar não agrega -->
+```
+
+Único uso hoje: `video-ninja` (489 MB de repo para skills que já estão em `~/.agents/skills/`).

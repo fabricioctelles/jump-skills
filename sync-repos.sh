@@ -58,6 +58,19 @@ get_repo_name() {
     basename "$1"
 }
 
+# Check if a ninja opts out of cloning (contains "no-sync" marker in its section)
+# Use when the repo's skills are already consumed as installed agent skills,
+# so cloning would be dead weight (e.g. multi-hundred-MB repos).
+ninja_opts_out() {
+    local ninja="$1"
+    awk -v ninja="$ninja" '
+        $0 ~ "^## \\[" ninja "\\]" { in_section=1; next }
+        /^## \[/ && in_section { in_section=0 }
+        in_section && /no-sync/ { found=1 }
+        END { exit !found }
+    ' "$REPOS_FILE"
+}
+
 # Clone a single repo (removes .git to avoid IDE confusion)
 clone_repo() {
     local url="$1"
@@ -152,6 +165,11 @@ sync_ninja() {
     
     echo -e "\n${CYAN}[$ninja]${NC}"
     
+    if ninja_opts_out "$ninja"; then
+        echo -e "  ${YELLOW}⏭  Skipped (no-sync: skills already installed globally)${NC}"
+        return 0
+    fi
+    
     local repos=$(parse_repos_for_ninja "$ninja")
     if [[ -z "$repos" ]]; then
         echo -e "  ${YELLOW}No repos found for $ninja${NC}"
@@ -194,6 +212,12 @@ show_status() {
     for ninja in $(parse_ninjas); do
         echo -e "${CYAN}[$ninja]${NC}"
         local ninja_repos_dir="$REPOS_DIR/$ninja"
+        
+        if ninja_opts_out "$ninja"; then
+            echo -e "  ${YELLOW}⏭  no-sync (skills installed globally)${NC}"
+            echo ""
+            continue
+        fi
         
         for url in $(parse_repos_for_ninja "$ninja"); do
             local name=$(get_repo_name "$url")

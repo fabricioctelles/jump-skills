@@ -5,7 +5,7 @@
 ### Multi-Tenant Ninja System for AI Agent Orchestration
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
-[![Ninjas](https://img.shields.io/badge/Ninjas-11-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
+[![Ninjas](https://img.shields.io/badge/Ninjas-12-blueviolet?style=for-the-badge&logo=github)](#-available-ninjas)
 [![Skills](https://img.shields.io/badge/Skills-500+-green?style=for-the-badge&logo=github)](#-available-ninjas)
 
 <br/>
@@ -356,6 +356,38 @@ The YYLO Ninja routes git-native agent-workflow tasks to the right YYLO speciali
 
 ---
 
+### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja
+
+> **42 skills** from 5 repositories + a proven video-pipeline methodology layer
+
+The Video Ninja orchestrates the whole video stack — engine, craft doctrine, workflows and a
+second framework — and adds four techniques the market does not have:
+
+| Layer | Skills | What it covers |
+|-------|--------|----------------|
+| **Engine** | 10 | HyperFrames: HTML → video via headless Chrome + FFmpeg. Core contract, CLI, registry (173 blocks) |
+| **Workflows** | 11 | Launch, promo, talking-head recut, captions, explainer, PR, music, motion graphics, slideshow, Figma, changelog |
+| **Craft doctrine** | 7 | Motion law (gateway), transition catalog, seam render-correctness, cursor, caption overlay, business-film critic loop, anti-repetition |
+| **Domains** | 7 | Animation, keyframes, creative direction, audio, media, registry, Studio |
+| **Framework 2nd** | 13 | Remotion official (port, projects) + screen-recording → product film |
+
+**Methodology layer (My-Little-Studio):** sha256 staleness tracking that refuses to run on changed
+inputs · letter-level ASR preserving retakes · reusable color Setups per camera/light/set · body map
+for element placement (an LLM measured 12% frame-width error) · visual boards where you draw over
+the video frame by frame.
+
+**Source repositories:**
+- [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) — Engine (Apache-2.0)
+- [echris6/motion-video-kit](https://github.com/echris6/motion-video-kit) — Quality doctrine (MIT)
+- [remotion-dev/skills](https://github.com/remotion-dev/skills) — Official Remotion skills
+- [Rieranthony/product-film-skill](https://github.com/Rieranthony/product-film-skill) — Screen capture → film (MIT)
+- [tugrawork-creator/saas-motion-kit](https://github.com/tugrawork-creator/saas-motion-kit) — SaaS promo, anti-repetition
+
+> Unlike the other Ninjas, Video Ninja does **not** use `sync-repos.sh`: all 42 skills are already
+> installed globally as agent skills. Cloning would add ~506 MB with no functional gain.
+
+---
+
 ## 🗂️ Repository Structure
 
 ```
@@ -371,6 +403,7 @@ jump-skills/
 │   ├── google-mobile-ninja/SKILL.md  # Mobile dev orchestrator (35+ skills)
 │   ├── google-firebase-ninja/SKILL.md # Firebase orchestrator (18+ skills)
 │   ├── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
+│   ├── video-ninja/SKILL.md          # Video orchestrator (42 skills)
 │   └── yylo-ninja/SKILL.md           # YYLO orchestrator (7 skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
@@ -389,6 +422,7 @@ jump-skills/
 │   ├── google-mobile-ninja/   #    └── 3 Google repos
 │   ├── google-firebase-ninja/ #    └── 2 Google repos
 │   ├── google-analytics-ninja/#    └── 1 Google repo
+│   ├── video-ninja/            #    └── 5 video repos (installed as skills, no clone)
 │   └── yylo-ninja/             #    └── 1 YYLO repo
 └── .skills-map                # 📄 Auto-generated skill→path mapping
 ```
