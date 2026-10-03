@@ -257,9 +257,104 @@ fino for caso comum.
 
 ---
 
-## Fonte
+## §6 — Remake mode (recriação frame-locked de vídeo de lançamento)
+
+### O problema
+
+Cliente pede: *"recria o vídeo de lançamento do [Produto X] para a minha marca"*. O resultado
+esperado é um vídeo lado-a-lado "original | opus 5.5 copy" que demonstra a capacidade de replicar
+um estilo profissional. Mas nenhuma skill tem o workflow estruturado para isso.
+
+### A solução
+
+Workflow em 4 fases, do repo [`howseen-ai/claude-motion-design`](https://github.com/howseen-ai/claude-motion-design):
+
+| Fase | O que faz |
+|---|---|
+| **0 — Análise** | Download do vídeo de referência (REF), extração de todos os frames, detecção de hard cuts por diff de média absoluta, contact sheets 6 frames, escrita de `SPEC.md` (tabela de shots id/f0–f1/conteúdo/swap rules) |
+| **1 — Engine** | Motor `seek(F)` puro (index.html + core.js), registro de SHOT, câmera, cursor, words, pixelDissolve, **palette filter** que re-hue qualquer cor residual da marca original |
+| **2 — Build paralelo** | 4 contiguous groups de shots → 4 agents paralelos (cada um escreve só `shots/Gx.js` e verifica com compare sheets lado-a-lado). 5º agent = áudio: analisa REF (BPM, drop, hits, VO slots via STT), encontra track royalty-free em Mixkit, stretcha ≤8%, corta em barras para drops baterem, synthesiza SFX nos mesmos tempos |
+| **3 — Integração** | Render em 3 chunks paralelos, mux, encode split-screen (2 painéis + gap + labels "original" / "opus 5.5 copy", `setsar=1`), QA de cor/frame |
+
+### Regras de honestidade
+
+- Nunca reusar música/voz/fotos de pessoas do REF
+- Não falar "feito em 15 minutos" se não foi
+- Tag/creditar a marca original no post
+- Nenhum co-mark falso (tipo "OpenAI × SuaMarca")
+
+### Por que implementar
+
+Nenhum dos 6 repos do video-ninja tem este workflow. O HyperFrames renderiza, o motion-video-kit
+julga, mas nenhum estrutura a **análise de referência** + **paralelização por grupos de shots** +
+**palette filter** + **QA lado-a-lado**.
+
+### Aplicação
+
+1. Use a análise de shots (Fase 0) para qualquer vídeo de referência — não só remake
+2. O palette filter é reutilizável para garantir que nenhuma cor da marca original vaze
+3. O split-screen encode é o formato de entrega para demonstrar skill em LinkedIn/X
+
+### Bônus: tabela de SFX Mixkit mapeados
+
+O repo traz IDs prontos para download:
+
+| Som | ID Mixkit |
+|---|---|
+| click | 1125 |
+| key | 2568 |
+| soft tick | 1117 |
+| check | 1113 |
+| toggle | 1120 |
+| toast | 2573 |
+| pop | 2364 |
+| bubble | 2357 |
+| soap | 2925 |
+| whoosh | w1490 |
+| rise | w1489 |
+| flip | w1485 |
+| impact | 1143 |
+| shutter | 1430 |
+| lens | 1433 |
+| sparkle | 3083 |
+| success | 2865 |
+
+URL: `https://assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3`
+
+### Spring presets validados
+
+| Uso | Stiffness (k) | Damping (d) |
+|---|---|---|
+| UI snappy | 320 | 30 |
+| Containers/câmera | 170 | 26 |
+| Type/logos pesados | 120 | 24 |
+| Mascots playful | 180 | 12 |
+
+Regra: damping ratio ≥ 0.72 (sem bounce cartoon).
+
+---
+
+## Resumo de custo/benefício
+
+| Técnica | Custo de implementar | Benefício | Lacuna no mercado |
+|---|---|---|---|
+| §1 Rastreabilidade sha256 | Baixo (hash + state file) | Elimina bug silencioso | ❌ Nenhum |
+| §2 A fita | Médio (modelo + decoder) | Corte no início da sílaba | ❌ Nenhum |
+| §3 Setup de cor | Baixo (versionar assets) | Consistência entre vídeos | ❌ Nenhum |
+| §4 Mapa de corpo | Médio (3 libs) | Posicionar sem errar | ❌ Nenhum |
+| §5 Quadros visuais | Alto (HTML + export) | Pedir algo específico | Parcial — `/hyperframes-studio` tem storyboard, mas não desenho sobre o vídeo |
+| §6 Remake mode | Médio (workflow + scripts) | Recriar vídeo de lançamento | ❌ Nenhum |
+
+**Recomendação de ordem**: §1 primeiro (barato, elimina uma classe de bug), depois §3 (barato,
+ganho imediato), depois §4 (o maior ganho de qualidade), depois §6 (quando cliente pedir remake),
+depois §5, e §2 só se cortar talking-head fino for caso comum.
+
+---
+
+## Fontes
 
 - Artigo: `https://iago-russi.vercel.app/artigos/pipeline/` — "My-Little-Studio", set/2026
 - Modelo da fita: `huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-portuguese`
 - Rastreamento: `github.com/Tau-J/rtmlib` (RTMPose)
-- Verificação de lacunas: busca em repos de skills de vídeo, set/2026
+- Remake mode, SFX table, spring presets: `github.com/howseen-ai/claude-motion-design` (Raphaël Aubry / Howseen AI), MIT, out/2026
+- Verificação de lacunas: busca em repos de skills de vídeo, set-out/2026
