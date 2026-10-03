@@ -16,6 +16,7 @@ https://github.com/echris6/motion-video-kit
 https://github.com/remotion-dev/skills
 https://github.com/Rieranthony/product-film-skill
 https://github.com/tugrawork-creator/saas-motion-kit
+https://github.com/tuzhechen2005/opus-video-skills
 ```
 
 | Repositório | Org | Skills | Licença | Papel |
@@ -25,6 +26,7 @@ https://github.com/tugrawork-creator/saas-motion-kit
 | skills | remotion-dev | 12 | — | Remotion oficial (2ª framework) |
 | product-film-skill | Rieranthony | 1 | MIT | Captura de tela → product film (AVFoundation) |
 | saas-motion-kit | tugrawork-creator | 1 | — | Promo SaaS: tone matrix, 24 transições, 100 temas |
+| opus-video-skills | tuzhechen2005 | 2 | MIT | Estilos artísticos procedurais: aquarela animada, kinetic typography |
 
 ---
 
@@ -137,6 +139,45 @@ Roda ao lado do codebase do produto, então reusa componentes de verdade e fica 
 
 Regra da skill: **a limpeza com a imagem vale só quando a imagem é limpa**. Assets do próprio
 produto antes de gerados.
+
+---
+
+## Detalhe: `tuzhechen2005/opus-video-skills` — estilos artísticos procedurais
+
+> ⭐ — 2 skills em `skills/`. Licença MIT.
+
+Produção de vídeo **inteiramente em código** — cada frame é função pura do tempo, sem modelos
+generativos de imagem/vídeo/áudio. Renderiza em headless Chrome + ffmpeg.
+
+| Skill | Estilo | Uso típico |
+|---|---|---|
+| `painted-animation` | Aquarela e tinta à mão (p5.js + p5.brush), personagens com acting | Curtas animados, MVs, lyric videos com karaoke |
+| `kinetic-reel` | Tipografia cinética com WebGL (three.js, partículas, marble líquido, chrome knot) | Showreels, portfolios, intros, product films |
+
+**Diferencial-chave**: estilos visuais únicos não cobertos pelos outros 5 repos. `painted-animation`
+é o único que faz **cartoon aquarela animado** com personagens. `kinetic-reel` combina tipografia
+condensada com camadas WebGL (terreno de partículas, marble, nuvem que condensa em forma).
+
+**Dependências**: Node.js, Google Chrome, ffmpeg, Python 3 com numpy (só para tempo detection em
+`painted-animation`).
+
+**Recomendação**: funciona melhor com Claude Opus 5.5, mas não é obrigatório.
+
+**Comandos** (instalação via Claude Code marketplace):
+
+```bash
+/plugin marketplace add tuzhechen2005/opus-video-skills
+/plugin install painted-animation@opus-video-skills
+/plugin install kinetic-reel@opus-video-skills
+```
+
+Ou como skills pessoais:
+
+```bash
+git clone https://github.com/tuzhechen2005/opus-video-skills ~/opus-video-skills
+ln -s ~/opus-video-skills/skills/painted-animation ~/.claude/skills/painted-animation
+ln -s ~/opus-video-skills/skills/kinetic-reel ~/.claude/skills/kinetic-reel
+```
 
 ---
 

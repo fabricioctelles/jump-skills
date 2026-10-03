@@ -1,8 +1,8 @@
 ---
 name: video-ninja
 description: >-
-  Master orchestrator for video production with agents. Routes to 42 installed video skills
-  across 5 upstream repositories and adds a proven video-pipeline methodology layer.
+  Master orchestrator for video production with agents. Routes to 44 installed video skills
+  across 6 upstream repositories and adds a proven video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
   or publishing a video, motion graphic, promo, launch film, product demo, talking-head package,
   changelog reel, explainer, lyric video, slideshow deck, or Remotion project.
@@ -20,7 +20,7 @@ description: >-
 
 # Video Ninja
 
-**Jump Skill** — Master orchestrator that routes video tasks to 42 installed skills from 5 upstream
+**Jump Skill** — Master orchestrator that routes video tasks to 44 installed skills from 6 upstream
 repositories, plus a methodology layer distilled from the My-Little-Studio pipeline.
 
 > **PT-BR**: este ninja roteia qualquer tarefa de vídeo para as skills instaladas. Ele é o ponto de
@@ -30,9 +30,10 @@ repositories, plus a methodology layer distilled from the My-Little-Studio pipel
 
 ## Por que este ninja existe
 
-Os 5 repositórios abaixo cobrem **motor**, **craft** e **framework** — mas cada um deles é um
+Os 6 repositórios abaixo cobrem **motor**, **craft**, **framework** e **estilos artísticos** — mas cada um deles é um
  silo. O HyperFrames sabe renderizar mas não tem opinião sobre qualidade. O motion-video-kit tem
-opinião mas não tem motor. O Remotion é uma framework alternativa, não um complemento.
+opinião mas não tem motor. O Remotion é uma framework alternativa, não um complemento. O opus-video-skills
+traz estilos visuais únicos (aquarela, kinetic typography) mas não tem a doutrina dos outros.
 
 Este ninja é a camada que **escolhe** e **encadeia**, e que sabe o que **não** existe no mercado.
 
@@ -49,7 +50,7 @@ exceções (Remotion, captura de tela, doutrina de craft, método de pipeline).
 
 ---
 
-## As 5 fontes
+## As 6 fontes
 
 | Repositório | Skills | Camada | Status |
 |---|---|---|---|
@@ -58,6 +59,7 @@ exceções (Remotion, captura de tela, doutrina de craft, método de pipeline).
 | [`remotion-dev/skills`](https://github.com/remotion-dev/skills) | 12 | Framework 2ª opção | Instalado |
 | [`Rieranthony/product-film-skill`](https://github.com/Rieranthony/product-film-skill) | 1 | Captura de tela | Instalado, MIT |
 | [`tugrawork-creator/saas-motion-kit`](https://github.com/tugrawork-creator/saas-motion-kit) | 1 | Variety/anti-repetição | Instalado |
+| [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills) | 2 | Estilos artísticos procedurais | Instalado, MIT |
 
 Provenance completa em `~/.agents/.skill-lock.json`. Detalhes em
 [references/repos.md](references/repos.md).
@@ -90,6 +92,8 @@ Este ninja só precisa saber a **camada**:
 | Gravação de tela → demo | **`/product-film`** (skill dedicada) | ver §Remotion |
 | Filmografia de negócio (real, IA, premium) | **`/business-motion-film`** | ver §Doutrina |
 | Promo SaaS anti-repetição | **`/saas-motion-video`** | ver §Doutrina |
+| Cartoon aquarela / lyric video karaoke | **`/painted-animation`** | ver §Estilos Artísticos |
+| Showreel tipográfico / portfolio cinético | **`/kinetic-reel`** | ver §Estilos Artísticos |
 | Explainers, PR, música, deck, motion, livre | os 10 workflows | — |
 
 ### Passo 3 — Carregue os domínios
@@ -100,7 +104,7 @@ Motion é obrigatório: **sempre carregue `/motion-doctrine` antes de compor** q
 
 ---
 
-## As 5 camadas
+## As 6 camadas
 
 | # | Camada | Skills | Responsabilidade |
 |---|---|---|---|
@@ -109,6 +113,7 @@ Motion é obrigatório: **sempre carregue `/motion-doctrine` antes de compor** q
 | 3 | **Doutrina de craft** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **Opinião sobre qualidade.** É o que separa "renderizou" de "parece bom" |
 | 4 | **Domínios** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Movimento, câmera, design, som, mídia, blocos prontos |
 | 5 | **Framework 2ª** | `remotion-*` (12), `product-film` | Quando Remotion é a escolha certa |
+| 6 | **Estilos artísticos** | `painted-animation`, `kinetic-reel` | Estilos visuais procedurais únicos (aquarela, kinetic typography) |
 
 ---
 
@@ -171,6 +176,44 @@ quando a cena está estática/morta e precisa de movimento de alto rendimento e 
 `/hyperframes-audio` = mixagem de áudio já posicionado na composição (fade, crossfade, gain,
 automação, ducking/carve de VO, cadeias de efeitos, submix bus). `/media-use` = **fonte** de
 mídia. Nunca troque: `/media-use` busca e gera, `/hyperframes-audio` mistura o que já está na trilha.
+
+---
+
+## §Estilos Artísticos — aquarela e kinetic typography
+
+Fonte: [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills)
+
+Duas skills que produzem vídeo **inteiramente em código** — cada frame é função pura do tempo,
+sem modelos generativos. Renderiza em headless Chrome + ffmpeg.
+
+### `/painted-animation` — cartoon aquarela animado
+
+Desenha cada shot com p5.js e a biblioteca p5.brush de aquarela. Personagens têm biblioteca de
+expressões e princípios de movimento. Music videos são cortados no beat medido, lyric videos
+carregam legendas karaoke palavra-por-palavra.
+
+**Use quando:** curta animado, music video, lyric video com karaoke, estilo "pintado à mão",
+aquarela, tinta, cartoon com personagens.
+
+**Dependências extra:** Python 3 com numpy (só para tempo detection).
+
+### `/kinetic-reel` — showreel tipográfico com WebGL
+
+Combina canvas 2D de tipografia com camadas three.js (terreno de partículas, marble líquido,
+chrome knot, nuvem que condensa em forma) e post-pass WebGL. Shots ligados por transições de
+continuidade de forma. Score sintetizado da mesma timeline da imagem.
+
+**Use quando:** portfolio reel, showreel, work reel, product intro, tipografia cinética com
+efeitos visuais 3D.
+
+**Nota de overlap:** `/motion-graphics` do HyperFrames também faz kinetic typography, mas sem as
+camadas WebGL específicas (particle terrain, liquid marble). Use `/kinetic-reel` quando quiser
+esses efeitos visuais 3D específicos.
+
+### Recomendação de modelo
+
+Funciona melhor com Claude Opus 5.5, mas não é obrigatório — outros modelos podem usar as skills
+com resultados variáveis.
 
 ---
 
@@ -258,8 +301,8 @@ tempo e herda a corretude de render.
 
 ### Este ninja é `no-sync`
 
-As 42 skills já são consumidas como agent skills instaladas. Clonar os 5 repos-fonte adicionaria
-~506 MB (489 MB só do `hyperframes`) sem ganho funcional. Por isso o `video-ninja` está na lista
+As 44 skills já são consumidas como agent skills instaladas. Clonar os 6 repos-fonte adicionaria
+~510 MB (489 MB só do `hyperframes`) sem ganho funcional. Por isso o `video-ninja` está na lista
 `NEVER_CLONE_NINJAS` do `sync-repos.sh` e marcado com `no-sync` no `repos.md` — um
 `./sync-repos.sh` (todos ou `video-ninja`) o **pula**.
 
