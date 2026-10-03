@@ -351,10 +351,207 @@ depois §5, e §2 só se cortar talking-head fino for caso comum.
 
 ---
 
+## §7 — Prompting Motion Design (Anthropic Blueprint)
+
+Baseado no paper "Prompting Opus 5.5 - Motion Design" (Raphaël Aubry / Howseen AI, out/2026),
+que aplica a estrutura oficial de prompting da Anthropic ao domínio de motion design.
+
+### O conceito central
+
+> **O modelo não faz vídeo. Ele escreve um programa que faz.**
+
+Pipeline real: `prompt → index.html com seek(t) → Playwright screenshots → ffmpeg → MP4`
+
+A regra de determinismo é o que torna tudo possível: o frame é função pura do tempo, então
+"corrige o wobble em 4.2s" é uma instrução tratável. Sem isso, cada fix é um re-roll do vídeo
+inteiro.
+
+### O contrato de render (4 linhas, sempre no prompt)
+
+```
+Every film is a pure function of time:
+window.seek(t) paints frame t, nothing else.
+No CSS transitions, no setTimeout, no requestAnimationFrame in render mode,
+and no state carried between frames. Seeded noise only (mulberry32), never Math.random.
+```
+
+### Estrutura de 10 partes (Anthropic canonical)
+
+| # | Parte | O que vai nela para motion |
+|---|---|---|
+| 1 | Task context | Quem o modelo é: director, animator, sound designer, render engineer |
+| 2 | Tone context | House look em 2 linhas + o que é banido |
+| 3 | Background data | Arquivos de referência, pasta de assets, beat grid medido |
+| 4 | Rules | **O contrato de render** — o bloco mais importante |
+| 5 | Examples | 1-2 beats escritos como você quer, com timings |
+| 6 | Conversation history | O que o projeto já sabe (CLAUDE.md) |
+| 7 | Immediate request | Uma frase: o que fazer e em qual tamanho |
+| 8 | Gates | Artefatos nomeados em ordem, cada um mostrado antes do próximo |
+| 9 | Output format | Entregas por filename + instrução de tamanho para texto |
+| 10 | Prefill | Tag de abertura que força o plano antes do código |
+
+**Partes 1 e 7 são as únicas obrigatórias.** A ordem importa: contexto antes de regras, regras
+antes de exemplos, exemplos antes do request.
+
+### Os 4 tiers de prompt
+
+| Tier | Tamanho | O que descreve | Resultado |
+|---|---|---|---|
+| **1 - One-liner** | ~90 chars | Gênero, deixa modelo escolher tudo | Um clip (testa o engine) |
+| **2 - Brand brief** | ~1.200 chars | URL + assets reais + 5 beats | Um ad |
+| **3 - XML spec** | ~2.500 chars | **State list** no beat grid | Product film |
+| **4 - Director's brief** | 9.500-19.000 chars | Character bible, beat sheet, critique loop | Um filme |
+
+**O salto que importa é do tier 2 para o 3.** One-liner e brand brief descrevem um *feeling*;
+XML spec descreve uma *lista de estados* — e uma lista de estados pode estar errada de forma
+visível e corrigível.
+
+### Os 6 blocos do XML spec (tier 3)
+
+```xml
+<inputs>      <!-- o que perguntar antes de codar -->
+<direction>   <!-- o look em 5 linhas + banned list -->
+<structure>   <!-- state list no beat grid, um estado por beat -->
+<build>       <!-- contrato de render: seek(t), springs, subframes -->
+<gotchas>     <!-- os 3 erros que você já sabe que o modelo faz -->
+<start>       <!-- pede os inputs, mostra state list, espera OK -->
+```
+
+**Ordem importa:** `<start>` vai por último. Se for pro topo, o modelo começa a codar sem
+coletar inputs.
+
+### 5 linhas para deletar de prompts antigos
+
+| Linha | Por que deletar |
+|---|---|
+| "double-check your answer" | Modelo já se auto-corrige. Custa extra sem ganho. |
+| "think carefully first" | Thinking sempre ligado. Effort é o controle, não a frase. |
+| "use a subagent to verify" | Causa over-verification, multiplica custo. |
+| "show your reasoning" | Pode ser recusado. Peça "short explanation" em vez. |
+| "avoid the generic AI look" | Vago demais. Nomeie os padrões banidos. |
+
+### Banned list que funciona
+
+```
+Banned defaults: centered title on a gradient, everything fading in,
+corner labels and frame borders, glow on UI chrome, generic particle bursts,
+cream or off-white backgrounds, italic accent words, numbered "01/02/03"
+section labels, pill-shaped buttons.
+```
+
+### Effort levels por tarefa
+
+| Effort | Quando usar |
+|---|---|
+| `low` | Re-renders, fixes de uma linha, export de formato |
+| `medium` | **Default documentado.** Comece todo filme novo aqui. |
+| `xhigh` | Filme novo onde o look ainda não foi estabelecido |
+| `max` | Os primeiros 3 segundos de algo que precisa funcionar |
+
+**Regra:** defina `max_tokens` alto o suficiente (128.000 para runs longos), e mude effort
+por mensagem, não por sessão (mudar invalida cache).
+
+### Critique loop (os 7 eixos)
+
+| Eixo | Score baixo significa |
+|---|---|
+| Hook nos primeiros 2s | Abertura é title card. Troque pela imagem mais forte. |
+| Readability a 360px | Type muito leve, pequeno ou próximo do background |
+| Motion quality | Algo desliza em curva fixa em vez de assentar em spring |
+| Variety | 2+ segundos passam sem nada novo na tela |
+| Composition | Tudo centrado. Frame tem uma ideia só, sem estrutura. |
+| Brand accuracy | UI redesenhada de imaginação em vez de cropada de screenshot |
+| Sound sync | Cortes caem perto do beat em vez de em cima. Grid ignorado. |
+
+**Comandos ffmpeg para critique:**
+
+```bash
+# Contact sheet: 2 fps, 6 colunas
+ffmpeg -i out/final.mp4 -vf "fps=2,scale=270:-1,tile=6x5" -frames:v 1 out/contact.png
+
+# Strip: 12 frames consecutivos em torno de 4.2s
+ffmpeg -ss 4.1 -i out/final.mp4 -vf "scale=320:-1,tile=12x1" -frames:v 1 out/strip.png
+
+# Phone test: como fica a 360px de largura
+ffmpeg -i out/final.mp4 -vf "fps=1,scale=360:-1,tile=5x3" -frames:v 1 out/phone.png
+
+# Loop check: toca 2x seguidas para ver a costura
+ffmpeg -stream_loop 1 -i out/final.mp4 -c copy out/loop_check.mp4
+```
+
+**A frase que faz funcionar:**
+
+> *"Be a harsh motion director, not a proud author."*
+
+Sem ela, o modelo dá notas generosas pro próprio trabalho e reporta 8 num 6.
+
+### Manter run longo vivo
+
+O modelo para quando emite mensagem sem tool call. Mensagem só-texto = progress report, não
+tarefa completa. Pattern de continuação:
+
+```
+Your task list still has open items: the animatic and the sound pass.
+Continue with them. If one is blocked, say what is blocking it.
+```
+
+**Pare após 2-3 continuações automáticas** para evitar runaway loop.
+
+### Subagents: quando delegar
+
+```
+Delegate to a subagent only for large, genuinely independent tracks:
+one chapter per agent, no more. Do not delegate work you can finish
+in a handful of tool calls, and do not use subagents to check your own work.
+Write docs/ANIMATION_GUIDE.md before spawning any, so every agent codes
+in the same style.
+```
+
+### Anti-patterns comuns
+
+| Anti-pattern | Por que quebra |
+|---|---|
+| Sem referência | Modelo cai em título centrado em gradiente |
+| Descrever vibe | "Make it feel premium" não é state list, não pode estar errado |
+| Sem contrato de render | Timers e CSS transitions entram, render vira non-deterministic |
+| Nomear biblioteca primeiro | Especifique look e constraints; deixe modelo escolher técnica |
+| Carregar instruções antigas | "Double-check", "think carefully" custam sem entregar |
+| Pular critique loop | A diferença entre clip compartilhado e "ficou mid" |
+
+### O skill que substitui o prompt longo
+
+Uma vez que house rules, banned list e critique loop vivem num arquivo de skill, o próximo
+filme é uma frase:
+
+```
+/motion-reel for [URL], 20s, vertical, reference ./refs/frame.png
+```
+
+---
+
+## Resumo de custo/benefício
+
+| Técnica | Custo de implementar | Benefício | Lacuna no mercado |
+|---|---|---|---|
+| §1 Rastreabilidade sha256 | Baixo (hash + state file) | Elimina bug silencioso | ❌ Nenhum |
+| §2 A fita | Médio (modelo + decoder) | Corte no início da sílaba | ❌ Nenhum |
+| §3 Setup de cor | Baixo (versionar assets) | Consistência entre vídeos | ❌ Nenhum |
+| §4 Mapa de corpo | Médio (3 libs) | Posicionar sem errar | ❌ Nenhum |
+| §5 Quadros visuais | Alto (HTML + export) | Pedir algo específico | Parcial |
+| §6 Remake mode | Médio (workflow + scripts) | Recriar vídeo de lançamento | ❌ Nenhum |
+| §7 Prompting blueprint | Baixo (templates) | Prompts estruturados para motion | Parcial — guidance existe, aplicação a motion não |
+
+**Recomendação de ordem**: §1 primeiro (barato, elimina bug), depois §3 (barato, ganho imediato),
+depois §7 (melhora todo prompt de motion), depois §4 (maior ganho de qualidade), depois §6
+(quando cliente pedir remake), depois §5, e §2 só se cortar talking-head fino for caso comum.
+
+---
+
 ## Fontes
 
-- Artigo: `https://iago-russi.vercel.app/artigos/pipeline/` — "My-Little-Studio", set/2026
+- Artigo MLS: `https://iago-russi.vercel.app/artigos/pipeline/` — "My-Little-Studio", set/2026
 - Modelo da fita: `huggingface.co/jonatasgrosman/wav2vec2-large-xlsr-53-portuguese`
 - Rastreamento: `github.com/Tau-J/rtmlib` (RTMPose)
 - Remake mode, SFX table, spring presets: `github.com/howseen-ai/claude-motion-design` (Raphaël Aubry / Howseen AI), MIT, out/2026
+- Prompting blueprint: "Prompting Opus 5.5 - Motion Design" PDF (Raphaël Aubry / Howseen AI), out/2026
 - Verificação de lacunas: busca em repos de skills de vídeo, set-out/2026
