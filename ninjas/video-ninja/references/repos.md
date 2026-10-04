@@ -1,17 +1,18 @@
 # Repositórios do video-ninja
 
-Cada seção traz um repositório fonte das skills daquele ninja. Os 5 já estão **instalados como
+Cada seção traz um repositório fonte das skills daquele ninja. Os 7 já estão **instalados como
 skills globais** — por isso este ninja **não** precisa de `sync-repos.sh` (ver nota no fim).
 
 ---
 
 ## [video-ninja]
 
-Cinco repositórios de vídeo que se complementam: um motor, uma doutrina de qualidade, uma
-framework alternativa e dois nichos.
+Sete repositórios de vídeo que se complementam: um motor de render, um motor de processamento,
+uma doutrina de qualidade, uma framework alternativa e três nichos.
 
 ```repos
 https://github.com/heygen-com/hyperframes
+https://github.com/kajisho5/ffmpeg-skill
 https://github.com/echris6/motion-video-kit
 https://github.com/remotion-dev/skills
 https://github.com/Rieranthony/product-film-skill
@@ -21,7 +22,8 @@ https://github.com/tuzhechen2005/opus-video-skills
 
 | Repositório | Org | Skills | Licença | Papel |
 |---|---|---|---|---|
-| hyperframes | heygen-com | 27 | Apache-2.0 | Motor: HTML → vídeo. 21 publicadas + 6 de doutrina interna |
+| hyperframes | heygen-com | 27 | Apache-2.0 | Motor de render: HTML → vídeo. 21 publicadas + 6 de doutrina interna |
+| ffmpeg-skill | kajisho5 | 1 | MIT | Motor de processamento: probe → edit → verify. 42 tools FFmpeg |
 | motion-video-kit | echris6 | 1 | MIT | Doutrina: crítico independente, 28 filmes de launch, quality bar |
 | skills | remotion-dev | 12 | — | Remotion oficial (2ª framework) |
 | product-film-skill | Rieranthony | 1 | MIT | Captura de tela → product film (AVFoundation) |
@@ -30,7 +32,102 @@ https://github.com/tuzhechen2005/opus-video-skills
 
 ---
 
-## Detalhe: `heygen-com/hyperframes` — o motor
+## Detalhe: `kajisho5/ffmpeg-skill` — motor de processamento
+
+> ⭐ — skill única, 42 tools. Licença MIT. ~2MB
+
+*"Give your coding agent a video editor."* — Local FFmpeg · No cloud · No API keys
+
+Enquanto o HyperFrames **cria** vídeo (HTML → vídeo), o ffmpeg-skill **processa** vídeo existente
+(probe → edit → verify). São complementares: um renderiza composições, o outro manipula material.
+
+**Workflow estruturado:**
+
+```
+probe (medir) → edit (lossless quando possível) → check (validar) → verify (contact sheet)
+```
+
+A diferença-chave: o agente não "chuta" parâmetros. Primeiro faz probe do material (duração, fps,
+resolução, HDR, canais de áudio), depois age baseado em dados reais, e verifica o resultado.
+
+**42 ferramentas** organizadas por grupo:
+
+| Grupo | Tools |
+|---|---|
+| Análise | `probe`, `scenes`, `look` |
+| Edição | `cut`, `join`, `silence`, `fit`, `crop`, `cropdetect`, `deinterlace`, `denoise`, `redact`, `sphere`, `straighten`, `insert`, `background`, `reverse`, `stabilize`, `sequence`, `waveform`, `freeze`, `pad`, `speedramp`, `loop`, `broll`, `metadata`, `grid` |
+| Áudio | `audio`, `sync`, `loudness` |
+| Imagem | `caption`, `overlay`, `graphics`, `color` |
+| Entrega | `export`, `proxy`, `check`, `report` |
+| Orquestração | `render`, `batch`, `multicam`, `verify` |
+
+**Contract machine-readable:**
+
+```bash
+npx ffmpeg-skill contract --json   # input/output schema de cada tool
+npx ffmpeg-skill doctor            # verifica componentes FFmpeg disponíveis
+```
+
+O contract inclui `input_schema` derivado do argparse de cada script (SPEC pattern), então nunca
+diverge do código real.
+
+**MCP Server:**
+
+```json
+{
+  "mcpServers": {
+    "ffmpeg-skill": {
+      "command": "python3",
+      "args": ["~/.claude/skills/ffmpeg-skill/mcp/server.py"]
+    }
+  }
+}
+```
+
+Lista 12 tools core por default; `FFMPEG_SKILL_MCP_FULL=1` lista todos os 42.
+
+**Verificação:**
+
+- `look.py` — contact sheet PNG para o agente inspecionar visualmente
+- `check.py` — PASS/WARN/FAIL contra specs de YouTube, TikTok, Reels, podcast, broadcast
+- Sempre faz probe do output e reporta métricas reais
+
+**Presets de entrega:**
+
+```bash
+python3 $S/export.py input.mp4 --preset reels --json
+python3 $S/render.py talk.mp4 --template tiktok --cues cues.txt
+```
+
+Templates para: `tiktok`, `reels`, `shorts`, `youtube`, `x`, `linkedin`, `facebook`, `podcast`.
+
+**Instalação:**
+
+```bash
+npx ffmpeg-skill              # Claude Code → ~/.claude/skills/ffmpeg-skill
+npx ffmpeg-skill --cursor     # Cursor
+npx ffmpeg-skill --codex      # Codex → ~/.agents/skills/ffmpeg-skill
+npx ffmpeg-skill --all        # todos
+```
+
+**Requisitos:** FFmpeg 5.0+, Python 3.9+ (standard library only).
+
+**Quando usar vs HyperFrames:**
+
+| Tarefa | Use |
+|--------|-----|
+| Criar vídeo do zero (promo, explainer, motion graphic) | HyperFrames |
+| Cortar/juntar/processar material existente | ffmpeg-skill |
+| Ajustar loudness para plataforma | ffmpeg-skill |
+| Remover silêncios de gravação | ffmpeg-skill |
+| Adicionar legendas em vídeo existente | ffmpeg-skill |
+| Sincronizar múltiplas câmeras | ffmpeg-skill |
+| Renderizar composição HTML→MP4 | HyperFrames |
+| Converter HDR→SDR para delivery | ffmpeg-skill |
+
+---
+
+## Detalhe: `heygen-com/hyperframes` — o motor de render
 
 > *"Write HTML. Render video. Built for agents."* — ⭐ 55.8k
 
@@ -183,12 +280,19 @@ ln -s ~/opus-video-skills/skills/kinetic-reel ~/.claude/skills/kinetic-reel
 
 ## Nota de instalação
 
-Diferente dos outros ninjas, **aqui não há `sync-repos.sh`**. Os 5 repositórios já estão consumidos
+Diferente dos outros ninjas, **aqui não há `sync-repos.sh`**. Os 7 repositórios já estão consumidos
 como skills globais em `~/.agents/skills/`, espelhados em `~/.claude/skills/` e por symlink em
 `~/.codex`, `~/.gemini` e `~/.cursor`.
 
-Motivo prático: `hyperframes` tem **489 MB**. Clonar os 5 para `repos/video-ninja/` adicionaria
-~506 MB ao repositório sem nenhum ganho funcional — as skills já estão disponíveis.
+Motivo prático: `hyperframes` tem **489 MB**. Clonar os 7 para `repos/video-ninja/` adicionaria
+~510 MB ao repositório sem nenhum ganho funcional — as skills já estão disponíveis.
+
+**Instalação do ffmpeg-skill** (se ainda não instalado):
+
+```bash
+npx ffmpeg-skill --all        # instala para Claude, Cursor e Codex
+npx ffmpeg-skill doctor       # verifica componentes FFmpeg
+```
 
 Provenance completa (fonte, hash, timestamps de cada skill):
 `~/.agents/.skill-lock.json` — filtre por `source` para isolar este ninja.

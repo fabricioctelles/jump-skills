@@ -20,7 +20,7 @@ description: >-
 
 # Video Ninja
 
-**Jump Skill** — Master orchestrator that routes video tasks to 44 installed skills from 6 upstream
+**Jump Skill** — Master orchestrator that routes video tasks to 45 installed skills from 7 upstream
 repositories, plus a methodology layer distilled from the My-Little-Studio pipeline.
 
 > **PT-BR**: este ninja roteia qualquer tarefa de vídeo para as skills instaladas. Ele é o ponto de
@@ -30,10 +30,11 @@ repositories, plus a methodology layer distilled from the My-Little-Studio pipel
 
 ## Por que este ninja existe
 
-Os 6 repositórios abaixo cobrem **motor**, **craft**, **framework** e **estilos artísticos** — mas cada um deles é um
+Os 7 repositórios abaixo cobrem **motor de render**, **motor de processamento**, **craft**, **framework** e **estilos artísticos** — mas cada um deles é um
  silo. O HyperFrames sabe renderizar mas não tem opinião sobre qualidade. O motion-video-kit tem
 opinião mas não tem motor. O Remotion é uma framework alternativa, não um complemento. O opus-video-skills
 traz estilos visuais únicos (aquarela, kinetic typography) mas não tem a doutrina dos outros.
+O ffmpeg-skill processa material existente mas não cria composições do zero.
 
 Este ninja é a camada que **escolhe** e **encadeia**, e que sabe o que **não** existe no mercado.
 
@@ -50,11 +51,12 @@ exceções (Remotion, captura de tela, doutrina de craft, método de pipeline).
 
 ---
 
-## As 6 fontes
+## As 7 fontes
 
 | Repositório | Skills | Camada | Status |
 |---|---|---|---|
-| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | 27 | Motor + domínios | Instalado, Apache-2.0 |
+| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | 27 | Motor de render + domínios | Instalado, Apache-2.0 |
+| [`kajisho5/ffmpeg-skill`](https://github.com/kajisho5/ffmpeg-skill) | 1 (42 tools) | Motor de processamento | Instalado, MIT |
 | [`echris6/motion-video-kit`](https://github.com/echris6/motion-video-kit) | 1 | Doutrina de qualidade | Instalado, MIT |
 | [`remotion-dev/skills`](https://github.com/remotion-dev/skills) | 12 | Framework 2ª opção | Instalado |
 | [`Rieranthony/product-film-skill`](https://github.com/Rieranthony/product-film-skill) | 1 | Captura de tela | Instalado, MIT |
@@ -94,6 +96,10 @@ Este ninja só precisa saber a **camada**:
 | Promo SaaS anti-repetição | **`/saas-motion-video`** | ver §Doutrina |
 | Cartoon aquarela / lyric video karaoke | **`/painted-animation`** | ver §Estilos Artísticos |
 | Showreel tipográfico / portfolio cinético | **`/kinetic-reel`** | ver §Estilos Artísticos |
+| **Cortar/juntar/processar material existente** | **`ffmpeg-skill`** | ver §FFmpeg |
+| **Ajustar loudness para plataforma** | **`ffmpeg-skill`** | ver §FFmpeg |
+| **Remover silêncios de gravação** | **`ffmpeg-skill`** | ver §FFmpeg |
+| **Sincronizar múltiplas câmeras** | **`ffmpeg-skill`** | ver §FFmpeg |
 | Explainers, PR, música, deck, motion, livre | os 10 workflows | — |
 
 ### Passo 3 — Carregue os domínios
@@ -104,16 +110,17 @@ Motion é obrigatório: **sempre carregue `/motion-doctrine` antes de compor** q
 
 ---
 
-## As 6 camadas
+## As 7 camadas
 
 | # | Camada | Skills | Responsabilidade |
 |---|---|---|---|
-| 1 | **Motor** | `hyperframes`, `hyperframes-cli`, `hyperframes-core` | HTML→vídeo determinístico. `core` é o contrato de composição — leia antes de escrever HTML |
-| 2 | **Workflows** | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `changelog-video` | O entregável final |
-| 3 | **Doutrina de craft** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **Opinião sobre qualidade.** É o que separa "renderizou" de "parece bom" |
-| 4 | **Domínios** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Movimento, câmera, design, som, mídia, blocos prontos |
-| 5 | **Framework 2ª** | `remotion-*` (12), `product-film` | Quando Remotion é a escolha certa |
-| 6 | **Estilos artísticos** | `painted-animation`, `kinetic-reel` | Estilos visuais procedurais únicos (aquarela, kinetic typography) |
+| 1 | **Motor de render** | `hyperframes`, `hyperframes-cli`, `hyperframes-core` | HTML→vídeo determinístico. `core` é o contrato de composição — leia antes de escrever HTML |
+| 2 | **Motor de processamento** | `ffmpeg-skill` (42 tools) | probe→edit→verify. Corte, join, loudness, legendas, HDR→SDR, multicam, batch |
+| 3 | **Workflows** | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `changelog-video` | O entregável final |
+| 4 | **Doutrina de craft** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **Opinião sobre qualidade.** É o que separa "renderizou" de "parece bom" |
+| 5 | **Domínios** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Movimento, câmera, design, som, mídia, blocos prontos |
+| 6 | **Framework 2ª** | `remotion-*` (12), `product-film` | Quando Remotion é a escolha certa |
+| 7 | **Estilos artísticos** | `painted-animation`, `kinetic-reel` | Estilos visuais procedurais únicos (aquarela, kinetic typography) |
 
 ---
 
@@ -176,6 +183,69 @@ quando a cena está estática/morta e precisa de movimento de alto rendimento e 
 `/hyperframes-audio` = mixagem de áudio já posicionado na composição (fade, crossfade, gain,
 automação, ducking/carve de VO, cadeias de efeitos, submix bus). `/media-use` = **fonte** de
 mídia. Nunca troque: `/media-use` busca e gera, `/hyperframes-audio` mistura o que já está na trilha.
+
+---
+
+## §FFmpeg — motor de processamento
+
+Fonte: [`kajisho5/ffmpeg-skill`](https://github.com/kajisho5/ffmpeg-skill)
+
+*"Give your coding agent a video editor."* — Local FFmpeg · No cloud · No API keys
+
+Enquanto o HyperFrames **cria** vídeo (HTML → MP4), o ffmpeg-skill **processa** material existente.
+São complementares: um renderiza composições do zero, o outro manipula arquivos reais.
+
+### Workflow estruturado
+
+```
+probe (medir) → edit (lossless quando possível) → check (validar) → verify (contact sheet)
+```
+
+A diferença-chave: o agente não "chuta" parâmetros. Primeiro faz probe do material (duração, fps,
+resolução, HDR, canais de áudio), depois age baseado em dados reais, e verifica o resultado.
+
+### 42 ferramentas
+
+| Grupo | Tools |
+|---|---|
+| Análise | `probe`, `scenes`, `look` |
+| Edição | `cut`, `join`, `silence`, `fit`, `crop`, `cropdetect`, `denoise`, `stabilize`, `reverse`, `speedramp`, `loop`, `freeze`, `pad`, `broll`, `metadata`, `grid` |
+| Áudio | `audio`, `sync`, `loudness` |
+| Imagem | `caption`, `overlay`, `graphics`, `color` |
+| Entrega | `export`, `proxy`, `check`, `report` |
+| Orquestração | `render`, `batch`, `multicam`, `verify` |
+
+### Quando usar
+
+| Tarefa | Use |
+|--------|-----|
+| Criar vídeo do zero (promo, explainer, motion graphic) | HyperFrames |
+| Cortar/juntar/processar material existente | **ffmpeg-skill** |
+| Ajustar loudness para plataforma | **ffmpeg-skill** |
+| Remover silêncios de gravação | **ffmpeg-skill** |
+| Sincronizar múltiplas câmeras | **ffmpeg-skill** |
+| Converter HDR→SDR para delivery | **ffmpeg-skill** |
+| Adicionar legendas em vídeo existente | **ffmpeg-skill** |
+| Renderizar composição HTML→MP4 | HyperFrames |
+
+### Presets de entrega
+
+Templates prontos para: `tiktok`, `reels`, `shorts`, `youtube`, `x`, `linkedin`, `facebook`, `podcast`.
+
+```bash
+python3 $S/export.py input.mp4 --preset reels --json
+python3 $S/render.py talk.mp4 --template tiktok --cues cues.txt
+python3 $S/check.py output.mp4 --platform youtube   # PASS/WARN/FAIL
+```
+
+### Instalação
+
+```bash
+npx ffmpeg-skill --all        # instala para Claude, Cursor e Codex
+npx ffmpeg-skill doctor       # verifica componentes FFmpeg disponíveis
+```
+
+**Requisitos:** FFmpeg 5.0+, Python 3.9+ (standard library only).
 
 ---
 
@@ -301,7 +371,7 @@ tempo e herda a corretude de render.
 
 ### Este ninja é `no-sync`
 
-As 44 skills já são consumidas como agent skills instaladas. Clonar os 6 repos-fonte adicionaria
+As 45 skills já são consumidas como agent skills instaladas. Clonar os 7 repos-fonte adicionaria
 ~510 MB (489 MB só do `hyperframes`) sem ganho funcional. Por isso o `video-ninja` está na lista
 `NEVER_CLONE_NINJAS` do `sync-repos.sh` e marcado com `no-sync` no `repos.md` — um
 `./sync-repos.sh` (todos ou `video-ninja`) o **pula**.
