@@ -132,7 +132,7 @@ The installer detects and installs to these AI coding agents:
 
 ## 🥷 Available Ninjas
 
-### <img src="https://img.shields.io/badge/AWS-FF9900?style=flat&logo=amazonaws&logoColor=white" height="20"/> AWS Ninja
+### <img src="https://img.shields.io/badge/AWS-FF9900?style=flat&logo=amazonaws&logoColor=white" height="20"/> AWS Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-aws-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-aws-ninja)
 
 > **230+ skills** from 10 official AWS repositories
 
@@ -158,7 +158,7 @@ The AWS Ninja is your expert guide for all things Amazon Web Services. It orches
 
 ---
 
-### <img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftazure&logoColor=white" height="20"/> Azure Ninja
+### <img src="https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftazure&logoColor=white" height="20"/> Azure Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-azure-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-azure-ninja)
 
 > **40 skills** from Microsoft official + community repositories
 
@@ -183,7 +183,7 @@ The Azure Ninja orchestrates Azure expertise across the full deployment lifecycl
 
 ---
 
-### <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white" height="20"/> Datadog Ninja
+### <img src="https://img.shields.io/badge/Datadog-632CA6?style=flat&logo=datadog&logoColor=white" height="20"/> Datadog Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-datadog-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-datadog-ninja)
 
 > **57 skills** from official Datadog repositories
 
@@ -209,7 +209,7 @@ The Datadog Ninja routes observability work to the right Datadog specialist:
 
 ---
 
-### <img src="https://img.shields.io/badge/Firecrawl-FF6B35?style=flat&logo=firebase&logoColor=white" height="20"/> Firecrawl Ninja
+### <img src="https://img.shields.io/badge/Firecrawl-FF6B35?style=flat&logo=firebase&logoColor=white" height="20"/> Firecrawl Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-firecrawl-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-firecrawl-ninja)
 
 > **33 skills** for web scraping, research, and data extraction
 
@@ -227,7 +227,7 @@ The Firecrawl Ninja is your specialist for web data operations:
 
 ---
 
-### <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=flat&logo=googlecloud&logoColor=white" height="20"/> Google Cloud Ninja
+### <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=flat&logo=googlecloud&logoColor=white" height="20"/> Google Cloud Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-google-cloud-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-google-cloud-ninja)
 
 > **85+ skills** from official Google repositories
 
@@ -249,7 +249,7 @@ The Google Cloud Ninja orchestrates GCP infrastructure, databases, networking, a
 
 ---
 
-### <img src="https://img.shields.io/badge/Google_AI-8E75B2?style=flat&logo=googlegemini&logoColor=white" height="20"/> Google AI Ninja
+### <img src="https://img.shields.io/badge/Google_AI-8E75B2?style=flat&logo=googlegemini&logoColor=white" height="20"/> Google AI Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-google-ai-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-google-ai-ninja)
 
 > **25+ skills** for Gemini API, Agent Platform, and Genkit
 
@@ -269,7 +269,7 @@ The Google AI Ninja is your expert for AI/ML on Google Cloud:
 
 ---
 
-### <img src="https://img.shields.io/badge/Google_Ads-4285F4?style=flat&logo=googleads&logoColor=white" height="20"/> Google Ads Ninja
+### <img src="https://img.shields.io/badge/Google_Ads-4285F4?style=flat&logo=googleads&logoColor=white" height="20"/> Google Ads Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-google-ads-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-google-ads-ninja)
 
 > **15+ skills** for advertising APIs and SDKs
 
@@ -287,7 +287,7 @@ The Google Ads Ninja handles all advertising and monetization tasks:
 
 ---
 
-### <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white" height="20"/> Google Mobile Ninja
+### <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white" height="20"/> Google Mobile Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-google-mobile-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-google-mobile-ninja)
 
 > **35+ skills** for Android, Flutter, and Dart development
 
@@ -308,7 +308,7 @@ The Google Mobile Ninja covers native and cross-platform mobile development:
 
 ---
 
-### <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black" height="20"/> Google Firebase Ninja
+### <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black" height="20"/> Google Firebase Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-google-firebase-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-google-firebase-ninja)
 
 > **18+ skills** for Firebase backend services
 
@@ -328,7 +328,7 @@ The Google Firebase Ninja orchestrates Firebase BaaS:
 
 ---
 
-### <img src="https://img.shields.io/badge/Google_Analytics-E37400?style=flat&logo=googleanalytics&logoColor=white" height="20"/> Google Analytics Ninja
+### <img src="https://img.shields.io/badge/Google_Analytics-E37400?style=flat&logo=googleanalytics&logoColor=white" height="20"/> Google Analytics Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-google-analytics-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-google-analytics-ninja)
 
 > **3+ skills** for Analytics APIs and reporting
 
@@ -345,7 +345,7 @@ The Google Analytics Ninja handles GA4 configuration and reporting:
 
 ---
 
-### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja
+### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-video-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-video-ninja)
 
 > **42 skills** from 5 repositories + a proven video-pipeline methodology layer
 
@@ -379,7 +379,7 @@ the video frame by frame.
 
 ---
 
-### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja
+### <img src="https://img.shields.io/badge/YYLO-8A2BE2?style=flat&logo=github&logoColor=white" height="20"/> YYLO Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-yylo-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-yylo-ninja)
 
 > **7 skills** from the official `yylo-dev/yylo-skills` repository
 
