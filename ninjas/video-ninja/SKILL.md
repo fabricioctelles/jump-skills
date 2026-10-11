@@ -1,8 +1,9 @@
 ---
 name: video-ninja
 description: >-
-  Master orchestrator for video production with agents. Routes to 44 installed video skills
-  across 6 upstream repositories and adds a proven video-pipeline methodology layer.
+  Master orchestrator for video production with agents. Routes to 46 installed video skills
+  across 7 upstream repositories, plus an optional evaluated visual reference, and adds a
+  proven video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
   or publishing a video, motion graphic, promo, launch film, product demo, talking-head package,
   changelog reel, explainer, lyric video, slideshow deck, or Remotion project.
@@ -73,6 +74,16 @@ Provenance completa em `~/.agents/.skill-lock.json`. Detalhes em
 |---|---|---|---|
 | [`fframes.studio`](https://fframes.studio) | `fframes-video` | Motor alternativo Rust/SVG com Skia GPU, FFmpeg e QA legível por agentes | Well-known, instalado globalmente |
 
+### Fonte externa avaliada, ainda não instalada
+
+| Fonte | Papel | Quando considerar | Estado |
+|---|---|---|---|
+| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | Figuras isométricas de máquinas reais para explicar conceitos técnicos, em SVG/HTML, com WebGL opcional | Explainer técnico em que um mecanismo físico visual torna o conceito mais claro | Avaliada; skill não instalada. Ver [references/anatomy.md](references/anatomy.md) |
+
+Anatomy produz o **asset/cena visual**, não o vídeo final. Se disponível no ambiente, use-o para
+construir e auditar a figura; depois incorpore a saída no `/hyperframes` e siga a doutrina de
+movimento, composição e render. Não conte Anatomy como capacidade instalada nem como engine.
+
 ## Mapa de motores
 
 A tabela da imagem mistura motores de composição, frameworks de projeto e um editor de arquivos.
@@ -125,6 +136,7 @@ Este ninja só precisa saber a **camada**:
 | Promo SaaS anti-repetição | **`/saas-motion-video`** | ver §Doutrina |
 | Cartoon aquarela / lyric video karaoke | **`/painted-animation`** | ver §Estilos Artísticos |
 | Showreel tipográfico / portfolio cinético | **`/kinetic-reel`** | ver §Estilos Artísticos |
+| Explainer técnico com mecanismo/objeto isométrico | **Anatomy (opcional, se instalada no ambiente)** | Gerar e auditar SVG/HTML; levar o asset ao `/hyperframes` para composição e render. Ver [references/anatomy.md](references/anatomy.md) |
 | Motion gerado como código, loop ou animação por frames | **`/hyperframes`** | + `/motion-doctrine`, ver §Motion Lab |
 | **Cortar/juntar/processar material existente** | **`ffmpeg-skill`** | ver §FFmpeg |
 | **Ajustar loudness para plataforma** | **`ffmpeg-skill`** | ver §FFmpeg |
@@ -329,7 +341,7 @@ Esse trabalho complementa o ninja sem duplicar o que o `ffmpeg-skill` já resolv
 
 ---
 
-## §Estilos Artísticos — aquarela e kinetic typography
+## §Estilos Artísticos — aquarela, kinetic typography e figura técnica
 
 Fonte: [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills)
 
@@ -359,6 +371,24 @@ efeitos visuais 3D.
 **Nota de overlap:** `/motion-graphics` do HyperFrames também faz kinetic typography, mas sem as
 camadas WebGL específicas (particle terrain, liquid marble). Use `/kinetic-reel` quando quiser
 esses efeitos visuais 3D específicos.
+
+### Anatomy — figura isométrica para explainers técnicos (opcional)
+
+Anatomy é uma fonte externa avaliada, **não instalada**. Ela transforma um conceito em um objeto
+ou máquina isométrica com peças, movimento e dados do próprio modelo. Serve quando a explicação
+ganha clareza ao mostrar fisicamente como um mecanismo funciona — por exemplo, cache como fechadura
+ou rate limiter como reservatório.
+
+Pode gerar HTML independente, SVG isolado ou componentes React/Next; WebGL é opcional. A auditoria
+de geometria e as capturas em Chrome ajudam a verificar encaixes, linhas e estados visuais. Não é
+biblioteca de gráficos nem timeline, editor ou engine de vídeo. O modo 3D está em beta e figuras
+detalhadas demandam tempo.
+
+**Fluxo se a skill estiver instalada:** Anatomy constrói/verifica a figura → `/hyperframes` integra
+e renderiza o vídeo → `/motion-doctrine` governa o movimento e as transições. Se não estiver
+instalada, use os recursos de composição do HyperFrames sem sugerir que Anatomy está disponível.
+
+Detalhes, critérios de uso, limites e a origem no X: [references/anatomy.md](references/anatomy.md).
 
 ### Recomendação de modelo
 

@@ -373,6 +373,10 @@ Motion Canvas/Revideo and MoviePy are documented as optional, not-installed alte
 that already depend on them. Revideo is the higher-priority future adapter because it exposes a
 headless render API, dynamic inputs and a React player.
 
+[`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) is an **evaluated, not-installed**
+optional visual source for isometric technical figures in explainers. It creates SVG/HTML assets;
+HyperFrames still handles video composition and rendering. See the [Anatomy routing notes](ninjas/video-ninja/references/anatomy.md).
+
 `fframes-video` is installed globally from the well-known source `fframes.studio`; its Rust
 repository is intentionally not cloned by `sync-repos.sh`.
 
@@ -385,6 +389,7 @@ repository is intentionally not cloned by `sync-repos.sh`.
 - [tugrawork-creator/saas-motion-kit](https://github.com/tugrawork-creator/saas-motion-kit) — SaaS promo, anti-repetition
 - [tuzhechen2005/opus-video-skills](https://github.com/tuzhechen2005/opus-video-skills) — Procedural art styles (MIT)
 - [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) — `fframes-video` via well-known source (MIT; no clone)
+- [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — optional isometric technical figures; evaluated, not installed
 
 > Unlike the other Ninjas, Video Ninja does **not** clone its sources. All 46 skills are already
 > installed as agent skills (~23 MB), so `sync-repos.sh` skips it. Cloning would download ~506 MB
