@@ -22,295 +22,300 @@ description: >-
 # Video Ninja
 
 **Jump Skill** — Master orchestrator that routes video tasks to 46 installed skills from 7 upstream
-repositories and 1 fonte externa well-known, plus a methodology layer distilled from the
+repositories and one separately installed well-known source, plus a methodology layer distilled from the
 My-Little-Studio pipeline.
 
-> **PT-BR**: este ninja roteia qualquer tarefa de vídeo para as skills instaladas. Ele é o ponto de
-> entrada obrigatório — leia-o antes de escolher uma skill de vídeo.
+> This ninja routes any video task to the installed skills. It is the required entry point: read it
+> before choosing a video skill.
 
 ---
 
-## Por que este ninja existe
+## Why this ninja exists
 
-Os 7 repositórios abaixo cobrem **motor de render**, **motor de processamento**, **craft**, **framework** e **estilos artísticos** — mas cada um deles é um
- silo. O HyperFrames sabe renderizar mas não tem opinião sobre qualidade. O motion-video-kit tem
-opinião mas não tem motor. O Remotion é uma framework alternativa, não um complemento. O opus-video-skills
-traz estilos visuais únicos (aquarela, kinetic typography) mas não tem a doutrina dos outros.
-O ffmpeg-skill processa material existente mas não cria composições do zero.
+The seven repositories below cover **rendering**, **media processing**, **craft**, **frameworks**,
+and **art styles**, but each is a silo. HyperFrames can render video, but it has no opinion on
+quality. motion-video-kit has a quality doctrine, but no renderer. Remotion is an alternative
+framework, not a plug-in for HyperFrames. opus-video-skills brings distinctive looks such as
+watercolor and kinetic typography, but not the other repositories' craft doctrine. ffmpeg-skill
+works on existing footage; it does not build compositions from scratch.
 
-Este ninja é a camada que **escolhe** e **encadeia**, e que sabe o que **não** existe no mercado.
-
----
-
-## Regra de ouro
-
-> **`/hyperframes` é o ponto de entrada obrigatório para trabalho de vídeo.**
-> Ele decide entre os 10 workflows e carrega os domínios sob demanda. Este ninja **não substitui**
-> esse roteamento — ele diz *qual camada* usar e *quando o HyperFrames sozinho não basta*.
-
-Se a tarefa é criar/editar/animar/renderizar vídeo, comece em `/hyperframes`. Volte aqui para as
-exceções (Remotion, captura de tela, doutrina de craft, método de pipeline).
+This ninja is the layer that **chooses and connects** them, and keeps track of what the ecosystem
+still lacks.
 
 ---
 
-## As 7 fontes
+## The golden rule
 
-| Repositório | Skills | Camada | Status |
+> **`/hyperframes` is the required entry point for video work.**
+> It chooses among the 10 workflows and loads domain skills as needed. This ninja does **not replace**
+> that routing; it tells you *which layer to use* and *when HyperFrames alone is not enough*.
+
+For video creation, editing, animation, or rendering, start with `/hyperframes`. Come back here for
+the exceptions: Remotion, screen capture, craft doctrine, and pipeline methods.
+
+---
+
+## The seven sources
+
+| Repository | Skills | Layer | Status |
 |---|---|---|---|
-| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | 27 | Motor de render + domínios | Instalado, Apache-2.0 |
-| [`kajisho5/ffmpeg-skill`](https://github.com/kajisho5/ffmpeg-skill) | 1 (42 tools) | Motor de processamento | Instalado, MIT |
-| [`echris6/motion-video-kit`](https://github.com/echris6/motion-video-kit) | 1 | Doutrina de qualidade | Instalado, MIT |
-| [`remotion-dev/skills`](https://github.com/remotion-dev/skills) | 12 | Framework 2ª opção | Instalado |
-| [`Rieranthony/product-film-skill`](https://github.com/Rieranthony/product-film-skill) | 1 | Captura de tela | Instalado, MIT |
-| [`tugrawork-creator/saas-motion-kit`](https://github.com/tugrawork-creator/saas-motion-kit) | 1 | Variety/anti-repetição | Instalado |
-| [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills) | 2 | Estilos artísticos procedurais | Instalado, MIT |
+| [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes) | 27 | Renderer + domain skills | Installed, Apache-2.0 |
+| [`kajisho5/ffmpeg-skill`](https://github.com/kajisho5/ffmpeg-skill) | 1 (42 tools) | Media processing | Installed, MIT |
+| [`echris6/motion-video-kit`](https://github.com/echris6/motion-video-kit) | 1 | Quality doctrine | Installed, MIT |
+| [`remotion-dev/skills`](https://github.com/remotion-dev/skills) | 12 | Alternative framework | Installed |
+| [`Rieranthony/product-film-skill`](https://github.com/Rieranthony/product-film-skill) | 1 | Screen capture | Installed, MIT |
+| [`tugrawork-creator/saas-motion-kit`](https://github.com/tugrawork-creator/saas-motion-kit) | 1 | Variety and anti-repetition | Installed |
+| [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills) | 2 | Procedural art styles | Installed, MIT |
 
-Provenance completa em `~/.agents/.skill-lock.json`. Detalhes em
+Full provenance is recorded in `~/.agents/.skill-lock.json`. See
 [references/repos.md](references/repos.md).
 
-### Skill externa instalada
+### Separately installed skill
 
-| Fonte | Skill | Papel | Instalação |
+| Source | Skill | Role | Installation |
 |---|---|---|---|
-| [`fframes.studio`](https://fframes.studio) | `fframes-video` | Motor alternativo Rust/SVG com Skia GPU, FFmpeg e QA legível por agentes | Well-known, instalado globalmente |
+| [`fframes.studio`](https://fframes.studio) | `fframes-video` | Alternative Rust/SVG renderer with Skia GPU, FFmpeg, and agent-readable QA | Well-known, installed globally |
 
-### Fontes externas avaliadas, ainda não instaladas
+### Evaluated external tools that are not installed
 
-| Fonte | Papel | Quando considerar | Estado |
+| Source | Role | When to consider it | Status |
 |---|---|---|---|
-| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | Figuras isométricas de máquinas reais para explicar conceitos técnicos, em SVG/HTML, com WebGL opcional | Explainer técnico em que um mecanismo físico visual torna o conceito mais claro | Avaliada; skill não instalada. Ver [references/anatomy.md](references/anatomy.md) |
-| [`m-bain/whisperX`](https://github.com/m-bain/whisperX) | ASR local com timestamps por palavra e diarização | Talking-head, entrevista ou podcast que precise de timing por palavra ou identificação de falantes | Backend opcional; não instalado. Ver [references/whisperx.md](references/whisperx.md) |
-| [`airbnb/lottie-web`](https://github.com/airbnb/lottie-web) | Player para animações Lottie exportadas de After Effects | Reusar arquivo `.json` Lottie fornecido pelo projeto em uma composição HyperFrames | Dependência sob demanda; não instalada pelo Ninja. Ver [references/lottie.md](references/lottie.md) |
-| [`ManimCommunity/manim`](https://github.com/ManimCommunity/manim) | Engine Python especializado em animação matemática | Explainer matemático recorrente que justifique outro renderer e adapter | Alternativa avaliada; não instalada. O link do tweet `3b1b/manim` é ManimGL. Ver [references/repos.md](references/repos.md) |
+| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | Isometric machines in SVG/HTML, with optional WebGL, for explaining technical concepts | A technical explainer becomes clearer when it can show a physical mechanism | Evaluated; skill not installed. See [references/anatomy.md](references/anatomy.md) |
+| [`m-bain/whisperX`](https://github.com/m-bain/whisperX) | Local ASR with word-level timestamps and diarization | Talking-head, interview, or podcast work that needs word timing or speaker identification | Optional backend; not installed. See [references/whisperx.md](references/whisperx.md) |
+| [`airbnb/lottie-web`](https://github.com/airbnb/lottie-web) | Player for After Effects Lottie animations | Reuse a project-provided `.json` Lottie asset in a HyperFrames composition | On-demand dependency; not installed by the Ninja. See [references/lottie.md](references/lottie.md) |
+| [`ManimCommunity/manim`](https://github.com/ManimCommunity/manim) | Python engine for mathematical animation | Recurring math explainers that justify another renderer and adapter | Evaluated, not installed. The tweet links to `3b1b/manim` (ManimGL). See [references/repos.md](references/repos.md) |
 
-Anatomy produz o **asset/cena visual**, não o vídeo final. Se disponível no ambiente, use-o para
-construir e auditar a figura; depois incorpore a saída no `/hyperframes` e siga a doutrina de
-movimento, composição e render. Não conte Anatomy como capacidade instalada nem como engine.
+Anatomy produces a **visual asset or scene**, not the finished video. If it is available in the
+environment, use it to build and inspect the figure, then bring the output into `/hyperframes` and
+follow the motion, composition, and rendering doctrine. Do not count Anatomy as an installed
+capability or a video engine.
 
-WhisperX e Manim são ferramentas opcionais, sem instalação ou disponibilidade presumida. Lottie é
-um formato de asset: só carregar seu player quando o projeto já trouxer esse tipo de animação.
+Do not assume WhisperX or Manim is installed or available. Lottie is an asset format: load its player
+only when the project already includes that kind of animation.
 
-## Mapa de motores
+## Engine map
 
-A tabela da imagem mistura motores de composição, frameworks de projeto e um editor de arquivos.
-Use esta distinção antes de escolher o workflow:
+The source image mixes composition engines, project frameworks, and a file editor. Use these
+distinctions before choosing a workflow:
 
-| Motor | Modelo de trabalho | Quando escolher | Estado no ninja |
+| Engine | How it works | When to choose it | Status in the Ninja |
 |---|---|---|---|
-| **HyperFrames** | HTML/CSS/JS em Chrome headless + FFmpeg | Composição nova, motion design e vídeo dirigido por agente | Padrão, instalado |
-| **ffmpeg-skill** | Probe → edição → validação de arquivos existentes | Cortar, juntar, normalizar áudio, multicam e entrega | Processamento, instalado |
-| **fframes-video** | Rust/SVG por frame, Skia GPU, FFmpeg e CLI de inspeção | Render vetorial de alta vazão, batch e revisão automatizada | Motor alternativo, instalado |
-| **Remotion** | React/TypeScript, render local ou Lambda | Projeto React existente, port de composição ou render distribuído | Framework alternativa, instalada |
-| **Motion Canvas / Revideo** | TypeScript com generators; Revideo acrescenta player React, render headless e entradas dinâmicas | Motion Canvas para animação vetorial com editor; Revideo para templates parametrizados e render em Node/serverless | Alternativa avaliada; sem skill instalada |
-| **MoviePy** | Python com clips, composição e efeitos sobre frames | Pipeline Python orientado a dados ou protótipo de composição | Alternativa avaliada; sem skill instalada |
-| **Manim Community Edition** | Python para animações matemáticas programáticas | Explainers recorrentes de matemática, gráficos e geometria | Alternativa avaliada; sem skill/adaptador instalado |
+| **HyperFrames** | HTML/CSS/JS in headless Chrome + FFmpeg | New compositions, motion design, and agent-directed video | Default, installed |
+| **ffmpeg-skill** | Probe → edit → validate existing files | Cutting, joining, audio normalization, multicam, and delivery | Processing, installed |
+| **fframes-video** | Per-frame Rust/SVG, Skia GPU, FFmpeg, and inspection CLI | High-throughput vector rendering, batch work, and automated review | Alternative engine, installed |
+| **Remotion** | React/TypeScript, local or Lambda rendering | Existing React projects, composition ports, or distributed rendering | Alternative framework, installed |
+| **Motion Canvas / Revideo** | TypeScript generators; Revideo adds a React player, headless rendering, and dynamic inputs | Motion Canvas for editor-based vector animation; Revideo for parameterized templates and Node/serverless rendering | Evaluated; no skill installed |
+| **MoviePy** | Python clips, compositions, and frame effects | Data-driven Python pipelines or composition prototypes | Evaluated; no skill installed |
+| **Manim Community Edition** | Python for programmatic math animation | Recurring explainers about math, charts, or geometry | Evaluated; no skill or adapter installed |
 
-Motion Canvas, Revideo, MoviePy e ManimCE não devem aparecer como capacidades instaladas até existir uma skill com
-roteamento, contrato de render e verificação. Se um projeto já usa uma dessas tecnologias, o ninja
-pode preservá-la e aplicar a mesma doutrina de movimento, áudio e validação.
+Do not present Motion Canvas, Revideo, MoviePy, or ManimCE as installed capabilities until a skill
+defines routing, a render contract, and verification. If a project already uses one of these tools,
+the Ninja can keep it and apply the same motion, audio, and validation doctrine.
 
-O Remotion exige uma checagem de licença antes de produção: o código é source-available e a licença
-gratuita cobre indivíduos e organizações de até três pessoas; equipes maiores ou automações podem
-exigir Company License. Não o classifique como MIT ou como open source OSI.
+Check Remotion's license before production: its code is source-available, and the free license covers
+individuals and organizations of up to three people. Larger teams or automated use may require a
+Company License. Do not describe it as MIT or OSI-approved open source.
 
 ---
 
-## Roteamento
+## Routing
 
-### Passo 1 — É vídeo de verdade?
+### Step 1 — Is this actually a video task?
 
-Se **não** for vídeo, este ninja não se aplica:
+If it is **not** a video task, this ninja does not apply:
 
-| Pedido | Vai para |
+| Request | Route to |
 |---|---|
 | Website/app | `impeccable`, `apple-design` |
-| Só animação de UI (não vídeo) | `animate`, `improve-animations` (pack Emil Kowalski) |
-| Só copy/roteiro de marketing | `copywriting`, `social` |
+| UI animation only (not a video) | `animate`, `improve-animations` (Emil Kowalski pack) |
+| Marketing copy or script only | `copywriting`, `social` |
 
-### Passo 2 — Roteie pelo entregável
+### Step 2 — Route by deliverable
 
-**Deixe `/hyperframes` decidir entre os 10 workflows.** Ele tem a tabela de prioridade autoritativa.
-Este ninja só precisa saber a **camada**:
+**Let `/hyperframes` choose among the 10 workflows.** Its priority table is authoritative. This ninja
+only needs to identify the **layer** to add:
 
-| Pedido | Workflow | Camada extra do ninja |
+| Request | Workflow | Additional Ninja layer |
 |---|---|---|
 | Legenda em talking-head | `/embedded-captions` | + `/captions-overlay` |
 | Cards de overlay em podcast | `/talking-head-recut` | + `/cut-the-curve` |
-| Promo de produto/URL | `/product-launch-video` | + `/motion-doctrine`, `/seam-craft`, §Lançamento de produto |
-| Changelog semanal em vídeo | `/changelog-video` | — |
-| Gravação de tela → demo | **`/product-film`** (skill dedicada) | ver §Remotion |
-| Filmografia de negócio (real, IA, premium) | **`/business-motion-film`** | ver §Doutrina |
-| Promo SaaS anti-repetição | **`/saas-motion-video`** | ver §Doutrina |
-| Cartoon aquarela / lyric video karaoke | **`/painted-animation`** | ver §Estilos Artísticos |
-| Showreel tipográfico / portfolio cinético | **`/kinetic-reel`** | ver §Estilos Artísticos |
-| Explainer técnico com mecanismo/objeto isométrico | **Anatomy (opcional, se instalada no ambiente)** | Gerar e auditar SVG/HTML; levar o asset ao `/hyperframes` para composição e render. Ver [references/anatomy.md](references/anatomy.md) |
-| Talking-head com timing por palavra ou diarização | `/embedded-captions` + **WhisperX opcional** (se instalado) | Alinhar palavras/identificar falantes; revisar no áudio. A “fita” segue necessária para cortes que dependam de retomadas e início de sílaba. Ver [references/whisperx.md](references/whisperx.md) |
-| Projeto fornece animação Lottie `.json` | `/hyperframes` + **Lottie Web sob demanda** | Desativar autoplay e buscar cada frame/tempo explicitamente para captura determinística. Ver [references/lottie.md](references/lottie.md) |
-| Explainer matemático de alto rigor | **ManimCE (opcional, se instalado e justificado)** | Renderer especializado para matemática; verificar a composição final. HyperFrames segue padrão para os demais vídeos |
-| Motion gerado como código, loop ou animação por frames | **`/hyperframes`** | + `/motion-doctrine`, ver §Motion Lab |
-| **Cortar/juntar/processar material existente** | **`ffmpeg-skill`** | ver §FFmpeg |
-| **Ajustar loudness para plataforma** | **`ffmpeg-skill`** | ver §FFmpeg |
-| **Remover silêncios de gravação** | **`ffmpeg-skill`** | ver §FFmpeg |
-| **Sincronizar múltiplas câmeras** | **`ffmpeg-skill`** | ver §FFmpeg |
-| Vídeo vetorial com render GPU e QA por CLI | **`fframes-video`** | ver §fframes |
-| Projeto existente em Motion Canvas/Revideo | **Motion Canvas/Revideo** | usar somente se a dependência já existir; aplicar §Doutrina |
-| Pipeline Python de composição ou dados | **MoviePy** | usar somente se Python for requisito; finalizar com §FFmpeg |
-| Explainers, PR, música, deck, motion, livre | os 10 workflows | — |
+| Product or URL promo | `/product-launch-video` | + `/motion-doctrine`, `/seam-craft`, §Product launch |
+| Weekly changelog video | `/changelog-video` | — |
+| Screen recording → demo | **`/product-film`** (dedicated skill) | See §Remotion |
+| Business film (live action, AI, premium) | **`/business-motion-film`** | See §Doctrine |
+| Anti-repetition SaaS promo | **`/saas-motion-video`** | See §Doctrine |
+| Watercolor cartoon / karaoke lyric video | **`/painted-animation`** | See §Art styles |
+| Kinetic type showreel / portfolio | **`/kinetic-reel`** | See §Art styles |
+| Technical explainer with an isometric mechanism or object | **Anatomy (optional, if installed)** | Build and inspect SVG/HTML; bring the asset into `/hyperframes` for composition and rendering. See [references/anatomy.md](references/anatomy.md) |
+| Talking-head with word timing or diarization | `/embedded-captions` + **optional WhisperX** (if installed) | Align words or identify speakers, then check against the audio. The “tape” is still needed for cuts that depend on restarts or syllable onsets. See [references/whisperx.md](references/whisperx.md) |
+| Project supplies a Lottie `.json` animation | `/hyperframes` + **Lottie Web on demand** | Disable autoplay and seek explicitly by frame or time for deterministic capture. See [references/lottie.md](references/lottie.md) |
+| High-rigor math explainer | **ManimCE (optional, if installed and justified)** | Specialized math renderer; inspect the final composition. HyperFrames remains the default for other videos |
+| Code-generated motion, loops, or frame animation | **`/hyperframes`** | + `/motion-doctrine`, see §Motion Lab |
+| **Cut, join, or process existing footage** | **`ffmpeg-skill`** | See §FFmpeg |
+| **Adjust loudness for a platform** | **`ffmpeg-skill`** | See §FFmpeg |
+| **Remove recording silences** | **`ffmpeg-skill`** | See §FFmpeg |
+| **Sync multiple cameras** | **`ffmpeg-skill`** | See §FFmpeg |
+| Vector video with GPU rendering and CLI QA | **`fframes-video`** | See §fframes |
+| Existing Motion Canvas/Revideo project | **Motion Canvas/Revideo** | Keep it only if the dependency already exists; apply §Doctrine |
+| Python composition or data pipeline | **MoviePy** | Use only when Python is a requirement; finish with §FFmpeg |
+| Explainer, PR, music, deck, motion, open-ended video | The 10 workflows | — |
 
-### Passo 3 — Carregue os domínios
+### Step 3 — Load the relevant domains
 
-Faixa Transversal: sempre que houver fotografia/mídia, **considere `/media-use`**.
-Motion é obrigatório: **sempre carregue `/motion-doctrine` antes de compor** qualquer animação
-(ver §Doutrina — ele se declara GATEWAY e supersede orientação genérica).
+Cross-cutting: whenever photography or other media is involved, **consider `/media-use`**.
+Motion is mandatory: **always load `/motion-doctrine` before composing** any animation (see §Doctrine;
+it declares itself the GATEWAY and supersedes generic guidance).
 
 ---
 
-## As 8 camadas
+## The eight layers
 
-| # | Camada | Skills | Responsabilidade |
+| # | Layer | Skills | Responsibility |
 |---|---|---|---|
-| 1 | **Motor de render** | `hyperframes`, `hyperframes-cli`, `hyperframes-core` | HTML→vídeo determinístico. `core` é o contrato de composição — leia antes de escrever HTML |
-| 2 | **Motor de processamento** | `ffmpeg-skill` (42 tools) | probe→edit→verify. Corte, join, loudness, legendas, HDR→SDR, multicam, batch |
-| 3 | **Motor alternativo** | `fframes-video` | Rust/SVG, Skia GPU, render por faixa, inspeção de frames, snapshots e análise de áudio |
-| 4 | **Workflows** | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `changelog-video` | O entregável final |
-| 5 | **Doutrina de craft** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **Opinião sobre qualidade.** É o que separa "renderizou" de "parece bom" |
-| 6 | **Domínios** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Movimento, câmera, design, som, mídia, blocos prontos |
-| 7 | **Framework 2ª** | `remotion-*` (12), `product-film` | Quando Remotion é a escolha certa |
-| 8 | **Estilos artísticos** | `painted-animation`, `kinetic-reel` | Estilos visuais procedurais únicos (aquarela, kinetic typography) |
+| 1 | **Renderer** | `hyperframes`, `hyperframes-cli`, `hyperframes-core` | Deterministic HTML-to-video. `core` is the composition contract; read it before writing HTML |
+| 2 | **Processing engine** | `ffmpeg-skill` (42 tools) | probe→edit→verify. Cuts, joins, loudness, captions, HDR-to-SDR, multicam, batch work |
+| 3 | **Alternative engine** | `fframes-video` | Rust/SVG, Skia GPU, lane rendering, frame inspection, snapshots, and audio analysis |
+| 4 | **Workflows** | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `changelog-video` | The final deliverable |
+| 5 | **Craft doctrine** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **An opinion on quality.** What separates “it rendered” from “it looks good” |
+| 6 | **Domains** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Motion, camera, design, sound, media, and ready-made blocks |
+| 7 | **Second framework** | `remotion-*` (12), `product-film` | When Remotion is the right choice |
+| 8 | **Art styles** | `painted-animation`, `kinetic-reel` | Distinct procedural looks such as watercolor and kinetic typography |
 
 ---
 
-## §Doutrina — a camada que o motor não tem
+## §Doctrine — the layer engines lack
 
-Esta é a parte que **não** é óbvia e que separa este ninja de um índice de skills.
+This is the part that is **not** obvious, and what makes this more than a skill index.
 
-### `/motion-doctrine` — GATEWAY, carregue primeiro
+### `/motion-doctrine` — the GATEWAY; load it first
 
 > *"These rules SUPERSEDE generic / upstream motion guidance."*
 
-Sem ele, um vídeo multi-cena vira uma pilha de slides animados independentemente. Com ele, vira
-**um movimento de câmera contínuo**. Cobre: a lei do vetor (como você sai determina como entra),
-o Z scale-sign, elementos carriers, movimento causal, o Seam Gate, e a **proibição de idle wobble**
-(movimento precisa **performar**, não respirar).
+Without it, a multi-scene video becomes a stack of independently animated slides. With it, the
+scenes become **one continuous camera move**. It covers the vector law (how you exit determines how
+you enter), Z scale-sign, carrier elements, causal motion, the Seam Gate, and the **ban on idle
+wobble**: movement must **perform**, not breathe.
 
-Roteia para as técnicas de baixo nível: `/cut-the-curve`, `/oversized-cursor`, `/seam-craft`.
+It routes to lower-level techniques: `/cut-the-curve`, `/oversized-cursor`, and `/seam-craft`.
 
-### `/cut-the-curve` — o catálogo de técnicas
+### `/cut-the-curve` — the technique catalog
 
-Cinco costuras com velocidade casada (zoom-through, zoom-through inverso, cut-the-curve, waterfall
-cut, rack-focus blur-cut) + duas técnicas in-scene (waterfall ENTRY em cascata, nudge curve
-slow-fast-slow). Inclui a razão 10/65/25 de slides.
+Five cuts with matched velocity (zoom-through, reverse zoom-through, cut-the-curve, waterfall cut,
+rack-focus blur-cut), plus two in-scene techniques (staggered waterfall entry and slow-fast-slow
+nudge curve). Includes the 10/65/25 slide ratio.
 
-**Leia antes de:** authoring qualquer transição, handoff texto→batida, entrada cinética, ou
-reposição de grupo.
+**Read it before:** authoring a transition, handing off text to a beat, a kinetic entrance, or group
+repositioning.
 
-### `/seam-craft` — corretude de render
+### `/seam-craft` — render correctness
 
-Prerequisitos para transições compvarem certo na timeline mestra. Carregue ao montar `index.html`
-e **sempre** quando aparecer **flash branco** num corte ou crossfade — especialmente em filmes
-escuros. Cobre o guard de stage-ground opaco (`#root background`).
+Requirements for transitions to composite correctly on the master timeline. Load it when assembling
+`index.html` and **whenever a white flash** appears in a cut or crossfade, especially in dark films.
+It covers the opaque stage-ground guard (`#root` background).
 
-### `/business-motion-film` — o crítico independente
+### `/business-motion-film` — the independent critic
 
-O único dos 5 que traz um **loop de crítica**: um construtor e um crítico severo separado, com
-quality bar explícita. Princípios de movimento destilados de **28 filmes de launch profissionais**.
-Cobre sound design e um playbook de oferta de negócio. Usa Three.js seletivamente.
+The only one of the five with a **critique loop**: a builder and a separate, tough critic, with an
+explicit quality bar. Its motion principles were distilled from **28 professional launch films**.
+It also covers sound design and a business-offer playbook, and uses Three.js selectively.
 
-**Use quando** a qualidade importa mais que a velocidade, e o resultado vai para um cliente.
+**Use it when** quality matters more than speed and the work is for a client.
 
-### `/saas-motion-video` — anti-repetição
+### `/saas-motion-video` — avoid repetition
 
-Tone matrix, variety audit, atlas de 24 transições, **100 temas de storyboard**. O problema que
-ele resolve: dois vídeos de produto não podem parecer o mesmo. 7-stage process.
+Tone matrix, variety audit, a 24-transition atlas, and **100 storyboard themes**. It solves one
+problem: two product videos should not look like the same video. A seven-stage process.
 
-### `/captions-overlay` — legenda é overlay
+### `/captions-overlay` — captions are overlays
 
-Modelo `drop` / `rail` / `embed` (35 estilos no catálogo). A regra: legenda é **overlay composto
-sobre o filme**, nunca uma faixa reservada no rodapé para a qual você empurra o conteúdo.
-Aplica-se **por cima** de `/embedded-captions`.
+Three models, `drop` / `rail` / `embed` (35 styles in the catalog). Captions are **composited over
+the film**; do not reserve a bottom strip and push the content out of the way. This doctrine applies
+**on top of** `/embedded-captions`.
 
-## §Lançamento de produto — prova visual e QA
+## §Product launch — visual proof and QA
 
-Ao produzir promo ou demo de produto, roteie para `/product-launch-video` e use estes critérios
-no storyboard e na revisão final. São gates condicionais ao brief e ao material disponível; não
-imponha duração, quantidade de recursos ou ritmo fixos.
+For a product promo or demo, route to `/product-launch-video` and apply these criteria during
+storyboarding and final review. They are conditional gates based on the brief and available assets;
+do not impose a fixed duration, feature count, or pace.
 
-1. **Abertura que funciona como thumbnail.** Revise o quadro inicial isolado: ele deve comunicar
-   a promessa ou despertar interesse sem depender de um fade vazio. Preserve o hook escolhido e
-   não force uma tela de interface quando a história pedir outro tipo de abertura.
-2. **Demonstração verificável.** Quando um recurso for a prova do benefício, mostre a ação, a
-   resposta visível do produto e o resultado para o usuário. Baseie telas, controles e resultados
-   na captura ou em material confirmado; não invente comportamentos para preencher a sequência.
-3. **Composição por proporção.** Se o brief pedir horizontal e vertical, planeje e revise cada
-   formato como layout próprio. Reposicione texto e produto para a tela vertical em vez de confiar
-   apenas no corte automático. Se só um formato foi pedido, não gere variantes por padrão.
-4. **Dados e claims fiéis.** Dados sintéticos são aceitáveis para proteger informação pessoal,
-   desde que sejam plausíveis e claramente fictícios quando isso puder confundir. Nunca use dados
-   pessoais reais sem autorização nem mostre uma capacidade, resultado ou CTA que o produto ainda
-   não oferece.
+1. **Make the opening frame work as a thumbnail.** Review the first frame on its own. It should
+   communicate the promise or create interest without relying on an empty fade. Keep the chosen hook;
+   do not force a UI screen when the story calls for another kind of opening.
+2. **Show verifiable product behavior.** When a feature proves the benefit, show the action, the
+   product's visible response, and the user outcome. Base screens, controls, and results on captured
+   or otherwise confirmed material. Do not invent behavior to fill the sequence.
+3. **Compose for each aspect ratio.** If the brief asks for both landscape and vertical versions,
+   plan and review each as its own layout. Reposition copy and product for the vertical frame instead
+   of relying on an automatic crop. Do not create extra versions by default.
+4. **Keep data and claims truthful.** Synthetic data is fine for protecting personal information,
+   as long as it looks plausible and is clearly fictional when that could be misleading. Never use
+   real personal data without authorization or show a capability, result, or CTA the product does
+   not offer.
 
-Esses critérios não substituem a captura real como fonte de verdade, a promessa/story arc do
-`/product-launch-video`, nem os gates de storyboard e render do HyperFrames. Referência: [12 regras
-para vídeo de lançamento — Amanda Sartini](https://x.com/i/article/2109015312729587712).
+These criteria do not replace real capture as the source of truth, the promise and story arc in
+`/product-launch-video`, or HyperFrames storyboard and render gates. Source: [12 rules for a launch
+video — Amanda Sartini](https://x.com/i/article/2109015312729587712).
 
-### `/oversized-cursor` — casa
+### `/oversized-cursor` — the house style
 
-Cursor macOS gigante. Use quando a cena tiver cursor, quando uma ação é lede por ponteiro, ou
-quando a cena está estática/morta e precisa de movimento de alto rendimento e baixo custo.
+Oversized macOS cursor. Use it when the scene has a cursor, when a pointer leads the action, or
+when a static or lifeless scene needs an effective, low-cost source of motion.
 
-### Camada de som
+### The sound layer
 
-`/hyperframes-audio` = mixagem de áudio já posicionado na composição (fade, crossfade, gain,
-automação, ducking/carve de VO, cadeias de efeitos, submix bus). `/media-use` = **fonte** de
-mídia. Nunca troque: `/media-use` busca e gera, `/hyperframes-audio` mistura o que já está na trilha.
+`/hyperframes-audio` handles audio already placed in the composition: fades, crossfades, gain,
+automation, VO ducking/carving, effect chains, and submix buses. `/media-use` handles **media
+sources**. Keep their roles straight: `/media-use` finds and generates assets; `/hyperframes-audio`
+mixes what is already on the timeline.
 
 ---
 
-## §FFmpeg — motor de processamento
+## §FFmpeg — the processing engine
 
-Fonte: [`kajisho5/ffmpeg-skill`](https://github.com/kajisho5/ffmpeg-skill)
+Source: [`kajisho5/ffmpeg-skill`](https://github.com/kajisho5/ffmpeg-skill)
 
 *"Give your coding agent a video editor."* — Local FFmpeg · No cloud · No API keys
 
-Enquanto o HyperFrames **cria** vídeo (HTML → MP4), o ffmpeg-skill **processa** material existente.
-São complementares: um renderiza composições do zero, o outro manipula arquivos reais.
+HyperFrames **creates** video (HTML → MP4); ffmpeg-skill **processes** existing media. They work
+together: one renders new compositions, while the other edits actual files.
 
-### Workflow estruturado
+### Structured workflow
 
 ```
-probe (medir) → edit (lossless quando possível) → check (validar) → verify (contact sheet)
+probe (measure) → edit (lossless when possible) → check (validate) → verify (contact sheet)
 ```
 
-A diferença-chave: o agente não "chuta" parâmetros. Primeiro faz probe do material (duração, fps,
-resolução, HDR, canais de áudio), depois age baseado em dados reais, e verifica o resultado.
+The key difference: the agent does not guess at parameters. It probes the media first (duration,
+fps, resolution, HDR, audio channels), edits based on those facts, then checks the result.
 
-### 42 ferramentas
+### 42 tools
 
-| Grupo | Tools |
+| Group | Tools |
 |---|---|
-| Análise | `probe`, `scenes`, `look` |
-| Edição | `cut`, `join`, `silence`, `fit`, `crop`, `cropdetect`, `denoise`, `stabilize`, `reverse`, `speedramp`, `loop`, `freeze`, `pad`, `broll`, `metadata`, `grid` |
-| Áudio | `audio`, `sync`, `loudness` |
-| Imagem | `caption`, `overlay`, `graphics`, `color` |
-| Entrega | `export`, `proxy`, `check`, `report` |
-| Orquestração | `render`, `batch`, `multicam`, `verify` |
+| Analysis | `probe`, `scenes`, `look` |
+| Editing | `cut`, `join`, `silence`, `fit`, `crop`, `cropdetect`, `denoise`, `stabilize`, `reverse`, `speedramp`, `loop`, `freeze`, `pad`, `broll`, `metadata`, `grid` |
+| Audio | `audio`, `sync`, `loudness` |
+| Image | `caption`, `overlay`, `graphics`, `color` |
+| Delivery | `export`, `proxy`, `check`, `report` |
+| Orchestration | `render`, `batch`, `multicam`, `verify` |
 
-### Quando usar
+### When to use it
 
-| Tarefa | Use |
+| Task | Use |
 |--------|-----|
-| Criar vídeo do zero (promo, explainer, motion graphic) | HyperFrames |
-| Cortar/juntar/processar material existente | **ffmpeg-skill** |
-| Ajustar loudness para plataforma | **ffmpeg-skill** |
-| Remover silêncios de gravação | **ffmpeg-skill** |
-| Sincronizar múltiplas câmeras | **ffmpeg-skill** |
-| Converter HDR→SDR para delivery | **ffmpeg-skill** |
-| Adicionar legendas em vídeo existente | **ffmpeg-skill** |
-| Renderizar composição HTML→MP4 | HyperFrames |
+| Create a video from scratch (promo, explainer, motion graphic) | HyperFrames |
+| Cut, join, or process existing footage | **ffmpeg-skill** |
+| Adjust loudness for a platform | **ffmpeg-skill** |
+| Remove recording silences | **ffmpeg-skill** |
+| Sync multiple cameras | **ffmpeg-skill** |
+| Convert HDR to SDR for delivery | **ffmpeg-skill** |
+| Add captions to an existing video | **ffmpeg-skill** |
+| Render an HTML-to-MP4 composition | HyperFrames |
 
-### Presets de entrega
+### Delivery presets
 
-Templates prontos para: `tiktok`, `reels`, `shorts`, `youtube`, `x`, `linkedin`, `facebook`, `podcast`.
+Ready-made templates for: `tiktok`, `reels`, `shorts`, `youtube`, `x`, `linkedin`, `facebook`, and
+`podcast`.
 
 ```bash
 python3 $S/export.py input.mp4 --preset reels --json
@@ -318,256 +323,255 @@ python3 $S/render.py talk.mp4 --template tiktok --cues cues.txt
 python3 $S/check.py output.mp4 --platform youtube   # PASS/WARN/FAIL
 ```
 
-### Instalação
+### Installation
 
 ```bash
-npx ffmpeg-skill --all        # instala para Claude, Cursor e Codex
-npx ffmpeg-skill doctor       # verifica componentes FFmpeg disponíveis
+npx ffmpeg-skill --all        # install for Claude, Cursor, and Codex
+npx ffmpeg-skill doctor       # check available FFmpeg components
 ```
 
-**Requisitos:** FFmpeg 5.0+, Python 3.9+ (standard library only).
+**Requirements:** FFmpeg 5.0+ and Python 3.9+ (standard library only).
 
 ---
 
-## §fframes — motor alternativo
+## §fframes — alternative engine
 
-Fonte: [`dmtrKovalenko/fframes`](https://github.com/dmtrKovalenko/fframes), skill instalada via
+Source: [`dmtrKovalenko/fframes`](https://github.com/dmtrKovalenko/fframes), skill installed through
 [`fframes.studio`](https://fframes.studio).
 
-Use `fframes-video` quando o vídeo for predominantemente vetorial e o ganho de render GPU,
-inspeção automatizada ou batch compensar a complexidade de Rust e das bibliotecas nativas.
+Use `fframes-video` when the video is primarily vector-based and GPU rendering, automated
+inspection, or batch processing is worth the added complexity of Rust and native libraries.
 
-O ciclo recomendado é:
+Recommended cycle:
 
 ```
 timeline → inspect → strip/frame/onion → audio analyze → render --draft → render
 ```
 
-`inspect` verifica fontes, imagens, SVG, cortes de texto e falhas sem renderizar todos os pixels;
-`strip`, `frame`, `onion` e `snapshot` produzem evidência visual; `audio analyze` mede LUFS, true
-peak, clipping e silêncios. A skill exige revisar essas saídas antes de declarar o vídeo pronto.
+`inspect` checks fonts, images, SVG, text clipping, and failures without rendering every pixel.
+`strip`, `frame`, `onion`, and `snapshot` produce visual evidence; `audio analyze` measures LUFS,
+true peak, clipping, and silence. Review these outputs before calling the video finished.
 
-O motor é MIT, mas a instalação exige Rust, Skia/Metal/Vulkan ou backend CPU, `libclang`, `nasm`,
-Ninja e codecs FFmpeg conforme o alvo. O desempenho anunciado pelo projeto é uma hipótese para o
-benchmark local, não uma garantia do ninja.
+The engine is MIT-licensed, but installation requires Rust, Skia with Metal/Vulkan or a CPU backend,
+`libclang`, `nasm`, Ninja, and FFmpeg codecs for the target platform. The project's performance
+claims are hypotheses to test locally, not a guarantee from this Ninja.
 
-Não use `fframes-video` para editar material existente: continue usando `ffmpeg-skill` para probe,
-cortes, normalização, multicam e entrega.
-
----
-
-## §Alternativas a complementar
-
-As alternativas da imagem cobrem necessidades reais, mas ainda não têm integração de agente no
-mesmo nível do HyperFrames. A complementação deve acontecer como adaptadores pequenos e verificáveis:
-
-1. **Skill Revideo/Motion Canvas:** começar pelo Revideo, que já expõe `renderVideo()`, player React,
-   entradas dinâmicas e render paralelo; cobrir também o scaffold Motion Canvas, generators,
-   sincronização de áudio, exportação FFmpeg, `check` e integração com `motion-doctrine`/`seam-craft`.
-2. **Skill MoviePy:** API v2, composição orientada a dados, efeitos e áudio; delegar operações de
-   arquivo ao `ffmpeg-skill` e terminar com `check`/`verify`.
-3. **Matriz de benchmark:** comparar os quatro caminhos em determinismo, tempo de render, alpha,
-   áudio, 1080×1920, execução local/servidor e custo/licença.
-4. **Detecção de capacidade:** o roteador deve informar quando Motion Canvas ou MoviePy não estão
-   instalados, em vez de encaminhar para uma skill inexistente.
-
-Esse trabalho complementa o ninja sem duplicar o que o `ffmpeg-skill` já resolve.
+Do not use `fframes-video` to edit existing media. Keep using `ffmpeg-skill` for probing, cuts,
+normalization, multicam work, and delivery.
 
 ---
 
-## §Estilos Artísticos — aquarela, kinetic typography e figura técnica
+## §Alternatives to integrate
 
-Fonte: [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills)
+The alternatives in the source image address real needs, but they do not yet have the same level of
+agent integration as HyperFrames. Add support through small, verifiable adapters:
 
-Duas skills que produzem vídeo **inteiramente em código** — cada frame é função pura do tempo,
-sem modelos generativos. Renderiza em headless Chrome + ffmpeg.
+1. **Revideo/Motion Canvas skill:** start with Revideo, which already exposes `renderVideo()`, a
+   React player, dynamic inputs, and parallel rendering. Also cover Motion Canvas scaffolding,
+   generators, audio sync, FFmpeg export, `check`, and integration with `motion-doctrine` and
+   `seam-craft`.
+2. **MoviePy skill:** cover API v2, data-driven composition, effects, and audio. Delegate file
+   operations to `ffmpeg-skill` and finish with `check`/`verify`.
+3. **Benchmark matrix:** compare all four paths for determinism, render time, alpha, audio,
+   1080×1920 output, local/server execution, and cost/licensing.
+4. **Capability detection:** the router should say when Motion Canvas or MoviePy is not installed
+   instead of routing to a nonexistent skill.
 
-### `/painted-animation` — cartoon aquarela animado
-
-Desenha cada shot com p5.js e a biblioteca p5.brush de aquarela. Personagens têm biblioteca de
-expressões e princípios de movimento. Music videos são cortados no beat medido, lyric videos
-carregam legendas karaoke palavra-por-palavra.
-
-**Use quando:** curta animado, music video, lyric video com karaoke, estilo "pintado à mão",
-aquarela, tinta, cartoon com personagens.
-
-**Dependências extra:** Python 3 com numpy (só para tempo detection).
-
-### `/kinetic-reel` — showreel tipográfico com WebGL
-
-Combina canvas 2D de tipografia com camadas three.js (terreno de partículas, marble líquido,
-chrome knot, nuvem que condensa em forma) e post-pass WebGL. Shots ligados por transições de
-continuidade de forma. Score sintetizado da mesma timeline da imagem.
-
-**Use quando:** portfolio reel, showreel, work reel, product intro, tipografia cinética com
-efeitos visuais 3D.
-
-**Nota de overlap:** `/motion-graphics` do HyperFrames também faz kinetic typography, mas sem as
-camadas WebGL específicas (particle terrain, liquid marble). Use `/kinetic-reel` quando quiser
-esses efeitos visuais 3D específicos.
-
-### Anatomy — figura isométrica para explainers técnicos (opcional)
-
-Anatomy é uma fonte externa avaliada, **não instalada**. Ela transforma um conceito em um objeto
-ou máquina isométrica com peças, movimento e dados do próprio modelo. Serve quando a explicação
-ganha clareza ao mostrar fisicamente como um mecanismo funciona — por exemplo, cache como fechadura
-ou rate limiter como reservatório.
-
-Pode gerar HTML independente, SVG isolado ou componentes React/Next; WebGL é opcional. A auditoria
-de geometria e as capturas em Chrome ajudam a verificar encaixes, linhas e estados visuais. Não é
-biblioteca de gráficos nem timeline, editor ou engine de vídeo. O modo 3D está em beta e figuras
-detalhadas demandam tempo.
-
-**Fluxo se a skill estiver instalada:** Anatomy constrói/verifica a figura → `/hyperframes` integra
-e renderiza o vídeo → `/motion-doctrine` governa o movimento e as transições. Se não estiver
-instalada, use os recursos de composição do HyperFrames sem sugerir que Anatomy está disponível.
-
-Detalhes, critérios de uso, limites e a origem no X: [references/anatomy.md](references/anatomy.md).
-
-### Recomendação de modelo
-
-Funciona melhor com Claude Opus 5.5, mas não é obrigatório — outros modelos podem usar as skills
-com resultados variáveis.
+This would extend the Ninja without duplicating what `ffmpeg-skill` already handles.
 
 ---
 
-## §Motion Lab — motion em código, do brief ao loop validado
+## §Art styles — watercolor, kinetic typography, and technical illustrations
 
-Use este método para loops, product films e peças de motion geradas como código. Comece em
-`/hyperframes`, carregue `/motion-doctrine` e trate o modelo como autor do programa que desenha os
-frames — cada quadro precisa ser reproduzível e inspecionável.
+Source: [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills)
 
-Antes de gerar o código, transforme o brief em uma lista de estados com intervalos de frames: uma
-ação principal por shot, o handoff para o próximo e o que precisa continuar igual (produto, forma,
-proporções, marca). Especifique objetivo, engine, formato, resolução, fps, duração, câmera e
-parâmetros mensuráveis. Troque pedidos vagos como “parece premium” por decisões observáveis; nomeie
-os padrões visuais proibidos e atualize essa lista depois de ver a primeira renderização.
+Two skills that produce video **entirely in code**: each frame is a pure function of time, with no
+generative models. They render in headless Chrome with FFmpeg.
 
-Peça recursos de revisão dentro do próprio preview — frame labels, playhead ou marcações de beat —
-para conferir timing e pousos; remova-os da exportação final. Faça render de stills antes do vídeo
-completo, revise uma contact sheet e frames adjacentes aos problemas, e limite cada rodada a um ou
-dois ajustes descritos com frame e medida. Faça uma auditoria numérica separada da crítica visual.
-Duas a quatro rodadas são uma referência do artigo, não um limite obrigatório.
+### `/painted-animation` — animated watercolor cartoons
 
-Para som, escreva cues ligados aos frames e meça o arquivo decodificado para checar sync, loudness,
-true peak e clipping, e escute a mixagem final. Métricas não substituem a revisão auditiva. Em loops
-de N frames, renderize `0..N-1` e use `phase = frame / N` com ciclos inteiros para fechar a costura.
-O artigo relata um alvo de -14 LUFS/-1 dBTP e hits de som cerca de um frame após a imagem; trate
-esses números como referência daquele laboratório e confirme as exigências do destino.
+It draws each shot with p5.js and the p5.brush watercolor library. Characters have expression
+libraries and motion principles. Music videos are cut to measured beats; lyric videos use
+word-by-word karaoke captions.
 
-Separe fatos do produto de decisões criativas. Use telas, logos e assets reais; confira a lista de
-assets antes de animar e pare para pedir o que estiver faltando, sem desenhar uma interface de
-substituição. Para referências visuais, derive uma gramática de estilo permitida e não replique
-shots ou assets sem autorização. Componha cada proporção como variante própria e revise cada uma.
-Guarde brief, state list, referências, assets aprovados, critérios de aceite e recibos por etapa;
-gates devem permitir retomar, pedir informação ou parar quando faltar evidência.
+**Use it for:** animated shorts, music videos, karaoke lyric videos, hand-painted or watercolor
+looks, ink, and character-driven cartoons.
 
-Procedimento, checklist e comparação das fontes em
-[references/motion-lab.md](references/motion-lab.md). As fontes originais são [Opus 5.5 Motion
-Lab](https://x.com/i/article/2105052379590578176), de [@flxrnc](https://x.com/flxrnc/status/2105311836190978392),
-e [Motion Engineering](https://x.com/0xwhrrari/status/2105643919119696297), de
-[@0xwhrrari](https://x.com/0xwhrrari). O texto arquivado do primeiro artigo não inclui prompts que
-estavam embutidos em imagens ou vídeos.
+**Extra dependency:** Python 3 with numpy (for beat detection only).
+
+### `/kinetic-reel` — kinetic type showreels with WebGL
+
+It combines a 2D typography canvas with Three.js layers (particle terrain, liquid marble, chrome
+knot, and a cloud condensing into shape), followed by a WebGL post-pass. Shape-continuity
+transitions connect the shots. The score is synthesized from the same timeline as the visuals.
+
+**Use it for:** portfolio reels, work reels, product intros, and kinetic type with 3D visual effects.
+
+**Overlap:** HyperFrames `/motion-graphics` also supports kinetic typography, but not these specific
+WebGL layers (particle terrain, liquid marble). Choose `/kinetic-reel` when you need those 3D effects.
+
+### Anatomy — isometric illustrations for technical explainers (optional)
+
+Anatomy is an evaluated external source, **not installed**. It turns a concept into an isometric
+object or machine, with parts, motion, and model-generated data. Use it when showing a physical
+mechanism makes the explanation clearer, such as a cache represented as a lock or a rate limiter as
+a reservoir.
+
+It can produce standalone HTML, standalone SVG, or React/Next components; WebGL is optional.
+Geometry audits and Chrome captures help check fit, lines, and visual states. Anatomy is not a chart
+library, timeline, editor, or video engine. Its 3D mode is in beta, and detailed figures take time.
+
+**If the skill is installed:** Anatomy builds and checks the figure → `/hyperframes` integrates it
+and renders the video → `/motion-doctrine` governs motion and transitions. If it is not installed,
+use HyperFrames composition tools without implying Anatomy is available.
+
+Details, usage criteria, limits, and the original X post: [references/anatomy.md](references/anatomy.md).
+
+### Model recommendation
+
+It works best with Claude Opus 5.5, but that is not a requirement. Other models can use these skills
+with varying results.
 
 ---
 
-## §Remotion — quando não é HyperFrames
+## §Motion Lab — code-driven motion, from brief to validated loop
 
-O HyperFrames é o default. Remotion entra em 3 casos:
+Use this method for loops, product films, and code-generated motion. Start with `/hyperframes`, load
+`/motion-doctrine`, and treat the model as the author of the program that draws the frames. Every
+frame must be reproducible and inspectable.
 
-| Caso | Skill |
+Before generating code, turn the brief into a frame-ranged state list: one main action per shot, the
+handoff to the next shot, and what must stay consistent (product, shape, proportions, brand). Specify
+the goal, engine, format, resolution, fps, duration, camera, and measurable parameters. Replace vague
+requests such as “make it feel premium” with observable decisions. Name visual patterns to avoid,
+then update the list after reviewing the first render.
+
+Add review aids to the preview itself—frame labels, a playhead, or beat markers—to check timing and
+landings; remove them from the final export. Render stills before the full video, review a contact
+sheet and frames around any problems, and limit each pass to one or two adjustments described by
+frame and measurement. Keep numerical audits separate from visual critique. Two to four passes is a
+reference from the article, not a hard limit.
+
+For sound, write frame-linked cues, measure the decoded file for sync, loudness, true peak, and
+clipping, and listen to the final mix. Metrics do not replace listening. For an N-frame loop, render
+`0..N-1` and use `phase = frame / N` with whole cycles to close the seam. The article reports a
+-14 LUFS/-1 dBTP target and sound hits about one frame after the image; treat these as that lab's
+reference and check the delivery platform's requirements.
+
+Separate product facts from creative decisions. Use real screens, logos, and assets. Check the asset
+list before animating and stop to request anything missing; do not draw a replacement interface.
+For visual references, identify the style grammar you can borrow without copying shots or assets
+without permission. Compose and review each aspect ratio as its own variant. Save the brief, state
+list, references, approved assets, acceptance criteria, and receipts for each stage. Gates should
+let the workflow resume, request information, or stop when evidence is missing.
+
+The procedure, checklist, and source comparison are in
+[references/motion-lab.md](references/motion-lab.md). The original sources are [Opus 5.5 Motion
+Lab](https://x.com/i/article/2105052379590578176), by [@flxrnc](https://x.com/flxrnc/status/2105311836190978392),
+and [Motion Engineering](https://x.com/0xwhrrari/status/2105643919119696297), by
+[@0xwhrrari](https://x.com/0xwhrrari). The archived text of the first article does not include
+prompts that were embedded in images or videos.
+
+---
+
+## §Remotion — when HyperFrames is not the right fit
+
+HyperFrames is the default. Use Remotion in three cases:
+
+| Case | Skill |
 |---|---|
-| Port explícito de fonte Remotion → HyperFrames | `/remotion-to-hyperframes` (um caminho só, Remotion→HF) |
-| Projeto Remotion existente que deve **continuar** Remotion | `/remotion-best-practices` + `/remotion-markup` + `/remotion-render` |
-| **Captura de tela → product film** | `/product-film` (AVAssembly, sem ffmpeg, sem editor) |
+| Explicitly porting a Remotion source project to HyperFrames | `/remotion-to-hyperframes` (one-way, Remotion → HF) |
+| Existing Remotion project that should **stay** in Remotion | `/remotion-best-practices` + `/remotion-markup` + `/remotion-render` |
+| **Screen capture → product film** | `/product-film` (AVAssembly; no FFmpeg or editor) |
 
-`/product-film` é auto-contido: Cada quadro é função pura do tempo, sem CSS transitions, sem
-`Date.now()`. Regra não-negociável: **o design do produto vence** — tokens, componentes, landing
-page e copy reais. Roda ao lado do codebase do produto, reusa componentes de verdade.
+`/product-film` is self-contained. Each frame is a pure function of time, with no CSS transitions or
+`Date.now()`. Non-negotiable rule: **the product's design wins**—use its actual tokens, components,
+landing page, and copy. Run alongside the product codebase and reuse real components.
 
-Demais `remotion-*`: `remotion-create`, `remotion-captions`, `remotion-studio`, `remotion-multimedia`,
+Other `remotion-*` skills: `remotion-create`, `remotion-captions`, `remotion-studio`, `remotion-multimedia`,
 `remotion-interactivity`, `remotion-maps`, `remotion-saas`, `remotion-upgrade`, `remotion-docs`.
 
 ---
 
-## §Método My-Little-Studio
+## §My-Little-Studio method
 
-Quatro técnicas que o mercado de skills de vídeo **não tem** — pesquisadas e confirmadas como
-lacuna em set/2026. Só importam quando o ninja está dentro de um **projeto de pipeline** (produção
-recorrente), não num vídeo único.
+Four techniques the video-skill ecosystem **does not have**, researched and confirmed as gaps in
+September 2026. They matter when the Ninja is part of a **recurring production pipeline**, not for a
+one-off video.
 
-| Técnica | Por quê ninguém tem |
+| Technique | Why it is unusual |
 |---|---|
-| **Rastreabilidade com sha256** — cada etapa grava a impressão digital do que leu e **recusa rodar** se o dado de antes mudou, dizendo qual comando falta | Nenhum repo de skills implementa staleness detection |
-| **A "fita"** — ASR decodificando **letra a 20 ms**, preservando retomadas que transcrição comercial **esconde** | WhisperX entrega timing por palavra, não a combinação de microtiming e retomadas; a fita preserva essa função de corte fino |
-| **Setup de cor reutilizável** — LUT + ganho + nitidez calibrados uma vez por câmera/luz/cenário | Nenhuma skill de color grading; e `/media-use` resolve LUT por clip, não por câmera |
-| **Mapa de corpo** — RTMPose/MediaPipe → onde um elemento cabe sem encostar no corpo. Medido: **LLM erra 12% da largura da tela** | Nenhum repo. Posicionamento nunca pode vir de modelo de linguagem |
+| **SHA-256 provenance** — each stage records a fingerprint of its inputs and **refuses to run** if an earlier input changed, naming the missing command | No skills repository implements staleness detection |
+| **The “tape”** — ASR decoded **letter by letter at 20 ms**, preserving restarts that commercial transcription **hides** | WhisperX provides word timing, not the combination of microtiming and restarts; the tape preserves this fine-grained editing function |
+| **Reusable color setup** — LUT, gain, and sharpness calibrated once per camera, lighting setup, and scene | No color-grading skill; `/media-use` resolves LUTs per clip, not per camera |
+| **Body map** — RTMPose/MediaPipe determines where an element can fit without overlapping the body. Measured result: **an LLM misses by 12% of screen width** | No repository offers this. Screen positioning must never come from a language model |
 
-Mais os **quadros visuais** (desenhar sobre o vídeo quadro a quadro em HTML e exportar frame +
-instrução + traços — a IA lê o desenho melhor que o texto) como forma de pedir algo específico.
+It also uses **visual frames**: draw over the video frame by frame in HTML, then export the frame,
+instruction, and marks. AI can read the drawing better than text alone, making this a useful way to
+request precise changes.
 
-`WhisperX` pode fornecer alinhamento por palavra e diarização quando o caso pedir, mas não substitui
-a “fita”: ela opera a cada 20 ms e preserva retomadas para cortes finos. Para reutilizar animações
-Lottie, siga o controle determinístico de tempo em [references/lottie.md](references/lottie.md).
+`WhisperX` can provide word alignment and diarization when needed, but it does not replace the
+“tape”: the tape operates at 20 ms and preserves restarts for fine cuts. To reuse Lottie animations,
+follow the deterministic time-control guidance in [references/lottie.md](references/lottie.md).
 
-Detalhes completos, com os aprendizados: [references/metodologia-mls.md](references/metodologia-mls.md).
+Full details and lessons learned: [references/metodologia-mls.md](references/metodologia-mls.md).
 
 ---
 
-## §Registry — 173 blocos prontos
+## §Registry — 173 ready-made blocks
 
-Antes de construir qualquer visual nomeado, **busque no registry**:
+Before building any named visual, **search the registry**:
 
 ```bash
-npx hyperframes add <busca>       # ex: "camera dolly", "bar chart", "glass title"
-npx hyperframes catalog           # lista o que está instalado
+npx hyperframes add <query>       # e.g. "camera dolly", "bar chart", "glass title"
+npx hyperframes catalog           # list installed blocks
 ```
 
-Já existem `camera-dolly-zoom`, `bar-chart-race`, `beat-freeze-cut`, `camcorder-hud`,
-carousels, titles de vidro, etc. Usar `/hyperframes-registry` **antes** de codar à mão economiza
-tempo e herda a corretude de render.
+It already includes `camera-dolly-zoom`, `bar-chart-race`, `beat-freeze-cut`, `camcorder-hud`,
+carousels, glass titles, and more. Using `/hyperframes-registry` **before** writing custom code
+saves time and inherits known render correctness.
 
 ---
 
 ## Guardrails
 
-1. **`/hyperframes` primeiro.** Ele é o roteador autoritativo entre workflows. Não force um
-   workflow à mão se a tabela de prioridade dele não casar.
-2. **Doutrina antes de animação.** `/motion-doctrine` é GATEWAY e supersede orientação genérica.
-   Animar sem ele é o erro mais caro deste pipeline.
-3. **Não reserve faixa de legenda.** Legenda é overlay. Ver `/captions-overlay` constraint #13.
-4. **Positions never from an LLM.** Qualquer decisão de coordenada em tela vem de medição
-   (rastreamento), nunca de "parece que fica ali". O erro medido foi de 12% da largura.
-5. **Mídia fotográfica sempre passa por `/media-use`.** Deixar mídia adequada sem alteração é um
-   resultado válido — mas a varredura tem que acontecer.
-6. **Confirmar antes de render.** `render`, `publish` e `batch-render` custam tempo e API.
-   `check` é barato e roda sempre.
-7. **Pin de versão.** Um projeto faz pin de `hyperframes@<versão>` e o pin não sobe sozinho.
-   Antes do primeiro render: `npx hyperframes@latest upgrade --project . --check`.
+1. **`/hyperframes` first.** It is the authoritative workflow router. Do not force a workflow if its
+   priority table points elsewhere.
+2. **Doctrine before animation.** `/motion-doctrine` is the GATEWAY and supersedes generic guidance.
+   Animating without it is the most expensive mistake in this pipeline.
+3. **Do not reserve a caption strip.** Captions are overlays. See `/captions-overlay`, constraint #13.
+4. **Never get positions from an LLM.** Every screen coordinate must come from measurement
+   (tracking), never from “it looks about right.” The measured error was 12% of screen width.
+5. **Route photographic media through `/media-use`.** Leaving suitable media untouched is a valid
+   result, but the scan must still happen.
+6. **Check before rendering.** `render`, `publish`, and `batch-render` cost time and API usage.
+   `check` is cheap; always run it.
+7. **Pin the version.** Each project pins `hyperframes@<version>`; the pin does not update itself.
+   Before the first render, run `npx hyperframes@latest upgrade --project . --check`.
 
 ---
 
-## Manutenção
+## Maintenance
 
-| O quê | Comando | Nota |
+| Task | Command | Note |
 |---|---|---|
-| Skills HyperFrames publicadas | `npx hyperframes skills` | Set publicado completo |
-| Refresh de uma skill específica | `npx hyperframes skills update <name>` | |
-| Diagnosticar staleness | `npx hyperframes skills check` | Sai != 0 se stale |
-| Atualizar os outros repos | `npx skills update -g` | Atualiza pelo lockfile |
-| Sync dos repos-fonte (não faz nada aqui) | `./sync-repos.sh` | Este ninja é `no-sync` — ver abaixo |
+| Published HyperFrames skills | `npx hyperframes skills` | Complete published set |
+| Update one skill | `npx hyperframes skills update <name>` | |
+| Check for stale skills | `npx hyperframes skills check` | Exits nonzero when stale |
+| Update other repositories | `npx skills update -g` | Updates from the lockfile |
+| Sync source repositories (no-op here) | `./sync-repos.sh` | This Ninja is `no-sync`; see below |
 
-### Este ninja é `no-sync`
+### This Ninja is `no-sync`
 
-As 46 skills já são consumidas como agent skills instaladas. Clonar os 7 repos-fonte adicionaria
-~510 MB (489 MB só do `hyperframes`) sem ganho funcional. Por isso o `video-ninja` está na lista
-`NEVER_CLONE_NINJAS` do `sync-repos.sh` e marcado com `no-sync` no `repos.md` — um
-`./sync-repos.sh` (todos ou `video-ninja`) o **pula**.
+The 46 skills are already available as installed agent skills. Cloning the seven source repositories
+would add ~510 MB (489 MB for `hyperframes` alone) without a functional benefit. That is why
+`video-ninja` is in the `NEVER_CLONE_NINJAS` list in `sync-repos.sh` and marked `no-sync` in
+`repos.md`. Running `./sync-repos.sh` for all repositories or for `video-ninja` **skips it**.
 
-A garantia é testada: `./tests/test-no-sync.sh` (roda no CI via `no-sync-guard.yml`).
+This is covered by `./tests/test-no-sync.sh`, which runs in CI through `no-sync-guard.yml`.
 
-> ⚠️ **As 6 skills de doutrina interna** (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
-> `oversized-cursor`, `captions-overlay`, `changelog-video`) são `metadata: internal: true` no
-> upstream. A CLI **não as instala** e `npx hyperframes skills` faz *prune de skills não-publicadas*
-> — então elas podem sumir num update. Estão registradas no lockfile como `internal-doctrine`.
-> Se sumirem, reinstale copiando de `.agents/skills/<nome>/` do repo (sparse checkout).
+> ⚠️ **The six internal doctrine skills** (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
+> `oversized-cursor`, `captions-overlay`, `changelog-video`) have `metadata: internal: true` upstream.
+> The CLI **does not install them**, and `npx hyperframes skills` prunes unpublished skills, so an
+> update may remove them. They are recorded in the lockfile as `internal-doctrine`. If they disappear,
+> reinstall them by copying `.agents/skills/<name>/` from the repository (sparse checkout).

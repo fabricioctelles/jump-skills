@@ -1,48 +1,49 @@
-# WhisperX — backend opcional de transcrição e alinhamento
+# WhisperX — optional transcription and alignment backend
 
-**Estado no Video Ninja:** avaliado, não instalado e sem integração automática.  
-**Fonte:** [`m-bain/whisperX`](https://github.com/m-bain/whisperX), licença BSD-2-Clause.
+**Video Ninja status:** evaluated, not installed, and not automatically integrated.
 
-## Quando considerar
+**Source:** [`m-bain/whisperX`](https://github.com/m-bain/whisperX), BSD-2-Clause license.
 
-Use WhisperX em material falado quando o trabalho exigir timestamps por palavra, segmentação para
-legendas ou diarização. O projeto combina reconhecimento de fala com alinhamento forçado para
-marcar palavras e pode atribuir IDs de falantes.
+## When to consider it
 
-É uma fonte de timing/texto para os workflows de talking-head, não editor nem renderizador. O Ninja
-deve verificar se `whisperx` está disponível no ambiente; esta referência, por si só, não instala a
-dependência.
+Use WhisperX on spoken material when a project needs word-level timestamps, caption segmentation,
+or diarization. It combines speech recognition with forced alignment to time words and can assign
+speaker IDs.
 
-## Limite em relação à “fita”
+It provides text and timing for talking-head workflows; it is not an editor or renderer. The Ninja
+must check whether `whisperx` is available in the environment. This reference does not install the
+dependency.
 
-WhisperX trabalha com **timing por palavra** e diarização. Não oferece a saída letra-a-letra a cada
-20 ms usada pela “fita” do My-Little-Studio para localizar início de sílaba e preservar tentativas
-repetidas. Para cortes finos, não substituir a fita por WhisperX. As duas ferramentas podem servir a
-etapas diferentes: WhisperX para transcript/timing por palavra; fita para decisão de corte que exige
-microtiming e retomadas.
+## How it differs from the “tape”
 
-Transcrição e diarização são hipóteses a conferir no áudio original. Um timestamp alinhado não prova
-que a palavra foi reconhecida corretamente nem identifica por si só o nome real de uma pessoa.
+WhisperX provides **word-level timing** and diarization. It does not provide the letter-by-letter,
+20 ms output that My-Little-Studio's “tape” uses to locate syllable onsets and preserve repeated
+attempts. Do not replace the tape with WhisperX for fine cuts. They serve different stages: WhisperX
+for transcripts and word timing; the tape for edit decisions that depend on microtiming and restarts.
 
-## Fluxo de uso
+Treat transcription and diarization as hypotheses to check against the original audio. An aligned
+timestamp does not prove that a word was recognized correctly, nor does it identify a person's real
+name by itself.
 
-1. Usar só em áudio/vídeo local autorizado para processamento.
-2. Verificar disponibilidade, versão, modelo, idioma e capacidade (CPU ou GPU/CUDA) antes da etapa.
-3. Produzir transcrição e, apenas quando necessário, diarização.
-4. Escutar e corrigir erros, nomes próprios, pontuação, falas sobrepostas e cortes de frase.
-5. Converter os dados revisados para o formato de cues usado pelo workflow de legendas/corte.
-6. Continuar com `/embedded-captions` e `/captions-overlay`; validar sincronismo em frames e no áudio.
+## Workflow
 
-## Requisitos e credenciais
+1. Use it only on local audio/video authorized for processing.
+2. Check availability, version, model, language, and hardware (CPU or GPU/CUDA) before running it.
+3. Produce a transcript; add diarization only when needed.
+4. Listen and correct recognition errors, names, punctuation, overlapping speech, and phrase cuts.
+5. Convert the reviewed data into the cue format used by the captioning or editing workflow.
+6. Continue with `/embedded-captions` and `/captions-overlay`; verify sync against frames and audio.
 
-- Instalação documentada com `pip install whisperx`; mantenha-a isolada em ambiente Python do
-  projeto/pipeline e pinne versão/modelos antes de produção.
-- GPU/CUDA é opcional; CPU pode ser usada, com desempenho menor. O README atual recomenda CUDA 12.8
-  para aceleração GPU.
-- A diarização depende do modelo `speaker-diarization-community-1`: requer token Hugging Face e
-  aceite dos termos daquele modelo. Solicite o token só se a diarização for necessária e não
-  imprima/registre seu valor.
-- Registre os idiomas e modelos usados junto aos artefatos gerados para tornar a revisão repetível.
+## Requirements and credentials
 
-Não tornar WhisperX default nem afirmar que está instalado. Se falhar ou exigir configuração ausente,
-voltar para o backend de áudio disponível e deixar a limitação explícita.
+- The documented install is `pip install whisperx`. Keep it isolated in the project or pipeline's
+  Python environment, and pin the version and models before production.
+- GPU/CUDA is optional; CPU works with lower performance. The current README recommends CUDA 12.8
+  for GPU acceleration.
+- Diarization depends on the `speaker-diarization-community-1` model, which requires a Hugging Face
+  token and acceptance of that model's terms. Request a token only when diarization is needed, and
+  never print or record its value.
+- Record the languages and models used alongside generated artifacts so the review can be repeated.
+
+Do not make WhisperX the default or claim that it is installed. If it fails or needs missing
+configuration, return to the available audio backend and state the limitation clearly.

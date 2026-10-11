@@ -1,14 +1,14 @@
-# Repositórios do video-ninja
+# Video Ninja repositories
 
-Cada seção traz um repositório fonte das skills daquele ninja. Os 7 já estão **instalados como
-skills globais** — por isso este ninja **não** precisa de `sync-repos.sh` (ver nota no fim).
+Each section describes a source repository for this Ninja's skills. All seven are **installed as
+global skills**, so this Ninja does **not** need `sync-repos.sh` (see the note at the end).
 
 ---
 
 ## [video-ninja]
 
-Sete repositórios de vídeo que se complementam: um motor de render, um motor de processamento,
-uma doutrina de qualidade, uma framework alternativa e três nichos.
+Seven video repositories that complement one another: a rendering engine, a processing engine, a
+quality doctrine, an alternative framework, and three niche toolkits.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -20,102 +20,102 @@ https://github.com/tugrawork-creator/saas-motion-kit
 https://github.com/tuzhechen2005/opus-video-skills
 ```
 
-| Repositório | Org | Skills | Licença | Papel |
-|---|---|---|---|---|
-| hyperframes | heygen-com | 27 | Apache-2.0 | Motor de render: HTML → vídeo. 21 publicadas + 6 de doutrina interna |
-| ffmpeg-skill | kajisho5 | 1 | MIT | Motor de processamento: probe → edit → verify. 42 tools FFmpeg |
-| motion-video-kit | echris6 | 1 | MIT | Doutrina: crítico independente, 28 filmes de launch, quality bar |
-| skills | remotion-dev | 12 | — | Remotion oficial (2ª framework) |
-| product-film-skill | Rieranthony | 1 | MIT | Captura de tela → product film (AVFoundation) |
-| saas-motion-kit | tugrawork-creator | 1 | — | Promo SaaS: tone matrix, 24 transições, 100 temas |
-| opus-video-skills | tuzhechen2005 | 2 | MIT | Estilos artísticos procedurais: aquarela animada, kinetic typography |
+| Repository | Organization | Skills | License | Role |
+|---|---|---:|---|---|
+| hyperframes | heygen-com | 27 | Apache-2.0 | Rendering engine: HTML → video. 21 published skills + 6 internal doctrine skills |
+| ffmpeg-skill | kajisho5 | 1 | MIT | Processing engine: probe → edit → verify. 42 FFmpeg tools |
+| motion-video-kit | echris6 | 1 | MIT | Doctrine: independent critic, 28 launch films, explicit quality bar |
+| skills | remotion-dev | 12 | — | Official Remotion skills (second framework) |
+| product-film-skill | Rieranthony | 1 | MIT | Screen capture → product film (AVFoundation) |
+| saas-motion-kit | tugrawork-creator | 1 | — | SaaS promos: tone matrix, 24 transitions, 100 themes |
+| opus-video-skills | tuzhechen2005 | 2 | MIT | Procedural art styles: animated watercolor, kinetic typography |
 
 ---
 
-## Engines e frameworks avaliadas, ainda sem skill
+## Evaluated engines and frameworks without a skill
 
-Motion Canvas, Revideo, MoviePy e ManimCE não fazem parte das sete fontes instaladas. Mantê-los nesta
-seção evita prometer um roteamento que ainda não existe.
+Motion Canvas, Revideo, MoviePy, and ManimCE are not part of the seven installed sources. Keeping
+them here avoids implying that routing is already available.
 
-| Engine/framework | Licença | Ponto forte | Complemento necessário |
+| Engine/framework | License | Strength | Integration still needed |
 |---|---|---|---|
-| [Motion Canvas](https://github.com/motion-canvas/motion-canvas) / [Revideo](https://github.com/midrender/revideo) | MIT | Motion Canvas: generators e editor vetorial. Revideo: player React, `renderVideo()`, entradas dinâmicas e render headless | Skill para scaffold, render, áudio, `check` e integração com a doutrina |
-| [MoviePy](https://github.com/Zulko/moviepy) | MIT | Python para cortes, composição, títulos, efeitos e automação orientada a dados | Skill para API v2; operações de arquivo devem continuar no `ffmpeg-skill` |
-| [Manim Community](https://github.com/ManimCommunity/manim) | MIT | Engine Python especializada em animações matemáticas | Avaliar um adapter se houver produção recorrente de explainers matemáticos; o repo do tweet (`3b1b/manim`) é ManimGL, projeto distinto |
+| [Motion Canvas](https://github.com/motion-canvas/motion-canvas) / [Revideo](https://github.com/midrender/revideo) | MIT | Motion Canvas: generators and a vector editor. Revideo: React player, `renderVideo()`, dynamic inputs, and headless rendering | Skill for scaffolding, rendering, audio, `check`, and integration with the doctrine |
+| [MoviePy](https://github.com/Zulko/moviepy) | MIT | Python for cuts, compositions, titles, effects, and data-driven automation | Skill for API v2; keep file operations in `ffmpeg-skill` |
+| [Manim Community](https://github.com/ManimCommunity/manim) | MIT | Python engine specialized in mathematical animation | Consider an adapter if math explainers become recurring work; the tweet's repo (`3b1b/manim`) is a different project, ManimGL |
 
-O Remotion permanece instalado como framework alternativa, mas sua licença é source-available: a
-licença gratuita cobre indivíduos e organizações de até três pessoas; equipes maiores precisam
-validar a Company License antes de produção.
+Remotion remains installed as an alternative framework, but its license is source-available. The
+free license covers individuals and organizations of up to three people; larger teams should verify
+the Company License before production.
 
-## Ferramentas de apoio avaliadas, ainda não instaladas
+## Evaluated supporting tools that are not installed
 
-Estas fontes ampliam tarefas específicas. Não são skills instaladas, não entram na contagem de 46
-nem no bloco `repos` de `sync-repos.sh`.
+These sources extend specific tasks. They are not installed skills, are not included in the count of
+46, and do not belong in the `repos` block used by `sync-repos.sh`.
 
-| Fonte | Uso possível | Limite / roteamento |
+| Source | Potential use | Limit / routing |
 |---|---|---|
-| [WhisperX](https://github.com/m-bain/whisperX), BSD-2-Clause | Alinhamento local por palavra e diarização em fala | Backend opcional para `/embedded-captions`; não substitui a “fita” a 20 ms que preserva retomadas. Requer ambiente Python; diarização usa token/termos Hugging Face |
-| [Lottie Web](https://github.com/airbnb/lottie-web) | Player para `.json` exportado de After Effects dentro de composição web | Carregar somente quando o projeto fornecer asset Lottie; controlar o playhead por frame ou tempo e confirmar seeks antes da captura. Ver [references/lottie.md](lottie.md) |
+| [WhisperX](https://github.com/m-bain/whisperX), BSD-2-Clause | Local word alignment and diarization for speech | Optional backend for `/embedded-captions`; does not replace the 20 ms “tape” that preserves restarts. Requires a Python environment; diarization requires a Hugging Face token and terms acceptance |
+| [Lottie Web](https://github.com/airbnb/lottie-web) | Play an After Effects `.json` asset in a web composition | Load only when a project provides a Lottie asset; control the playhead by frame or time and confirm seeks before capture. See [references/lottie.md](lottie.md) |
 
-Detalhes operacionais: [WhisperX](whisperx.md) e [Lottie](lottie.md).
+Operational details: [WhisperX](whisperx.md) and [Lottie](lottie.md).
 
 ---
 
-## Skill externa instalada, fora do sync
+## Separately installed skill, outside the sync list
 
-[`fframes-video`](https://github.com/dmtrKovalenko/fframes/tree/main/skills/fframes-video) foi
-instalada pela fonte well-known [`fframes.studio`](https://fframes.studio). Ela não entra no bloco
-`repos` porque `video-ninja` permanece protegido por `no-sync` e o repositório Rust completo não é
-necessário para usar a skill.
+[`fframes-video`](https://github.com/dmtrKovalenko/fframes/tree/main/skills/fframes-video) was
+installed through the well-known source [`fframes.studio`](https://fframes.studio). It is not part
+of the `repos` block because `video-ninja` is marked `no-sync`, and the full Rust repository is not
+needed to use the skill.
 
-| Fonte | Skill | Licença | Papel |
+| Source | Skill | License | Role |
 |---|---|---|---|
-| [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) via [fframes.studio](https://fframes.studio) | `fframes-video` | MIT | Motor alternativo Rust/SVG com Skia GPU, FFmpeg, inspeção de frames, snapshots e análise de áudio |
+| [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) via [fframes.studio](https://fframes.studio) | `fframes-video` | MIT | Alternative Rust/SVG engine with Skia GPU, FFmpeg, frame inspection, snapshots, and audio analysis |
 
-Proveniência: `~/.agents/.skill-lock.json`, `sourceType: well-known`, `source: fframes.studio`.
+Provenance: `~/.agents/.skill-lock.json`, `sourceType: well-known`, `source: fframes.studio`.
 
 ---
 
-## Detalhe: `kajisho5/ffmpeg-skill` — motor de processamento
+## Details: `kajisho5/ffmpeg-skill` — the processing engine
 
-> ⭐ — skill única, 42 tools. Licença MIT. ~2MB
+> ⭐ — one skill, 42 tools. MIT license. ~2 MB
 
-*"Give your coding agent a video editor."* — Local FFmpeg · No cloud · No API keys
+*“Give your coding agent a video editor.”* — Local FFmpeg · No cloud · No API keys
 
-Enquanto o HyperFrames **cria** vídeo (HTML → vídeo), o ffmpeg-skill **processa** vídeo existente
-(probe → edit → verify). São complementares: um renderiza composições, o outro manipula material.
+HyperFrames **creates** video (HTML → video); ffmpeg-skill **processes** existing footage
+(probe → edit → verify). They complement each other: one renders compositions, the other edits media.
 
-**Workflow estruturado:**
+**Structured workflow:**
 
 ```
-probe (medir) → edit (lossless quando possível) → check (validar) → verify (contact sheet)
+probe (measure) → edit (lossless when possible) → check (validate) → verify (contact sheet)
 ```
 
-A diferença-chave: o agente não "chuta" parâmetros. Primeiro faz probe do material (duração, fps,
-resolução, HDR, canais de áudio), depois age baseado em dados reais, e verifica o resultado.
+The key difference: the agent does not guess at parameters. It probes the media first (duration,
+fps, resolution, HDR, audio channels), acts on real data, and checks the result.
 
-**42 ferramentas** organizadas por grupo:
+**42 tools** by group:
 
-| Grupo | Tools |
+| Group | Tools |
 |---|---|
-| Análise | `probe`, `scenes`, `look` |
-| Edição | `cut`, `join`, `silence`, `fit`, `crop`, `cropdetect`, `deinterlace`, `denoise`, `redact`, `sphere`, `straighten`, `insert`, `background`, `reverse`, `stabilize`, `sequence`, `waveform`, `freeze`, `pad`, `speedramp`, `loop`, `broll`, `metadata`, `grid` |
-| Áudio | `audio`, `sync`, `loudness` |
-| Imagem | `caption`, `overlay`, `graphics`, `color` |
-| Entrega | `export`, `proxy`, `check`, `report` |
-| Orquestração | `render`, `batch`, `multicam`, `verify` |
+| Analysis | `probe`, `scenes`, `look` |
+| Editing | `cut`, `join`, `silence`, `fit`, `crop`, `cropdetect`, `deinterlace`, `denoise`, `redact`, `sphere`, `straighten`, `insert`, `background`, `reverse`, `stabilize`, `sequence`, `waveform`, `freeze`, `pad`, `speedramp`, `loop`, `broll`, `metadata`, `grid` |
+| Audio | `audio`, `sync`, `loudness` |
+| Image | `caption`, `overlay`, `graphics`, `color` |
+| Delivery | `export`, `proxy`, `check`, `report` |
+| Orchestration | `render`, `batch`, `multicam`, `verify` |
 
-**Contract machine-readable:**
+**Machine-readable contract:**
 
 ```bash
-npx ffmpeg-skill contract --json   # input/output schema de cada tool
-npx ffmpeg-skill doctor            # verifica componentes FFmpeg disponíveis
+npx ffmpeg-skill contract --json   # input/output schema for every tool
+npx ffmpeg-skill doctor            # check available FFmpeg components
 ```
 
-O contract inclui `input_schema` derivado do argparse de cada script (SPEC pattern), então nunca
-diverge do código real.
+The contract includes each script's `input_schema`, derived from its argparse configuration (SPEC
+pattern), so it does not drift from the code.
 
-**MCP Server:**
+**MCP server:**
 
 ```json
 {
@@ -128,183 +128,186 @@ diverge do código real.
 }
 ```
 
-Lista 12 tools core por default; `FFMPEG_SKILL_MCP_FULL=1` lista todos os 42.
+It lists 12 core tools by default; `FFMPEG_SKILL_MCP_FULL=1` lists all 42.
 
-**Verificação:**
+**Verification:**
 
-- `look.py` — contact sheet PNG para o agente inspecionar visualmente
-- `check.py` — PASS/WARN/FAIL contra specs de YouTube, TikTok, Reels, podcast, broadcast
-- Sempre faz probe do output e reporta métricas reais
+- `look.py` — creates a PNG contact sheet for visual inspection
+- `check.py` — reports PASS/WARN/FAIL against YouTube, TikTok, Reels, podcast, and broadcast specs
+- Always probes the output and reports actual metrics
 
-**Presets de entrega:**
+**Delivery presets:**
 
 ```bash
 python3 $S/export.py input.mp4 --preset reels --json
 python3 $S/render.py talk.mp4 --template tiktok --cues cues.txt
 ```
 
-Templates para: `tiktok`, `reels`, `shorts`, `youtube`, `x`, `linkedin`, `facebook`, `podcast`.
+Templates: `tiktok`, `reels`, `shorts`, `youtube`, `x`, `linkedin`, `facebook`, and `podcast`.
 
-**Instalação:**
+**Installation:**
 
 ```bash
 npx ffmpeg-skill              # Claude Code → ~/.claude/skills/ffmpeg-skill
 npx ffmpeg-skill --cursor     # Cursor
 npx ffmpeg-skill --codex      # Codex → ~/.agents/skills/ffmpeg-skill
-npx ffmpeg-skill --all        # todos
+npx ffmpeg-skill --all        # all supported agents
 ```
 
-**Requisitos:** FFmpeg 5.0+, Python 3.9+ (standard library only).
+**Requirements:** FFmpeg 5.0+, Python 3.9+ (standard library only).
 
-**Quando usar vs HyperFrames:**
+**When to use it instead of HyperFrames:**
 
-| Tarefa | Use |
-|--------|-----|
-| Criar vídeo do zero (promo, explainer, motion graphic) | HyperFrames |
-| Cortar/juntar/processar material existente | ffmpeg-skill |
-| Ajustar loudness para plataforma | ffmpeg-skill |
-| Remover silêncios de gravação | ffmpeg-skill |
-| Adicionar legendas em vídeo existente | ffmpeg-skill |
-| Sincronizar múltiplas câmeras | ffmpeg-skill |
-| Renderizar composição HTML→MP4 | HyperFrames |
-| Converter HDR→SDR para delivery | ffmpeg-skill |
+| Task | Use |
+|---|---|
+| Create a video from scratch (promo, explainer, motion graphic) | HyperFrames |
+| Cut, join, or process existing footage | ffmpeg-skill |
+| Adjust loudness for a platform | ffmpeg-skill |
+| Remove recording silences | ffmpeg-skill |
+| Add captions to an existing video | ffmpeg-skill |
+| Sync multiple cameras | ffmpeg-skill |
+| Render an HTML-to-MP4 composition | HyperFrames |
+| Convert HDR to SDR for delivery | ffmpeg-skill |
 
 ---
 
-## Detalhe: `heygen-com/hyperframes` — o motor de render
+## Details: `heygen-com/hyperframes` — the rendering engine
 
-> *"Write HTML. Render video. Built for agents."* — ⭐ 55.8k
+> *“Write HTML. Render video. Built for agents.”* — ⭐ 55.8k
 
-Cada animação é uma **página HTML** com o movimento em GSAP. Para virar vídeo: abre a página num
-Chrome invisível, avança quadro a quadro, fotografa cada um e junta com FFmpeg. Como é tudo HTML,
-qualquer coisa que um navegador desenha vira vídeo, e a mesma página dá sempre o mesmo resultado.
+Each animation is an **HTML page** with motion built in GSAP. To turn it into video, the tool opens
+the page in headless Chrome, advances frame by frame, captures each frame, then joins them with
+FFmpeg. Since it is all HTML, anything a browser can draw can become video, and the same page
+produces the same result each time.
 
-**21 skills publicadas** (`skills/`):
+**21 published skills** (`skills/`):
 
-| Grupo | Skills |
+| Group | Skills |
 |---|---|
-| Entrada | `hyperframes` (roteador obrigatório) |
-| Domínios | `hyperframes-core`, `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `hyperframes-registry`, `hyperframes-studio`, `media-use` |
+| Entry point | `hyperframes` (required router) |
+| Domains | `hyperframes-core`, `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `hyperframes-registry`, `hyperframes-studio`, `media-use` |
 | CLI | `hyperframes-cli` |
 | Workflows | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `remotion-to-hyperframes` |
 
-**6 skills de doutrina interna** (`.agents/skills/`, `metadata: internal: true`):
+**Six internal doctrine skills** (`.agents/skills/`, `metadata: internal: true`):
 
-| Skill | O que é |
+| Skill | Description |
 |---|---|
-| `motion-doctrine` | **GATEWAY.** Lei do vetor, Z scale-sign, Seam Gate, ban on idle wobble. Supersede guidance genérica |
-| `cut-the-curve` | 5 costuras com velocidade casada + waterfall ENTRY + nudge curve. Razão 10/65/25 |
-| `seam-craft` | Corretude de render de transições. Guard de stage-ground opaco, flash branco |
-| `oversized-cursor` | Técnica do cursor macOS gigante como motor de movimento |
-| `captions-overlay` | Legenda é OVERLAY, não faixa reservada. Modelos drop/rail/embed |
-| `changelog-video` | Changelog `.md` → vídeo de marca, 1080 quadrado, ~45-60s |
+| `motion-doctrine` | **GATEWAY.** Vector law, Z scale-sign, Seam Gate, ban on idle wobble. Supersedes generic guidance |
+| `cut-the-curve` | Five velocity-matched cuts + waterfall entry + nudge curve. 10/65/25 ratio |
+| `seam-craft` | Transition render correctness. Opaque stage-ground guard, white flashes |
+| `oversized-cursor` | Giant macOS cursor as a motion device |
+| `captions-overlay` | Captions are OVERLAYS, not a reserved strip. Drop/rail/embed models |
+| `changelog-video` | Branded `.md` changelog → video, square 1080, about 45–60 seconds |
 
-⚠️ Estas 6 **não são instaláveis pela CLI** — `internal: true` e fora do índice publicado.
-`npx hyperframes skills` faz prune de não-publicadas, então podem sumir num update.
+⚠️ These six skills **cannot be installed through the CLI**: they have `internal: true` and are not
+in the published index. `npx hyperframes skills` prunes unpublished skills, so an update may remove
+them.
 
-**Registry**: 173 blocos prontos em `registry/blocks/` — `camera-dolly-zoom`, `bar-chart-race`,
-`beat-freeze-cut`, `camcorder-hud`, carousels, titles de vidro, cubes, etc.
+**Registry:** 173 ready-made blocks in `registry/blocks/`, including `camera-dolly-zoom`,
+`bar-chart-race`, `beat-freeze-cut`, `camcorder-hud`, carousels, glass titles, cubes, and more.
 
-**Comandos**:
+**Commands:**
 
 ```bash
-npx hyperframes skills              # instala o set publicado completo
-npx hyperframes skills check        # diagnostica staleness (sai != 0 se stale)
-npx hyperframes skills update <n>   # instala/atualiza uma skill
-npx hyperframes add <busca>         # busca no registry
-npx hyperframes catalog             # lista blocos instalados
+npx hyperframes skills              # install the complete published set
+npx hyperframes skills check        # check for stale skills (nonzero if stale)
+npx hyperframes skills update <n>   # install or update a skill
+npx hyperframes add <query>         # search the registry
+npx hyperframes catalog             # list installed blocks
 ```
 
 ---
 
-## Detalhe: `echris6/motion-video-kit` — a doutrina
+## Details: `echris6/motion-video-kit` — the doctrine
 
-> ⭐ 956 — o repo mais recente instalado (30/09/2026 16:48)
+> ⭐ 956 — the most recently installed repository (2026-09-30 16:48)
 
-Único dos cinco que traz um **loop de crítica**: um construtor e um crítico severo **separado**,
-com quality bar explícita e comparação contra a barra até vencer.
+The only one of the five with a **critique loop**: a builder and a separate, tough critic, with an
+explicit quality bar and comparison against that bar until the work meets it.
 
-- Princípios de movimento destilados de **28 filmes de launch profissionais**
+- Motion principles distilled from **28 professional launch films**
 - Audio rules (sound design)
-- Playbook de oferta de negócio
-- Three.js seletivo
-- Templates e scripts inclusos
+- Business-offer playbook
+- Selective Three.js use
+- Templates and scripts included
 
-Diferença-chave em relação ao HyperFrames: o HyperFrames é **motor**, não tem opinião sobre
-qualidade. Este é o que **julga**.
+The key difference from HyperFrames: HyperFrames is the **engine**; it does not judge quality. This
+repository does the **judging**.
 
 ---
 
-## Detalhe: `remotion-dev/skills` — framework alternativa
+## Details: `remotion-dev/skills` — alternative framework
 
-> ⭐ 4.8k — oficial do Remotion. Versão pinada: `4.0.529`
+> ⭐ 4.8k — official Remotion skills. Pinned version: `4.0.529`
 
 `remotion-create`, `remotion-best-practices`, `remotion-markup`, `remotion-captions`,
 `remotion-multimedia`, `remotion-studio`, `remotion-interactivity`, `remotion-maps`,
 `remotion-render`, `remotion-saas`, `remotion-upgrade`, `remotion-docs`.
 
-Entra em 3 casos: port explícito para HyperFrames (`/remotion-to-hyperframes`, um caminho só),
-projeto Remotion existente que deve continuar Remotion, ou captura de tela (`/product-film`).
+Use it in three cases: explicitly porting a project to HyperFrames (`/remotion-to-hyperframes`, one
+way only), keeping an existing Remotion project in Remotion, or making a screen recording
+(`/product-film`).
 
 ---
 
-## Detalhe: `Rieranthony/product-film-skill` — captura de tela
+## Details: `Rieranthony/product-film-skill` — screen capture
 
-> ⭐ 385 — skill única em `plugins/product-film/skills/product-film/`
+> ⭐ 385 — one skill in `plugins/product-film/skills/product-film/`
 
-Screen recording → product film com **AVFoundation, sem ffmpeg, sem editor**.
+Screen recording → product film with **AVFoundation, no FFmpeg, no editor**.
 
-Regras não-negociáveis:
+Non-negotiable rules:
 
-- **O design do produto vence** — tokens, componentes, `rules` files, landing page e copy reais.
-  Nunca carregar o gosto de outro produto.
-- **Perguntar, não assumir** — entrevistar antes de escrever a história, oferecer opções derivadas
-  do que existe no código.
-- **Cada quadro é função pura do tempo** — sem CSS transitions/keyframes, sem timers, sem
-  `Date.now()`, sem estado entre quadros.
+- **The product's design wins**—use its actual tokens, components, `rules` files, landing page, and
+  copy. Never bring another product's style into it.
+- **Ask; do not assume.** Interview before writing the story and offer options based on what exists
+  in the code.
+- **Each frame is a pure function of time**—no CSS transitions/keyframes, timers, `Date.now()`, or
+  state shared between frames.
 
-Roda ao lado do codebase do produto, então reusa componentes de verdade e fica editável.
+It runs alongside the product codebase, so it reuses real components and remains editable.
 
 ---
 
-## Detalhe: `tugrawork-creator/saas-motion-kit` — anti-repetição
+## Details: `tugrawork-creator/saas-motion-kit` — avoid repetition
 
-> ⭐ 200 — skill única em `.claude/skills/saas-motion-video/`. ~16MB (100 temas)
+> ⭐ 200 — one skill in `.claude/skills/saas-motion-video/`. ~16 MB (100 themes)
 
-*"No two films should feel the same."*
+*“No two films should feel the same.”*
 
 - **Tone matrix** + **variety audit**
-- **Atlas de 24 transições**
-- **100 temas de storyboard** com tokens e slots editáveis
-- Processo de 7 estágios: brief → componentes → tema → storyboard → build → som → entrega
+- **24-transition atlas**
+- **100 storyboard themes** with editable tokens and slots
+- Seven-stage process: brief → components → theme → storyboard → build → sound → delivery
 
-Regra da skill: **a limpeza com a imagem vale só quando a imagem é limpa**. Assets do próprio
-produto antes de gerados.
+The skill's rule: **clean product footage works only when the footage is clean**. Use the product's
+own assets before generating new ones.
 
 ---
 
-## Detalhe: `tuzhechen2005/opus-video-skills` — estilos artísticos procedurais
+## Details: `tuzhechen2005/opus-video-skills` — procedural art styles
 
-> ⭐ — 2 skills em `skills/`. Licença MIT.
+> ⭐ — two skills in `skills/`. MIT license.
 
-Produção de vídeo **inteiramente em código** — cada frame é função pura do tempo, sem modelos
-generativos de imagem/vídeo/áudio. Renderiza em headless Chrome + ffmpeg.
+Video production **entirely in code**: each frame is a pure function of time, with no generative
+image, video, or audio models. Renders in headless Chrome with FFmpeg.
 
-| Skill | Estilo | Uso típico |
+| Skill | Style | Typical use |
 |---|---|---|
-| `painted-animation` | Aquarela e tinta à mão (p5.js + p5.brush), personagens com acting | Curtas animados, MVs, lyric videos com karaoke |
-| `kinetic-reel` | Tipografia cinética com WebGL (three.js, partículas, marble líquido, chrome knot) | Showreels, portfolios, intros, product films |
+| `painted-animation` | Watercolor and hand-drawn ink (p5.js + p5.brush), expressive characters | Animated shorts, music videos, karaoke lyric videos |
+| `kinetic-reel` | Kinetic typography with WebGL (Three.js, particles, liquid marble, chrome knot) | Showreels, portfolios, intros, product films |
 
-**Diferencial-chave**: estilos visuais únicos não cobertos pelos outros 6 repos. `painted-animation`
-é o único que faz **cartoon aquarela animado** com personagens. `kinetic-reel` combina tipografia
-condensada com camadas WebGL (terreno de partículas, marble, nuvem que condensa em forma).
+**Key distinction:** distinctive looks not covered by the other six repositories. `painted-animation`
+is the only one for animated watercolor cartoons with characters. `kinetic-reel` combines condensed
+type with WebGL layers (particle terrain, marble, a cloud condensing into shape).
 
-**Dependências**: Node.js, Google Chrome, ffmpeg, Python 3 com numpy (só para tempo detection em
-`painted-animation`).
+**Dependencies:** Node.js, Google Chrome, FFmpeg, and Python 3 with numpy (only for beat detection
+in `painted-animation`).
 
-**Recomendação**: funciona melhor com Claude Opus 5.5, mas não é obrigatório.
+**Recommendation:** works best with Claude Opus 5.5, but that is not required.
 
-**Comandos** (instalação via Claude Code marketplace):
+**Commands** (Claude Code marketplace installation):
 
 ```bash
 /plugin marketplace add tuzhechen2005/opus-video-skills
@@ -312,7 +315,7 @@ condensada com camadas WebGL (terreno de partículas, marble, nuvem que condensa
 /plugin install kinetic-reel@opus-video-skills
 ```
 
-Ou como skills pessoais:
+Or install as personal skills:
 
 ```bash
 git clone https://github.com/tuzhechen2005/opus-video-skills ~/opus-video-skills
@@ -322,21 +325,21 @@ ln -s ~/opus-video-skills/skills/kinetic-reel ~/.claude/skills/kinetic-reel
 
 ---
 
-## Nota de instalação
+## Installation note
 
-Diferente dos outros ninjas, **aqui não há `sync-repos.sh`**. Os 7 repositórios já estão consumidos
-como skills globais em `~/.agents/skills/`, espelhados em `~/.claude/skills/` e por symlink em
-`~/.codex`, `~/.gemini` e `~/.cursor`.
+Unlike the other ninjas, **this one does not use `sync-repos.sh`**. The seven repositories are
+already consumed as global skills in `~/.agents/skills/`, mirrored in `~/.claude/skills/`, and
+symlinked into `~/.codex`, `~/.gemini`, and `~/.cursor`.
 
-Motivo prático: `hyperframes` tem **489 MB**. Clonar os 7 para `repos/video-ninja/` adicionaria
-~510 MB ao repositório sem nenhum ganho funcional — as skills já estão disponíveis.
+Practical reason: `hyperframes` is **489 MB**. Cloning all seven into `repos/video-ninja/` would add
+about 510 MB to the repository without a functional benefit—the skills are already available.
 
-**Instalação do ffmpeg-skill** (se ainda não instalado):
+**Install ffmpeg-skill** if it is not already installed:
 
 ```bash
-npx ffmpeg-skill --all        # instala para Claude, Cursor e Codex
-npx ffmpeg-skill doctor       # verifica componentes FFmpeg
+npx ffmpeg-skill --all        # install for Claude, Cursor, and Codex
+npx ffmpeg-skill doctor       # check FFmpeg components
 ```
 
-Provenance completa (fonte, hash, timestamps de cada skill):
-`~/.agents/.skill-lock.json` — filtre por `source` para isolar este ninja.
+Full provenance (source, hash, and timestamp for each skill):
+`~/.agents/.skill-lock.json` — filter by `source` to isolate this Ninja.

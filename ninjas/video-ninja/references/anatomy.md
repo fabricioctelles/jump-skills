@@ -1,57 +1,57 @@
-# Anatomy como fonte visual opcional
+# Anatomy as an optional visual source
 
-**Estado:** avaliada; não instalada no ambiente.  
-**Decisão:** incluir no roteamento do Video Ninja como especialista opcional em figuras isométricas
-para explainers técnicos. Não contar como skill instalada, engine ou repositório sincronizado.
+**Status:** evaluated; not installed in the environment.
 
-## O que oferece
+**Decision:** include it in Video Ninja routing as an optional specialist for isometric figures in
+technical explainers. Do not count it as an installed skill, engine, or synced repository.
 
-[`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) é uma Agent Skill que explica um
-conceito técnico construindo uma máquina ou objeto isométrico com peças e comportamento coerentes.
-O output pode ser HTML independente, SVG isolado ou componentes React/Next. Também oferece uma
-camada WebGL opcional para efeitos como água, luz, fogo e vapor. O repositório declara licença MIT.
+## What it offers
 
-O diferencial útil para vídeo é uma **cena/asset com mecanismo visual**, em vez de apenas cards,
-gráficos ou diagramas de caixas e setas. A figura pode servir de cena explicativa ou asset dentro
-de uma composição HyperFrames.
+[`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) is an Agent Skill that explains a
+technical concept by building an isometric machine or object with coherent parts and behavior. It
+can output standalone HTML, standalone SVG, or React/Next components. It also offers an optional
+WebGL layer for effects such as water, light, fire, and steam. The repository declares an MIT license.
 
-## Quando usar
+Its useful distinction for video is a **scene or asset with a visual mechanism**, rather than just
+cards, charts, or box-and-arrow diagrams. The figure can serve as an explanatory scene or an asset
+inside a HyperFrames composition.
 
-- Explainers de sistemas, hardware, ciência ou processos em que partes e relações físicas ajudam
-  a explicar o conceito.
-- Demonstrações em que uma transformação ou mecanismo é o centro da narrativa.
-- Quando uma figura isométrica detalhada vale o tempo maior de construção e revisão.
+## When to use it
 
-## Limites e integração
+- Explainers about systems, hardware, science, or processes where physical parts and relationships
+  help explain the concept.
+- Demonstrations where a transformation or mechanism is central to the story.
+- When a detailed isometric figure is worth the extra build and review time.
 
-- Não é biblioteca de charts: não fornece eixos, séries nem visualizações de dados.
-- Não é timeline, editor ou renderizador de vídeo. HyperFrames continua responsável pela
-  composição e pelo vídeo final.
-- Seu domínio é máquinas, instrumentos, ferramentas e móveis; conceitos sem mecanismo físico
-  tendem a render menos.
-- A auditoria geométrica e as capturas em Chrome ajudam a revisar encaixes, linhas e estados.
-- O modo 3D está em beta; WebGL depende de suporte do navegador. A versão SVG continua sendo a
-  base legível.
-- O projeto é escrito para Claude Code e a instalação documentada instala em
-  `~/.claude/skills/anatomy`. **Não foi instalado** nem validado como disponível no Codex/homelab;
-  o roteador deve verificar a presença da skill antes de invocá-la.
+## Limits and integration
 
-### Fluxo sugerido quando estiver instalada
+- It is not a chart library: it does not provide axes, series, or data visualizations.
+- It is not a timeline, editor, or video renderer. HyperFrames remains responsible for the
+  composition and finished video.
+- Its domain is machines, instruments, tools, and furniture; concepts without a physical mechanism
+  tend to be a poor fit.
+- Geometry audits and Chrome captures help review fit, lines, and states.
+- The 3D mode is in beta; WebGL depends on browser support. SVG remains the most readable baseline.
+- The project is written for Claude Code, and its documented installation places the skill at
+  `~/.claude/skills/anatomy`. **It is not installed** or verified as available in Codex/homelab;
+  the router must check that the skill is present before invoking it.
 
-1. Definir o conceito, números e mecanismo que precisam ser verdadeiros.
-2. Pedir à Anatomy a figura e especificar HTML independente ou SVG conforme o destino.
-3. Executar a auditoria/capturas previstas pela skill e revisar o resultado visual.
-4. Incorporar o asset no `/hyperframes`; usar `/motion-doctrine` para movimento e continuidade.
-5. Renderizar e verificar com o fluxo de vídeo normal.
+### Suggested workflow when installed
 
-Se Anatomy não estiver instalada, compor a cena com os recursos disponíveis do HyperFrames ou
-escolher outra representação. Não descrever a skill como capacidade disponível.
+1. Define the concept, numbers, and mechanism that must be accurate.
+2. Ask Anatomy to build the figure and specify standalone HTML or SVG based on the destination.
+3. Run the audits and captures required by the skill, then review the visual result.
+4. Bring the asset into `/hyperframes`; use `/motion-doctrine` for motion and continuity.
+5. Render and review it through the standard video workflow.
 
-## Origem da avaliação
+If Anatomy is not installed, compose the scene with available HyperFrames tools or choose another
+representation. Do not describe the skill as an available capability.
 
-- Tweet de Meng To: <https://x.com/MengTo/status/2109182449179836579?s=20>. O exemplo citado usa
-  `/anatomy` para explicar como Seedream separa uma imagem em camadas, como um único HTML, e pede
-  uma aproximação de câmera/zoom nas cenas 1 a 5.
-- Repositório e documentação: <https://github.com/wheresryan22/anatomy> e
+## Evaluation sources
+
+- Meng To's tweet: <https://x.com/MengTo/status/2109182449179836579?s=20>. The cited example uses
+  `/anatomy` to explain how Seedream separates an image into layers in a single HTML file, then asks
+  for a camera push-in/zoom across scenes 1–5.
+- Repository and documentation: <https://github.com/wheresryan22/anatomy> and
   <https://github.com/wheresryan22/anatomy/blob/main/SKILL.md>.
-- Avaliação consultada em 2026-10-11. Revalidar escopo, compatibilidade e estado antes de instalar.
+- Reviewed on 2026-10-11. Recheck scope, compatibility, and status before installing.
