@@ -386,15 +386,24 @@ dois ajustes descritos com frame e medida. Faça uma auditoria numérica separad
 Duas a quatro rodadas são uma referência do artigo, não um limite obrigatório.
 
 Para som, escreva cues ligados aos frames e meça o arquivo decodificado para checar sync, loudness,
-true peak e clipping; não use a avaliação auditiva do modelo como evidência. Em loops de N frames,
-renderize `0..N-1` e use `phase = frame / N` com ciclos inteiros para fechar a costura. O artigo
-relata um alvo de -14 LUFS/-1 dBTP e hits de som cerca de um frame após a imagem; trate esses números
-como referência daquele laboratório e confirme as exigências do destino.
+true peak e clipping, e escute a mixagem final. Métricas não substituem a revisão auditiva. Em loops
+de N frames, renderize `0..N-1` e use `phase = frame / N` com ciclos inteiros para fechar a costura.
+O artigo relata um alvo de -14 LUFS/-1 dBTP e hits de som cerca de um frame após a imagem; trate
+esses números como referência daquele laboratório e confirme as exigências do destino.
 
-Procedimento e prompt de partida em [references/motion-lab.md](references/motion-lab.md). A fonte
-original é [Opus 5.5 Motion Lab](https://x.com/i/article/2105052379590578176), publicado por
-[@flxrnc](https://x.com/flxrnc/status/2105311836190978392). O texto arquivado não inclui os prompts
-que estavam embutidos em imagens ou vídeos.
+Separe fatos do produto de decisões criativas. Use telas, logos e assets reais; confira a lista de
+assets antes de animar e pare para pedir o que estiver faltando, sem desenhar uma interface de
+substituição. Para referências visuais, derive uma gramática de estilo permitida e não replique
+shots ou assets sem autorização. Componha cada proporção como variante própria e revise cada uma.
+Guarde brief, state list, referências, assets aprovados, critérios de aceite e recibos por etapa;
+gates devem permitir retomar, pedir informação ou parar quando faltar evidência.
+
+Procedimento, checklist e comparação das fontes em
+[references/motion-lab.md](references/motion-lab.md). As fontes originais são [Opus 5.5 Motion
+Lab](https://x.com/i/article/2105052379590578176), de [@flxrnc](https://x.com/flxrnc/status/2105311836190978392),
+e [Motion Engineering](https://x.com/0xwhrrari/status/2105643919119696297), de
+[@0xwhrrari](https://x.com/0xwhrrari). O texto arquivado do primeiro artigo não inclui prompts que
+estavam embutidos em imagens ou vídeos.
 
 ---
 

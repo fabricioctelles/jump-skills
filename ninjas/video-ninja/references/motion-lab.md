@@ -1,13 +1,16 @@
 # Motion Lab — procedimento de produção com motion em código
 
-Procedimento operacional destilado do artigo [Opus 5.5 Motion Lab: Make Claude Animate Like a
-Studio](https://x.com/i/article/2105052379590578176), de Florence (`@flxrnc`), publicado em 2026-09-30.
-O artigo mostra três experimentos de animação e som, registrando prompts, follow-ups e inspeções.
+Procedimento operacional sintetizado de dois artigos: [Opus 5.5 Motion Lab: Make Claude Animate
+Like a Studio](https://x.com/i/article/2105052379590578176), de Florence (`@flxrnc`), e [Motion
+Engineering: Build a Video Studio Around Opus 5.5](https://x.com/0xwhrrari/status/2105643919119696297),
+de rari (`@0xwhrrari`). O primeiro registra três experimentos de animação e som; o segundo descreve
+brief, referências, variantes, gates e os artefatos de um estúdio reutilizável.
 
 > [!info] Escopo da fonte
 > A nota arquivada em `brain/pesquisas/Opus 5.5 Motion Lab - Make Claude Animate Like a Studio.md`
 > preserva o texto extraído do X Article. Prompts e dados que aparecem apenas em imagens/vídeos não
 > foram extraídos; este playbook resume o texto disponível e não inventa nem reproduz esses prompts.
+> O segundo artigo também foi arquivado em `brain/pesquisas/Motion Engineering - Build a Video Studio Around Opus 5.5.md`.
 
 ## Quando aplicar
 
@@ -91,13 +94,59 @@ playback.
   frames de 40 ms e um de 50 ms; confirme no arquivo exportado que a duração é 6,00 s.
 
 Use `hyperframes-audio` para mixar trilhas da composição e `ffmpeg-skill` para medir e validar o
-arquivo final. Não trate uma medição relatada em um artigo como norma universal de plataforma.
+arquivo final. Escute o mix final além de medir; loudness e alinhamento numérico não garantem que a
+trilha tenha forma ou que soe conectada à imagem. Não trate uma medição relatada em um artigo como
+norma universal de plataforma.
+
+## 5. Preserve a verdade do produto e as referências
+
+Separe no brief o que é fato verificável sobre o produto do que é direção criativa. Dê ao agente
+acesso às telas, logos, textos e assets reais que podem aparecer; peça uma lista dos assets que ele
+planeja usar e aprove-a antes de renderizar. Se faltar uma tela ou outro material necessário, pare
+para pedir o asset ou proponha um frame de teste. Não substitua uma interface real por uma tela
+inventada que pareça plausível.
+
+Quando usar uma referência visual, identifique a gramática de estilo que pode ser aproveitada —
+tipografia, contraste, ritmo, movimento ou paleta — e preserve a identidade e os assets do projeto.
+Use `/media-use` para localizar e verificar mídia. A referência informa escolhas; ela não autoriza
+copiar assets de terceiros.
+
+Cada beat deve ter estado de entrada, estado de saída e razão narrativa. Se um shot não acrescenta
+informação ou não prepara a próxima mudança, remova-o. Defina regras de movimento por classe de
+objeto: um controle pequeno pode responder rápido, enquanto um painel ou uma câmera precisa assentar
+sem confundir a orientação. A pergunta de revisão é se, depois do movimento, o olhar sabe onde
+ficar.
+
+## 6. Construa variantes e gates retomáveis
+
+Uma versão vertical não é um crop automático da horizontal. Reaproveite assets e estados narrativos,
+mas ajuste composição, escala de texto, quantidade de elementos e caminho de câmera para cada formato.
+Gere contact sheets e revise cada variante separadamente.
+
+Guarde em arquivos o brief, a lista de assets aprovados, a gramática de estilo, a state list, o
+contrato de render, os critérios de aceite e os resultados de cada gate. Um run longo deve declarar
+quais artefatos vêm em seguida e parar quando faltar uma referência, um asset ou uma decisão de
+marca. Nessas situações, peça a informação ou produza um teste pequeno; não gaste um render completo
+em cima de uma suposição. Só declare a entrega pronta depois de revisar a evidência, não porque o
+comando de exportação terminou.
+
+## O que cada artigo acrescenta
+
+| Tema | Opus 5.5 Motion Lab (`@flxrnc`) | Motion Engineering (`@0xwhrrari`) |
+|---|---|---|
+| Motion determinístico e state list | Contrato de render, frames-alvo e loop exato | Confirma seekability como requisito de revisão local |
+| Iteração | Stills, frame labels, contact sheet, follow-ups pequenos e auditoria numérica | Contact sheet por beat, crítica visual explícita e revisão antes de exportar |
+| Diferencial | Experimentos medidos de animação, som e GIF | Verdade do produto, referência autorizada, variantes de formato e continuidade entre sessões |
+| Som | Medições de sync e loudness relatadas pelo laboratório | Acrescenta escuta humana e integração da trilha na narrativa |
+| Produção recorrente | Mantém os prompts e follow-ups com cada peça | Empacota brief, assets e gates como base para a próxima produção |
 
 ## Fontes e limites
 
 - [X Article: Opus 5.5 Motion Lab](https://x.com/i/article/2105052379590578176)
 - [Post de Florence que compartilha o artigo](https://x.com/flxrnc/status/2105311836190978392)
+- [Post/X Article: Motion Engineering](https://x.com/0xwhrrari/status/2105643919119696297)
 - Nota arquivada: `brain/pesquisas/Opus 5.5 Motion Lab - Make Claude Animate Like a Studio.md`
+- Nota arquivada: `brain/pesquisas/Motion Engineering - Build a Video Studio Around Opus 5.5.md`
 
 Os exemplos do artigo usam Opus 5.5. O procedimento pode ser aplicado com outros modelos, mas o
 resultado depende da capacidade de gerar e inspecionar código/imagens. Números de desempenho,
