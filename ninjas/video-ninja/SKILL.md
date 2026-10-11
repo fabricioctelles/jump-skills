@@ -136,7 +136,7 @@ Este ninja só precisa saber a **camada**:
 |---|---|---|
 | Legenda em talking-head | `/embedded-captions` | + `/captions-overlay` |
 | Cards de overlay em podcast | `/talking-head-recut` | + `/cut-the-curve` |
-| Promo de produto/URL | `/product-launch-video` | + `/motion-doctrine`, `/seam-craft` |
+| Promo de produto/URL | `/product-launch-video` | + `/motion-doctrine`, `/seam-craft`, §Lançamento de produto |
 | Changelog semanal em vídeo | `/changelog-video` | — |
 | Gravação de tela → demo | **`/product-film`** (skill dedicada) | ver §Remotion |
 | Filmografia de negócio (real, IA, premium) | **`/business-motion-film`** | ver §Doutrina |
@@ -228,6 +228,30 @@ ele resolve: dois vídeos de produto não podem parecer o mesmo. 7-stage process
 Modelo `drop` / `rail` / `embed` (35 estilos no catálogo). A regra: legenda é **overlay composto
 sobre o filme**, nunca uma faixa reservada no rodapé para a qual você empurra o conteúdo.
 Aplica-se **por cima** de `/embedded-captions`.
+
+## §Lançamento de produto — prova visual e QA
+
+Ao produzir promo ou demo de produto, roteie para `/product-launch-video` e use estes critérios
+no storyboard e na revisão final. São gates condicionais ao brief e ao material disponível; não
+imponha duração, quantidade de recursos ou ritmo fixos.
+
+1. **Abertura que funciona como thumbnail.** Revise o quadro inicial isolado: ele deve comunicar
+   a promessa ou despertar interesse sem depender de um fade vazio. Preserve o hook escolhido e
+   não force uma tela de interface quando a história pedir outro tipo de abertura.
+2. **Demonstração verificável.** Quando um recurso for a prova do benefício, mostre a ação, a
+   resposta visível do produto e o resultado para o usuário. Baseie telas, controles e resultados
+   na captura ou em material confirmado; não invente comportamentos para preencher a sequência.
+3. **Composição por proporção.** Se o brief pedir horizontal e vertical, planeje e revise cada
+   formato como layout próprio. Reposicione texto e produto para a tela vertical em vez de confiar
+   apenas no corte automático. Se só um formato foi pedido, não gere variantes por padrão.
+4. **Dados e claims fiéis.** Dados sintéticos são aceitáveis para proteger informação pessoal,
+   desde que sejam plausíveis e claramente fictícios quando isso puder confundir. Nunca use dados
+   pessoais reais sem autorização nem mostre uma capacidade, resultado ou CTA que o produto ainda
+   não oferece.
+
+Esses critérios não substituem a captura real como fonte de verdade, a promessa/story arc do
+`/product-launch-video`, nem os gates de storyboard e render do HyperFrames. Referência: [12 regras
+para vídeo de lançamento — Amanda Sartini](https://x.com/i/article/2109015312729587712).
 
 ### `/oversized-cursor` — casa
 
