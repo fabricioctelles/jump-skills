@@ -285,7 +285,7 @@ Workflow em 4 fases, do repo [`howseen-ai/claude-motion-design`](https://github.
 
 ### Por que implementar
 
-Nenhum dos 6 repos do video-ninja tem este workflow. O HyperFrames renderiza, o motion-video-kit
+Nenhum dos 7 repos do video-ninja tem este workflow. O HyperFrames renderiza, o motion-video-kit
 julga, mas nenhum estrutura a **análise de referência** + **paralelização por grupos de shots** +
 **palette filter** + **QA lado-a-lado**.
 

@@ -20,8 +20,9 @@ description: >-
 
 # Video Ninja
 
-**Jump Skill** — Master orchestrator that routes video tasks to 45 installed skills from 7 upstream
-repositories, plus a methodology layer distilled from the My-Little-Studio pipeline.
+**Jump Skill** — Master orchestrator that routes video tasks to 46 installed skills from 7 upstream
+repositories and 1 fonte externa well-known, plus a methodology layer distilled from the
+My-Little-Studio pipeline.
 
 > **PT-BR**: este ninja roteia qualquer tarefa de vídeo para as skills instaladas. Ele é o ponto de
 > entrada obrigatório — leia-o antes de escolher uma skill de vídeo.
@@ -66,6 +67,34 @@ exceções (Remotion, captura de tela, doutrina de craft, método de pipeline).
 Provenance completa em `~/.agents/.skill-lock.json`. Detalhes em
 [references/repos.md](references/repos.md).
 
+### Skill externa instalada
+
+| Fonte | Skill | Papel | Instalação |
+|---|---|---|---|
+| [`fframes.studio`](https://fframes.studio) | `fframes-video` | Motor alternativo Rust/SVG com Skia GPU, FFmpeg e QA legível por agentes | Well-known, instalado globalmente |
+
+## Mapa de motores
+
+A tabela da imagem mistura motores de composição, frameworks de projeto e um editor de arquivos.
+Use esta distinção antes de escolher o workflow:
+
+| Motor | Modelo de trabalho | Quando escolher | Estado no ninja |
+|---|---|---|---|
+| **HyperFrames** | HTML/CSS/JS em Chrome headless + FFmpeg | Composição nova, motion design e vídeo dirigido por agente | Padrão, instalado |
+| **ffmpeg-skill** | Probe → edição → validação de arquivos existentes | Cortar, juntar, normalizar áudio, multicam e entrega | Processamento, instalado |
+| **fframes-video** | Rust/SVG por frame, Skia GPU, FFmpeg e CLI de inspeção | Render vetorial de alta vazão, batch e revisão automatizada | Motor alternativo, instalado |
+| **Remotion** | React/TypeScript, render local ou Lambda | Projeto React existente, port de composição ou render distribuído | Framework alternativa, instalada |
+| **Motion Canvas / Revideo** | TypeScript com generators; Revideo acrescenta player React, render headless e entradas dinâmicas | Motion Canvas para animação vetorial com editor; Revideo para templates parametrizados e render em Node/serverless | Alternativa avaliada; sem skill instalada |
+| **MoviePy** | Python com clips, composição e efeitos sobre frames | Pipeline Python orientado a dados ou protótipo de composição | Alternativa avaliada; sem skill instalada |
+
+Motion Canvas, Revideo e MoviePy não devem aparecer como capacidades instaladas até existir uma skill com
+roteamento, contrato de render e verificação. Se um projeto já usa uma dessas tecnologias, o ninja
+pode preservá-la e aplicar a mesma doutrina de movimento, áudio e validação.
+
+O Remotion exige uma checagem de licença antes de produção: o código é source-available e a licença
+gratuita cobre indivíduos e organizações de até três pessoas; equipes maiores ou automações podem
+exigir Company License. Não o classifique como MIT ou como open source OSI.
+
 ---
 
 ## Roteamento
@@ -96,10 +125,14 @@ Este ninja só precisa saber a **camada**:
 | Promo SaaS anti-repetição | **`/saas-motion-video`** | ver §Doutrina |
 | Cartoon aquarela / lyric video karaoke | **`/painted-animation`** | ver §Estilos Artísticos |
 | Showreel tipográfico / portfolio cinético | **`/kinetic-reel`** | ver §Estilos Artísticos |
+| Motion gerado como código, loop ou animação por frames | **`/hyperframes`** | + `/motion-doctrine`, ver §Motion Lab |
 | **Cortar/juntar/processar material existente** | **`ffmpeg-skill`** | ver §FFmpeg |
 | **Ajustar loudness para plataforma** | **`ffmpeg-skill`** | ver §FFmpeg |
 | **Remover silêncios de gravação** | **`ffmpeg-skill`** | ver §FFmpeg |
 | **Sincronizar múltiplas câmeras** | **`ffmpeg-skill`** | ver §FFmpeg |
+| Vídeo vetorial com render GPU e QA por CLI | **`fframes-video`** | ver §fframes |
+| Projeto existente em Motion Canvas/Revideo | **Motion Canvas/Revideo** | usar somente se a dependência já existir; aplicar §Doutrina |
+| Pipeline Python de composição ou dados | **MoviePy** | usar somente se Python for requisito; finalizar com §FFmpeg |
 | Explainers, PR, música, deck, motion, livre | os 10 workflows | — |
 
 ### Passo 3 — Carregue os domínios
@@ -110,17 +143,18 @@ Motion é obrigatório: **sempre carregue `/motion-doctrine` antes de compor** q
 
 ---
 
-## As 7 camadas
+## As 8 camadas
 
 | # | Camada | Skills | Responsabilidade |
 |---|---|---|---|
 | 1 | **Motor de render** | `hyperframes`, `hyperframes-cli`, `hyperframes-core` | HTML→vídeo determinístico. `core` é o contrato de composição — leia antes de escrever HTML |
 | 2 | **Motor de processamento** | `ffmpeg-skill` (42 tools) | probe→edit→verify. Corte, join, loudness, legendas, HDR→SDR, multicam, batch |
-| 3 | **Workflows** | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `changelog-video` | O entregável final |
-| 4 | **Doutrina de craft** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **Opinião sobre qualidade.** É o que separa "renderizou" de "parece bom" |
-| 5 | **Domínios** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Movimento, câmera, design, som, mídia, blocos prontos |
-| 6 | **Framework 2ª** | `remotion-*` (12), `product-film` | Quando Remotion é a escolha certa |
-| 7 | **Estilos artísticos** | `painted-animation`, `kinetic-reel` | Estilos visuais procedurais únicos (aquarela, kinetic typography) |
+| 3 | **Motor alternativo** | `fframes-video` | Rust/SVG, Skia GPU, render por faixa, inspeção de frames, snapshots e análise de áudio |
+| 4 | **Workflows** | `general-video`, `product-launch-video`, `talking-head-recut`, `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`, `slideshow`, `figma`, `changelog-video` | O entregável final |
+| 5 | **Doutrina de craft** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **Opinião sobre qualidade.** É o que separa "renderizou" de "parece bom" |
+| 6 | **Domínios** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Movimento, câmera, design, som, mídia, blocos prontos |
+| 7 | **Framework 2ª** | `remotion-*` (12), `product-film` | Quando Remotion é a escolha certa |
+| 8 | **Estilos artísticos** | `painted-animation`, `kinetic-reel` | Estilos visuais procedurais únicos (aquarela, kinetic typography) |
 
 ---
 
@@ -249,6 +283,52 @@ npx ffmpeg-skill doctor       # verifica componentes FFmpeg disponíveis
 
 ---
 
+## §fframes — motor alternativo
+
+Fonte: [`dmtrKovalenko/fframes`](https://github.com/dmtrKovalenko/fframes), skill instalada via
+[`fframes.studio`](https://fframes.studio).
+
+Use `fframes-video` quando o vídeo for predominantemente vetorial e o ganho de render GPU,
+inspeção automatizada ou batch compensar a complexidade de Rust e das bibliotecas nativas.
+
+O ciclo recomendado é:
+
+```
+timeline → inspect → strip/frame/onion → audio analyze → render --draft → render
+```
+
+`inspect` verifica fontes, imagens, SVG, cortes de texto e falhas sem renderizar todos os pixels;
+`strip`, `frame`, `onion` e `snapshot` produzem evidência visual; `audio analyze` mede LUFS, true
+peak, clipping e silêncios. A skill exige revisar essas saídas antes de declarar o vídeo pronto.
+
+O motor é MIT, mas a instalação exige Rust, Skia/Metal/Vulkan ou backend CPU, `libclang`, `nasm`,
+Ninja e codecs FFmpeg conforme o alvo. O desempenho anunciado pelo projeto é uma hipótese para o
+benchmark local, não uma garantia do ninja.
+
+Não use `fframes-video` para editar material existente: continue usando `ffmpeg-skill` para probe,
+cortes, normalização, multicam e entrega.
+
+---
+
+## §Alternativas a complementar
+
+As alternativas da imagem cobrem necessidades reais, mas ainda não têm integração de agente no
+mesmo nível do HyperFrames. A complementação deve acontecer como adaptadores pequenos e verificáveis:
+
+1. **Skill Revideo/Motion Canvas:** começar pelo Revideo, que já expõe `renderVideo()`, player React,
+   entradas dinâmicas e render paralelo; cobrir também o scaffold Motion Canvas, generators,
+   sincronização de áudio, exportação FFmpeg, `check` e integração com `motion-doctrine`/`seam-craft`.
+2. **Skill MoviePy:** API v2, composição orientada a dados, efeitos e áudio; delegar operações de
+   arquivo ao `ffmpeg-skill` e terminar com `check`/`verify`.
+3. **Matriz de benchmark:** comparar os quatro caminhos em determinismo, tempo de render, alpha,
+   áudio, 1080×1920, execução local/servidor e custo/licença.
+4. **Detecção de capacidade:** o roteador deve informar quando Motion Canvas ou MoviePy não estão
+   instalados, em vez de encaminhar para uma skill inexistente.
+
+Esse trabalho complementa o ninja sem duplicar o que o `ffmpeg-skill` já resolve.
+
+---
+
 ## §Estilos Artísticos — aquarela e kinetic typography
 
 Fonte: [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills)
@@ -284,6 +364,37 @@ esses efeitos visuais 3D específicos.
 
 Funciona melhor com Claude Opus 5.5, mas não é obrigatório — outros modelos podem usar as skills
 com resultados variáveis.
+
+---
+
+## §Motion Lab — motion em código, do brief ao loop validado
+
+Use este método para loops, product films e peças de motion geradas como código. Comece em
+`/hyperframes`, carregue `/motion-doctrine` e trate o modelo como autor do programa que desenha os
+frames — cada quadro precisa ser reproduzível e inspecionável.
+
+Antes de gerar o código, transforme o brief em uma lista de estados com intervalos de frames: uma
+ação principal por shot, o handoff para o próximo e o que precisa continuar igual (produto, forma,
+proporções, marca). Especifique objetivo, engine, formato, resolução, fps, duração, câmera e
+parâmetros mensuráveis. Troque pedidos vagos como “parece premium” por decisões observáveis; nomeie
+os padrões visuais proibidos e atualize essa lista depois de ver a primeira renderização.
+
+Peça recursos de revisão dentro do próprio preview — frame labels, playhead ou marcações de beat —
+para conferir timing e pousos; remova-os da exportação final. Faça render de stills antes do vídeo
+completo, revise uma contact sheet e frames adjacentes aos problemas, e limite cada rodada a um ou
+dois ajustes descritos com frame e medida. Faça uma auditoria numérica separada da crítica visual.
+Duas a quatro rodadas são uma referência do artigo, não um limite obrigatório.
+
+Para som, escreva cues ligados aos frames e meça o arquivo decodificado para checar sync, loudness,
+true peak e clipping; não use a avaliação auditiva do modelo como evidência. Em loops de N frames,
+renderize `0..N-1` e use `phase = frame / N` com ciclos inteiros para fechar a costura. O artigo
+relata um alvo de -14 LUFS/-1 dBTP e hits de som cerca de um frame após a imagem; trate esses números
+como referência daquele laboratório e confirme as exigências do destino.
+
+Procedimento e prompt de partida em [references/motion-lab.md](references/motion-lab.md). A fonte
+original é [Opus 5.5 Motion Lab](https://x.com/i/article/2105052379590578176), publicado por
+[@flxrnc](https://x.com/flxrnc/status/2105311836190978392). O texto arquivado não inclui os prompts
+que estavam embutidos em imagens ou vídeos.
 
 ---
 
@@ -371,7 +482,7 @@ tempo e herda a corretude de render.
 
 ### Este ninja é `no-sync`
 
-As 45 skills já são consumidas como agent skills instaladas. Clonar os 7 repos-fonte adicionaria
+As 46 skills já são consumidas como agent skills instaladas. Clonar os 7 repos-fonte adicionaria
 ~510 MB (489 MB só do `hyperframes`) sem ganho funcional. Por isso o `video-ninja` está na lista
 `NEVER_CLONE_NINJAS` do `sync-repos.sh` e marcado com `no-sync` no `repos.md` — um
 `./sync-repos.sh` (todos ou `video-ninja`) o **pula**.

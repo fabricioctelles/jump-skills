@@ -32,6 +32,37 @@ https://github.com/tuzhechen2005/opus-video-skills
 
 ---
 
+## Frameworks avaliadas, ainda sem skill
+
+Motion Canvas, Revideo e MoviePy aparecem na matriz comparativa, mas não fazem parte das sete fontes
+instaladas. Mantê-las nesta seção evita prometer um roteamento que ainda não existe.
+
+| Framework | Licença | Ponto forte | Complemento necessário |
+|---|---|---|---|
+| [Motion Canvas](https://github.com/motion-canvas/motion-canvas) / [Revideo](https://github.com/midrender/revideo) | MIT | Motion Canvas: generators e editor vetorial. Revideo: player React, `renderVideo()`, entradas dinâmicas e render headless | Skill para scaffold, render, áudio, `check` e integração com a doutrina |
+| [MoviePy](https://github.com/Zulko/moviepy) | MIT | Python para cortes, composição, títulos, efeitos e automação orientada a dados | Skill para API v2; operações de arquivo devem continuar no `ffmpeg-skill` |
+
+O Remotion permanece instalado como framework alternativa, mas sua licença é source-available: a
+licença gratuita cobre indivíduos e organizações de até três pessoas; equipes maiores precisam
+validar a Company License antes de produção.
+
+---
+
+## Skill externa instalada, fora do sync
+
+[`fframes-video`](https://github.com/dmtrKovalenko/fframes/tree/main/skills/fframes-video) foi
+instalada pela fonte well-known [`fframes.studio`](https://fframes.studio). Ela não entra no bloco
+`repos` porque `video-ninja` permanece protegido por `no-sync` e o repositório Rust completo não é
+necessário para usar a skill.
+
+| Fonte | Skill | Licença | Papel |
+|---|---|---|---|
+| [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) via [fframes.studio](https://fframes.studio) | `fframes-video` | MIT | Motor alternativo Rust/SVG com Skia GPU, FFmpeg, inspeção de frames, snapshots e análise de áudio |
+
+Proveniência: `~/.agents/.skill-lock.json`, `sourceType: well-known`, `source: fframes.studio`.
+
+---
+
 ## Detalhe: `kajisho5/ffmpeg-skill` — motor de processamento
 
 > ⭐ — skill única, 42 tools. Licença MIT. ~2MB
@@ -251,7 +282,7 @@ generativos de imagem/vídeo/áudio. Renderiza em headless Chrome + ffmpeg.
 | `painted-animation` | Aquarela e tinta à mão (p5.js + p5.brush), personagens com acting | Curtas animados, MVs, lyric videos com karaoke |
 | `kinetic-reel` | Tipografia cinética com WebGL (three.js, partículas, marble líquido, chrome knot) | Showreels, portfolios, intros, product films |
 
-**Diferencial-chave**: estilos visuais únicos não cobertos pelos outros 5 repos. `painted-animation`
+**Diferencial-chave**: estilos visuais únicos não cobertos pelos outros 6 repos. `painted-animation`
 é o único que faz **cartoon aquarela animado** com personagens. `kinetic-reel` combina tipografia
 condensada com camadas WebGL (terreno de partículas, marble, nuvem que condensa em forma).
 

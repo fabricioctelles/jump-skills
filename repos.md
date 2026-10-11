@@ -214,39 +214,46 @@ https://github.com/yylo-dev/yylo-skills
 
 ## [video-ninja]
 
-<!-- no-sync: as 42 skills dos 5 repositórios já estão instaladas globalmente como agent skills.
+<!-- no-sync: as 45 skills dos 7 repositórios já estão instaladas globalmente como agent skills.
      Clonar aqui adicionaria ~506 MB (489 MB só do hyperframes) sem ganho funcional.
      sync-repos.sh detecta este marcador e pula a seção. -->
 
-Cinco repositórios de vídeo que se complementam: um motor de render, uma doutrina de qualidade,
-uma framework alternativa e dois nichos (captura de tela e anti-repetição).
+Sete repositórios de vídeo que se complementam: um motor de render, um motor de processamento,
+uma doutrina de qualidade, uma framework alternativa e três nichos.
 
 ```repos
 https://github.com/heygen-com/hyperframes
+https://github.com/kajisho5/ffmpeg-skill
 https://github.com/echris6/motion-video-kit
 https://github.com/remotion-dev/skills
 https://github.com/Rieranthony/product-film-skill
 https://github.com/tugrawork-creator/saas-motion-kit
+https://github.com/tuzhechen2005/opus-video-skills
 ```
 
 | Repositório | Org | Skills | Descrição |
 |-------------|-----|--------|-----------|
-| hyperframes | heygen-com | 27 | Motor: HTML → vídeo via Chrome headless + FFmpeg. 21 skills publicadas (roteador + 8 domínios + 10 workflows + CLI) + 6 de doutrina interna. 173 blocos no registry. Apache-2.0 |
+| hyperframes | heygen-com | 27 | Motor de render: HTML → vídeo via Chrome headless + FFmpeg. 21 skills publicadas + 6 de doutrina interna. 173 blocos no registry. Apache-2.0 |
+| ffmpeg-skill | kajisho5 | 1 (42 tools) | Motor de processamento: probe → edit → verify, com entrega e multicam. MIT |
 | motion-video-kit | echris6 | 1 | Doutrina: loop de crítico separado, princípios de 28 filmes de launch, quality bar, sound design. MIT |
 | skills | remotion-dev | 12 | Remotion oficial (4.0.529) — 2ª framework, port e projetos existentes |
 | product-film-skill | Rieranthony | 1 | Captura de tela → product film com AVFoundation, sem ffmpeg. MIT |
 | saas-motion-kit | tugrawork-creator | 1 | Promo SaaS: tone matrix, variety audit, 24 transições, 100 temas de storyboard |
+| opus-video-skills | tuzhechen2005 | 2 | Estilos procedurais: aquarela animada e kinetic typography |
 
-**Skills incluídas:** 42 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
+**Skills incluídas:** 46 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
 `-keyframes`, `-creative`, `-audio`, `-cli`, `-registry`, `-studio`, `media-use`,
 `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`,
 `changelog-video`, `general-video`, `product-launch-video`, `talking-head-recut`,
 `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`,
 `slideshow`, `figma`, `remotion-to-hyperframes`, `business-motion-film`, `saas-motion-video`,
-`product-film`, `remotion-*` (12).
+`product-film`, `remotion-*` (12), `ffmpeg-skill`, `painted-animation`, `kinetic-reel`,
+`fframes-video` (fonte well-known; fora do sync).
 
-> ⚠️ **Este ninja não usa `sync-repos.sh`.** As 42 skills dos 5 repositórios já estão instaladas
-> globalmente (`~/.agents/skills/`, espelhadas em `~/.claude/` e por symlink em `~/.codex`,
+> ⚠️ **Este ninja não usa `sync-repos.sh`.** As 46 skills estão instaladas globalmente; as 45
+> provenientes dos 7 repositórios continuam fora do sync e `fframes-video` vem de uma fonte
+> well-known externa.
+> Elas ficam em `~/.agents/skills/` (espelhadas em `~/.claude/` e por symlink em `~/.codex`,
 > `~/.gemini`, `~/.cursor`). Clonar aqui adicionaria ~506 MB sem ganho funcional — o `hyperframes`
 > sozinho tem 489 MB.
 >

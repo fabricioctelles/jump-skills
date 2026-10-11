@@ -81,7 +81,7 @@ Think of Ninjas as **expert dispatchers** — they understand the entire landsca
 > 3. Run `./install-ninjas.sh` to install Ninjas to your agents
 
 > [!NOTE]
-> **One exception: Video Ninja.** Its 42 skills are consumed as already-installed agent skills, so
+> **One exception: Video Ninja.** Its 46 skills are consumed as already-installed agent skills, so
 > it needs **no cloning** — cloning its sources would add ~506 MB with zero functional gain.
 > The `sync-repos.sh` step still works; it just skips that Ninja (see
 > [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync)).
@@ -347,7 +347,7 @@ The Google Analytics Ninja handles GA4 configuration and reporting:
 
 ### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-video-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-video-ninja)
 
-> **42 skills** from 5 repositories + a proven video-pipeline methodology layer
+> **46 skills** from 7 repositories plus 1 external engine skill + a proven video-pipeline methodology layer
 
 The Video Ninja orchestrates the whole video stack — engine, craft doctrine, workflows and a
 second framework — and adds four techniques the market does not have:
@@ -355,24 +355,38 @@ second framework — and adds four techniques the market does not have:
 | Layer | Skills | What it covers |
 |-------|--------|----------------|
 | **Engine** | 10 | HyperFrames: HTML → video via headless Chrome + FFmpeg. Core contract, CLI, registry (173 blocks) |
+| **Processing** | 1 (42 tools) | ffmpeg-skill: probe, cut, join, loudness, multicam, export and verification |
+| **Alternative engine** | 1 | fframes-video: Rust/SVG, Skia GPU, frame inspection, snapshots and audio analysis |
 | **Workflows** | 11 | Launch, promo, talking-head recut, captions, explainer, PR, music, motion graphics, slideshow, Figma, changelog |
 | **Craft doctrine** | 7 | Motion law (gateway), transition catalog, seam render-correctness, cursor, caption overlay, business-film critic loop, anti-repetition |
 | **Domains** | 7 | Animation, keyframes, creative direction, audio, media, registry, Studio |
 | **Framework 2nd** | 13 | Remotion official (port, projects) + screen-recording → product film |
+| **Art styles** | 2 | Painted animation and kinetic reel |
 
 **Methodology layer (My-Little-Studio):** sha256 staleness tracking that refuses to run on changed
 inputs · letter-level ASR preserving retakes · reusable color Setups per camera/light/set · body map
 for element placement (an LLM measured 12% frame-width error) · visual boards where you draw over
 the video frame by frame.
 
+**Framework map:** HyperFrames remains the default compositor; `ffmpeg-skill` handles existing media.
+Motion Canvas/Revideo and MoviePy are documented as optional, not-installed alternatives for projects
+that already depend on them. Revideo is the higher-priority future adapter because it exposes a
+headless render API, dynamic inputs and a React player.
+
+`fframes-video` is installed globally from the well-known source `fframes.studio`; its Rust
+repository is intentionally not cloned by `sync-repos.sh`.
+
 **Source repositories:**
 - [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) — Engine (Apache-2.0)
+- [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) — Media processing (MIT)
 - [echris6/motion-video-kit](https://github.com/echris6/motion-video-kit) — Quality doctrine (MIT)
 - [remotion-dev/skills](https://github.com/remotion-dev/skills) — Official Remotion skills
 - [Rieranthony/product-film-skill](https://github.com/Rieranthony/product-film-skill) — Screen capture → film (MIT)
 - [tugrawork-creator/saas-motion-kit](https://github.com/tugrawork-creator/saas-motion-kit) — SaaS promo, anti-repetition
+- [tuzhechen2005/opus-video-skills](https://github.com/tuzhechen2005/opus-video-skills) — Procedural art styles (MIT)
+- [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) — `fframes-video` via well-known source (MIT; no clone)
 
-> Unlike the other Ninjas, Video Ninja does **not** clone its sources. All 42 skills are already
+> Unlike the other Ninjas, Video Ninja does **not** clone its sources. All 46 skills are already
 > installed as agent skills (~23 MB), so `sync-repos.sh` skips it. Cloning would download ~506 MB
 > (489 MB from `hyperframes` alone) purely to duplicate what is already installed. See
 > [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync).
@@ -411,7 +425,7 @@ jump-skills/
 │   ├── google-mobile-ninja/SKILL.md  # Mobile dev orchestrator (35+ skills)
 │   ├── google-firebase-ninja/SKILL.md # Firebase orchestrator (18+ skills)
 │   ├── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
-│   ├── video-ninja/SKILL.md          # Video orchestrator (42 skills)
+│   ├── video-ninja/SKILL.md          # Video orchestrator (46 skills)
 │   └── yylo-ninja/SKILL.md           # YYLO orchestrator (7 skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
@@ -432,7 +446,7 @@ jump-skills/
 │   ├── google-mobile-ninja/   #    └── 3 Google repos
 │   ├── google-firebase-ninja/ #    └── 2 Google repos
 │   ├── google-analytics-ninja/#    └── 1 Google repo
-│   ├── video-ninja/            #    └── 5 video repos (installed as skills, no clone)
+│   ├── video-ninja/            #    └── 7 video repos (installed as skills, no clone)
 │   └── yylo-ninja/             #    └── 1 YYLO repo
 └── .skills-map                # 📄 Auto-generated skill→path mapping
 ```
