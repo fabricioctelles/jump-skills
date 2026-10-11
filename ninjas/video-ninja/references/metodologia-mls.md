@@ -108,18 +108,21 @@ cada borda do corte é colocada **no início da sílaba**.
 
 ### Por que implementar
 
-Busca por "ASR com nível de letra" / "transcrição que preserva repetição" em repos de skills de
-vídeo retorna **zero**. Todo mundo usa Whisper/ElevenLabs/ASR cloud, que têm exatamente o
-comportamento oposto. E é o único jeito de cortar no início da sílaba sem erro audível.
+`WhisperX` é um backend adjacente: oferece alinhamento por palavra e diarização, mas não decodifica
+letra a cada 20 ms nem preserva tentativas repetidas como eventos distintos. A busca por uma
+ferramenta que una **timing em nível de letra e retomadas preservadas** continua sendo a lacuna. A
+fita mantém essa função especializada; WhisperX pode ser usado para cues por palavra quando esse
+nível de precisão for suficiente. Ver [references/whisperx.md](whisperx.md).
 
 No artigo a fita foi comparada com 8 bibliotecas em teste de estresse: foi a única que rodou local
 e markou repetições.
 
 ### Aplicação no HyperFrames
 
-`/media-use` faz transcrição e legendas por um motor de áudio compartilhado. Para corte de
-talking-head fino, a fita é o upgrade: substitua a fonte de tempo por decodificação em nível de
-letra e derive os pontos de corte dela.
+`/media-use` faz transcrição e legendas por um motor de áudio compartilhado. WhisperX pode ser
+avaliado como backend local de alinhamento por palavra para legendas/timing de falantes. Para corte
+de talking-head fino, use a fita: derive os pontos de corte da decodificação em nível de letra e
+preserve as tentativas repetidas.
 
 ---
 

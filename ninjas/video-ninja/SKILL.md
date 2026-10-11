@@ -2,8 +2,8 @@
 name: video-ninja
 description: >-
   Master orchestrator for video production with agents. Routes to 46 installed video skills
-  across 7 upstream repositories, plus an optional evaluated visual reference, and adds a
-  proven video-pipeline methodology layer.
+  across 7 upstream repositories, plus optional evaluated tools for speech timing, reusable motion
+  assets and mathematical explainers, and adds a proven video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
   or publishing a video, motion graphic, promo, launch film, product demo, talking-head package,
   changelog reel, explainer, lyric video, slideshow deck, or Remotion project.
@@ -74,15 +74,21 @@ Provenance completa em `~/.agents/.skill-lock.json`. Detalhes em
 |---|---|---|---|
 | [`fframes.studio`](https://fframes.studio) | `fframes-video` | Motor alternativo Rust/SVG com Skia GPU, FFmpeg e QA legível por agentes | Well-known, instalado globalmente |
 
-### Fonte externa avaliada, ainda não instalada
+### Fontes externas avaliadas, ainda não instaladas
 
 | Fonte | Papel | Quando considerar | Estado |
 |---|---|---|---|
 | [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | Figuras isométricas de máquinas reais para explicar conceitos técnicos, em SVG/HTML, com WebGL opcional | Explainer técnico em que um mecanismo físico visual torna o conceito mais claro | Avaliada; skill não instalada. Ver [references/anatomy.md](references/anatomy.md) |
+| [`m-bain/whisperX`](https://github.com/m-bain/whisperX) | ASR local com timestamps por palavra e diarização | Talking-head, entrevista ou podcast que precise de timing por palavra ou identificação de falantes | Backend opcional; não instalado. Ver [references/whisperx.md](references/whisperx.md) |
+| [`airbnb/lottie-web`](https://github.com/airbnb/lottie-web) | Player para animações Lottie exportadas de After Effects | Reusar arquivo `.json` Lottie fornecido pelo projeto em uma composição HyperFrames | Dependência sob demanda; não instalada pelo Ninja. Ver [references/lottie.md](references/lottie.md) |
+| [`ManimCommunity/manim`](https://github.com/ManimCommunity/manim) | Engine Python especializado em animação matemática | Explainer matemático recorrente que justifique outro renderer e adapter | Alternativa avaliada; não instalada. O link do tweet `3b1b/manim` é ManimGL. Ver [references/repos.md](references/repos.md) |
 
 Anatomy produz o **asset/cena visual**, não o vídeo final. Se disponível no ambiente, use-o para
 construir e auditar a figura; depois incorpore a saída no `/hyperframes` e siga a doutrina de
 movimento, composição e render. Não conte Anatomy como capacidade instalada nem como engine.
+
+WhisperX e Manim são ferramentas opcionais, sem instalação ou disponibilidade presumida. Lottie é
+um formato de asset: só carregar seu player quando o projeto já trouxer esse tipo de animação.
 
 ## Mapa de motores
 
@@ -97,8 +103,9 @@ Use esta distinção antes de escolher o workflow:
 | **Remotion** | React/TypeScript, render local ou Lambda | Projeto React existente, port de composição ou render distribuído | Framework alternativa, instalada |
 | **Motion Canvas / Revideo** | TypeScript com generators; Revideo acrescenta player React, render headless e entradas dinâmicas | Motion Canvas para animação vetorial com editor; Revideo para templates parametrizados e render em Node/serverless | Alternativa avaliada; sem skill instalada |
 | **MoviePy** | Python com clips, composição e efeitos sobre frames | Pipeline Python orientado a dados ou protótipo de composição | Alternativa avaliada; sem skill instalada |
+| **Manim Community Edition** | Python para animações matemáticas programáticas | Explainers recorrentes de matemática, gráficos e geometria | Alternativa avaliada; sem skill/adaptador instalado |
 
-Motion Canvas, Revideo e MoviePy não devem aparecer como capacidades instaladas até existir uma skill com
+Motion Canvas, Revideo, MoviePy e ManimCE não devem aparecer como capacidades instaladas até existir uma skill com
 roteamento, contrato de render e verificação. Se um projeto já usa uma dessas tecnologias, o ninja
 pode preservá-la e aplicar a mesma doutrina de movimento, áudio e validação.
 
@@ -137,6 +144,9 @@ Este ninja só precisa saber a **camada**:
 | Cartoon aquarela / lyric video karaoke | **`/painted-animation`** | ver §Estilos Artísticos |
 | Showreel tipográfico / portfolio cinético | **`/kinetic-reel`** | ver §Estilos Artísticos |
 | Explainer técnico com mecanismo/objeto isométrico | **Anatomy (opcional, se instalada no ambiente)** | Gerar e auditar SVG/HTML; levar o asset ao `/hyperframes` para composição e render. Ver [references/anatomy.md](references/anatomy.md) |
+| Talking-head com timing por palavra ou diarização | `/embedded-captions` + **WhisperX opcional** (se instalado) | Alinhar palavras/identificar falantes; revisar no áudio. A “fita” segue necessária para cortes que dependam de retomadas e início de sílaba. Ver [references/whisperx.md](references/whisperx.md) |
+| Projeto fornece animação Lottie `.json` | `/hyperframes` + **Lottie Web sob demanda** | Desativar autoplay e buscar cada frame/tempo explicitamente para captura determinística. Ver [references/lottie.md](references/lottie.md) |
+| Explainer matemático de alto rigor | **ManimCE (opcional, se instalado e justificado)** | Renderer especializado para matemática; verificar a composição final. HyperFrames segue padrão para os demais vídeos |
 | Motion gerado como código, loop ou animação por frames | **`/hyperframes`** | + `/motion-doctrine`, ver §Motion Lab |
 | **Cortar/juntar/processar material existente** | **`ffmpeg-skill`** | ver §FFmpeg |
 | **Ajustar loudness para plataforma** | **`ffmpeg-skill`** | ver §FFmpeg |
@@ -465,12 +475,16 @@ recorrente), não num vídeo único.
 | Técnica | Por quê ninguém tem |
 |---|---|
 | **Rastreabilidade com sha256** — cada etapa grava a impressão digital do que leu e **recusa rodar** se o dado de antes mudou, dizendo qual comando falta | Nenhum repo de skills implementa staleness detection |
-| **A "fita"** — ASR decodificando **letra a 20 ms**, preservando retomadas que transcrição comercial **esconde** | Todo mundo usa Whisper/ElevenLabs/ASR cloud, que junta as duas tentativas. É o único jeito de cortar no início da sílaba sem erro |
+| **A "fita"** — ASR decodificando **letra a 20 ms**, preservando retomadas que transcrição comercial **esconde** | WhisperX entrega timing por palavra, não a combinação de microtiming e retomadas; a fita preserva essa função de corte fino |
 | **Setup de cor reutilizável** — LUT + ganho + nitidez calibrados uma vez por câmera/luz/cenário | Nenhuma skill de color grading; e `/media-use` resolve LUT por clip, não por câmera |
 | **Mapa de corpo** — RTMPose/MediaPipe → onde um elemento cabe sem encostar no corpo. Medido: **LLM erra 12% da largura da tela** | Nenhum repo. Posicionamento nunca pode vir de modelo de linguagem |
 
 Mais os **quadros visuais** (desenhar sobre o vídeo quadro a quadro em HTML e exportar frame +
 instrução + traços — a IA lê o desenho melhor que o texto) como forma de pedir algo específico.
+
+`WhisperX` pode fornecer alinhamento por palavra e diarização quando o caso pedir, mas não substitui
+a “fita”: ela opera a cada 20 ms e preserva retomadas para cortes finos. Para reutilizar animações
+Lottie, siga o controle determinístico de tempo em [references/lottie.md](references/lottie.md).
 
 Detalhes completos, com os aprendizados: [references/metodologia-mls.md](references/metodologia-mls.md).
 

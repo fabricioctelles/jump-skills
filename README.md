@@ -377,6 +377,11 @@ headless render API, dynamic inputs and a React player.
 optional visual source for isometric technical figures in explainers. It creates SVG/HTML assets;
 HyperFrames still handles video composition and rendering. See the [Anatomy routing notes](ninjas/video-ninja/references/anatomy.md).
 
+The Ninja also documents **WhisperX** as an optional word-alignment/diarization backend, **Lottie**
+as a time-controlled asset when a project supplies a `.json`, and **Manim Community** as a
+specialized option for recurring mathematical explainers. None is installed or counted among the
+46 skills. See the [integration notes](ninjas/video-ninja/references/repos.md).
+
 `fframes-video` is installed globally from the well-known source `fframes.studio`; its Rust
 repository is intentionally not cloned by `sync-repos.sh`.
 
@@ -390,6 +395,9 @@ repository is intentionally not cloned by `sync-repos.sh`.
 - [tuzhechen2005/opus-video-skills](https://github.com/tuzhechen2005/opus-video-skills) — Procedural art styles (MIT)
 - [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) — `fframes-video` via well-known source (MIT; no clone)
 - [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — optional isometric technical figures; evaluated, not installed
+- [m-bain/whisperX](https://github.com/m-bain/whisperX) — optional word timing/diarization backend; evaluated, not installed
+- [airbnb/lottie-web](https://github.com/airbnb/lottie-web) — player for supplied Lottie assets; load on demand
+- [Manim Community](https://github.com/ManimCommunity/manim) — mathematical animation engine candidate; evaluated, not installed
 
 > Unlike the other Ninjas, Video Ninja does **not** clone its sources. All 46 skills are already
 > installed as agent skills (~23 MB), so `sync-repos.sh` skips it. Cloning would download ~506 MB

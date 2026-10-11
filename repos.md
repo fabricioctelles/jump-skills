@@ -241,13 +241,19 @@ https://github.com/tuzhechen2005/opus-video-skills
 | saas-motion-kit | tugrawork-creator | 1 | Promo SaaS: tone matrix, variety audit, 24 transições, 100 temas de storyboard |
 | opus-video-skills | tuzhechen2005 | 2 | Estilos procedurais: aquarela animada e kinetic typography |
 
-### Fonte visual avaliada, ainda não instalada
+### Fontes avaliadas, ainda não instaladas
 
 [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) foi avaliada para explainers
 técnicos: cria figuras isométricas de máquinas em SVG/HTML e pode adicionar WebGL. Não é contada
 entre as skills instaladas ou os repositórios no bloco `repos`. Só deve ser chamada se estiver
 instalada no ambiente; o HyperFrames continua responsável por compor/renderizar o vídeo.
 Detalhes e limites: `ninjas/video-ninja/references/anatomy.md`.
+
+Também foram avaliadas outras ferramentas de apoio, fora do bloco `repos`: [WhisperX](https://github.com/m-bain/whisperX)
+para alinhamento por palavra/diarização, [Lottie Web](https://github.com/airbnb/lottie-web) para
+assets `.json` já fornecidos e [Manim Community](https://github.com/ManimCommunity/manim) para
+explainers matemáticos recorrentes. Nenhuma está instalada; condições e roteamento em
+`ninjas/video-ninja/references/repos.md`.
 
 **Skills incluídas:** 46 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
 `-keyframes`, `-creative`, `-audio`, `-cli`, `-registry`, `-studio`, `media-use`,

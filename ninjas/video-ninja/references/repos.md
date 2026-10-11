@@ -32,19 +32,32 @@ https://github.com/tuzhechen2005/opus-video-skills
 
 ---
 
-## Frameworks avaliadas, ainda sem skill
+## Engines e frameworks avaliadas, ainda sem skill
 
-Motion Canvas, Revideo e MoviePy aparecem na matriz comparativa, mas não fazem parte das sete fontes
-instaladas. Mantê-las nesta seção evita prometer um roteamento que ainda não existe.
+Motion Canvas, Revideo, MoviePy e ManimCE não fazem parte das sete fontes instaladas. Mantê-los nesta
+seção evita prometer um roteamento que ainda não existe.
 
-| Framework | Licença | Ponto forte | Complemento necessário |
+| Engine/framework | Licença | Ponto forte | Complemento necessário |
 |---|---|---|---|
 | [Motion Canvas](https://github.com/motion-canvas/motion-canvas) / [Revideo](https://github.com/midrender/revideo) | MIT | Motion Canvas: generators e editor vetorial. Revideo: player React, `renderVideo()`, entradas dinâmicas e render headless | Skill para scaffold, render, áudio, `check` e integração com a doutrina |
 | [MoviePy](https://github.com/Zulko/moviepy) | MIT | Python para cortes, composição, títulos, efeitos e automação orientada a dados | Skill para API v2; operações de arquivo devem continuar no `ffmpeg-skill` |
+| [Manim Community](https://github.com/ManimCommunity/manim) | MIT | Engine Python especializada em animações matemáticas | Avaliar um adapter se houver produção recorrente de explainers matemáticos; o repo do tweet (`3b1b/manim`) é ManimGL, projeto distinto |
 
 O Remotion permanece instalado como framework alternativa, mas sua licença é source-available: a
 licença gratuita cobre indivíduos e organizações de até três pessoas; equipes maiores precisam
 validar a Company License antes de produção.
+
+## Ferramentas de apoio avaliadas, ainda não instaladas
+
+Estas fontes ampliam tarefas específicas. Não são skills instaladas, não entram na contagem de 46
+nem no bloco `repos` de `sync-repos.sh`.
+
+| Fonte | Uso possível | Limite / roteamento |
+|---|---|---|
+| [WhisperX](https://github.com/m-bain/whisperX), BSD-2-Clause | Alinhamento local por palavra e diarização em fala | Backend opcional para `/embedded-captions`; não substitui a “fita” a 20 ms que preserva retomadas. Requer ambiente Python; diarização usa token/termos Hugging Face |
+| [Lottie Web](https://github.com/airbnb/lottie-web) | Player para `.json` exportado de After Effects dentro de composição web | Carregar somente quando o projeto fornecer asset Lottie; controlar o playhead por frame ou tempo e confirmar seeks antes da captura. Ver [references/lottie.md](lottie.md) |
+
+Detalhes operacionais: [WhisperX](whisperx.md) e [Lottie](lottie.md).
 
 ---
 
