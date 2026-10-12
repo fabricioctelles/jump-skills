@@ -1,7 +1,6 @@
-name: No-Sync Guard
+name: Repository Sync Policy
 
-# Impede regressão na garantia de que ninjas no-sync não são clonados.
-# Clonar os repos do video-ninja adicionaria ~483 MB sem ganho funcional.
+# Ensures repository-level exclusions never block eligible Ninja sources.
 
 on:
   push:
@@ -11,7 +10,7 @@ on:
       - "repos.md"
       - "ninjas.md"
       - "tests/**"
-      - ".github/workflows/no-sync-guard.yml"
+      - ".github/workflows/repo-sync-policy.yml"
   pull_request:
     branches: [main]
     paths:
@@ -19,17 +18,17 @@ on:
       - "repos.md"
       - "ninjas.md"
       - "tests/**"
-      - ".github/workflows/no-sync-guard.yml"
+      - ".github/workflows/repo-sync-policy.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  no-sync:
+  repository-sync-policy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
 
-      - name: Check that no-sync ninjas are never cloned
-        run: ./tests/test-no-sync.sh
+      - name: Check repository-level sync policy
+        run: ./tests/test-repo-sync-policy.sh
