@@ -214,12 +214,9 @@ https://github.com/yylo-dev/yylo-skills
 
 ## [video-ninja]
 
-<!-- no-sync: as 45 skills dos 7 repositórios já estão instaladas globalmente como agent skills.
-     Clonar aqui adicionaria ~506 MB (489 MB só do hyperframes) sem ganho funcional.
-     sync-repos.sh detecta este marcador e pula a seção. -->
-
-Sete repositórios de vídeo que se complementam: um motor de render, um motor de processamento,
-uma doutrina de qualidade, uma framework alternativa e três nichos.
+Oito repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
+são clonadas para que suas skills estejam acessíveis ao Ninja; HyperFrames fica excluído porque
+seu clone tem cerca de 489 MB e suas skills já estão instaladas globalmente.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -229,6 +226,11 @@ https://github.com/remotion-dev/skills
 https://github.com/Rieranthony/product-film-skill
 https://github.com/tugrawork-creator/saas-motion-kit
 https://github.com/tuzhechen2005/opus-video-skills
+https://github.com/wheresryan22/anatomy
+```
+
+```no-sync-repos
+https://github.com/heygen-com/hyperframes
 ```
 
 | Repositório | Org | Skills | Descrição |
@@ -240,14 +242,9 @@ https://github.com/tuzhechen2005/opus-video-skills
 | product-film-skill | Rieranthony | 1 | Captura de tela → product film com AVFoundation, sem ffmpeg. MIT |
 | saas-motion-kit | tugrawork-creator | 1 | Promo SaaS: tone matrix, variety audit, 24 transições, 100 temas de storyboard |
 | opus-video-skills | tuzhechen2005 | 2 | Estilos procedurais: aquarela animada e kinetic typography |
+| anatomy | wheresryan22 | 1 | Skill de ilustração isométrica técnica em SVG/HTML, com WebGL opcional (MIT) |
 
-### Fontes avaliadas, ainda não instaladas
-
-[`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) foi avaliada para explainers
-técnicos: cria figuras isométricas de máquinas em SVG/HTML e pode adicionar WebGL. Não é contada
-entre as skills instaladas ou os repositórios no bloco `repos`. Só deve ser chamada se estiver
-instalada no ambiente; o HyperFrames continua responsável por compor/renderizar o vídeo.
-Detalhes e limites: `ninjas/video-ninja/references/anatomy.md`.
+### Outras fontes avaliadas, ainda não integradas
 
 Também foram avaliadas outras ferramentas de apoio, fora do bloco `repos`: [WhisperX](https://github.com/m-bain/whisperX)
 para alinhamento por palavra/diarização, [Lottie Web](https://github.com/airbnb/lottie-web) para
@@ -255,21 +252,19 @@ assets `.json` já fornecidos e [Manim Community](https://github.com/ManimCommun
 explainers matemáticos recorrentes. Nenhuma está instalada; condições e roteamento em
 `ninjas/video-ninja/references/repos.md`.
 
-**Skills incluídas:** 46 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
+**Skills incluídas:** 47 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
 `-keyframes`, `-creative`, `-audio`, `-cli`, `-registry`, `-studio`, `media-use`,
 `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`,
 `changelog-video`, `general-video`, `product-launch-video`, `talking-head-recut`,
 `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`,
 `slideshow`, `figma`, `remotion-to-hyperframes`, `business-motion-film`, `saas-motion-video`,
 `product-film`, `remotion-*` (12), `ffmpeg-skill`, `painted-animation`, `kinetic-reel`,
-`fframes-video` (fonte well-known; fora do sync).
+`fframes-video` (fonte well-known; fora do sync), `anatomy` (checkout local; explainers técnicos).
 
-> ⚠️ **Este ninja não usa `sync-repos.sh`.** As 46 skills estão instaladas globalmente; as 45
-> provenientes dos 7 repositórios continuam fora do sync e `fframes-video` vem de uma fonte
-> well-known externa.
-> Elas ficam em `~/.agents/skills/` (espelhadas em `~/.claude/` e por symlink em `~/.codex`,
-> `~/.gemini`, `~/.cursor`). Clonar aqui adicionaria ~506 MB sem ganho funcional — o `hyperframes`
-> sozinho tem 489 MB.
+> ⚠️ As 46 skills já existentes continuam disponíveis globalmente em `~/.agents/skills/`
+> (espelhadas em `~/.claude/` e por symlink em `~/.codex`, `~/.gemini`, `~/.cursor`). Anatomy é
+> fornecida pelo checkout local `repos/video-ninja/anatomy/`; a sincronização ignora apenas
+> HyperFrames, que tem cerca de 489 MB. `fframes-video` continua vindo de uma fonte well-known.
 >
 > As 6 skills de doutrina interna (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
 > `oversized-cursor`, `captions-overlay`, `changelog-video`) são `metadata: internal: true` no
@@ -298,29 +293,41 @@ https://github.com/org/repo2
 
 O script `sync-repos.sh` parseia os blocos `repos` de cada seção.
 
-### Opt-out de clonagem (`no-sync`)
+### Exclusão de repositórios da sincronização (`no-sync-repos`)
 
-Se as skills de um ninja já são consumidas como **agent skills instaladas globalmente**, a
-clonagem é peso morto. Adicione `no-sync` em qualquer lugar da seção (um comentário HTML basta) e
-o `sync-repos.sh` pula o ninja — tanto no sync quanto no `--status`:
+Não exclua um Ninja inteiro da sincronização por padrão: isso pode deixar fontes ausentes e rotas
+que não funcionam. Quando um repositório específico não deve ser clonado — por exemplo, por ser
+muito grande ou porque suas skills já estão disponíveis globalmente — liste a URL no bloco
+`no-sync-repos` da seção daquele Ninja:
 
 ```markdown
 ## [meu-ninja]
 
-<!-- no-sync: skills já instaladas globalmente; clonar não agrega -->
+```repos
+https://github.com/org/repo-grande
+https://github.com/org/repo-necessario
 ```
 
-Único uso hoje: `video-ninja` (489 MB de repo para skills que já estão em `~/.agents/skills/`).
+```no-sync-repos
+https://github.com/org/repo-grande
+```
+```
 
-#### A garantia tem duas camadas
+`sync-repos.sh` pula apenas as URLs excluídas e clona as demais. Repositórios de tamanho
+proibitivo também ficam protegidos por uma lista no script; atualmente, isso se aplica a
+`heygen-com/hyperframes` (cerca de 489 MB), cujas skills já estão instaladas globalmente.
 
-O marcador `no-sync` é um **comentário** — fácil de apagar numa edição inocente (reordenar seções,
-reformatar, um gerador reescrever o arquivo). Por isso ele **não** é a única proteção:
+O Video Ninja usa essa regra por repositório: Anatomy é sincronizado localmente para que o router
+possa carregar sua `SKILL.md`; HyperFrames é excluído do clone, mas continua disponível como skill
+global.
 
-1. **`NEVER_CLONE_NINJAS`** em `sync-repos.sh` — lista hardcoded. Não some por editar conteúdo,
-   só por editar código.
-2. **Marcador `no-sync`** em `repos.md` — secundário, permite que um ninja **novo** faça opt-out
-   sem tocar em código.
+#### Proteção para repositórios grandes
 
-O teste `tests/test-no-sync.sh` cobre os dois cenários (com e sem o marcador) e roda no CI
-(`.github/workflows/no-sync-guard.yml`). Rode local: `./tests/test-no-sync.sh`.
+O bloco `no-sync-repos` é configuração declarativa. Repositórios muito grandes também entram em
+`NEVER_SYNC_REPOS` no script para que uma edição acidental no markdown não dispare um clone pesado:
+
+1. **`NEVER_SYNC_REPOS`** em `sync-repos.sh` impede clones proibitivos mesmo se o bloco for alterado.
+2. **`no-sync-repos`** em `repos.md` registra a intenção e permite excluir fontes sem mudar o script.
+
+O workflow de política de sincronização cobre o bloqueio do HyperFrames e confirma que Anatomy
+continua sincronizável.

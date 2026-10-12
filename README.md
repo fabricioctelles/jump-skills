@@ -81,10 +81,10 @@ Think of Ninjas as **expert dispatchers** — they understand the entire landsca
 > 3. Run `./install-ninjas.sh` to install Ninjas to your agents
 
 > [!NOTE]
-> **One exception: Video Ninja.** Its 46 skills are consumed as already-installed agent skills, so
-> it needs **no cloning** — cloning its sources would add ~506 MB with zero functional gain.
-> The `sync-repos.sh` step still works; it just skips that Ninja (see
-> [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync)).
+> **Video Ninja has one repository-level exception.** Its globally installed sources are already
+> available, but Anatomy is not, so `sync-repos.sh` clones Anatomy and the other eligible sources.
+> It skips only HyperFrames, whose repository is about 489 MB and whose skills are installed
+> globally. See [repository-level sync exclusions](repos.md#exclusão-de-repositórios-da-sincronização-no-sync-repos).
 
 ---
 
@@ -347,7 +347,7 @@ The Google Analytics Ninja handles GA4 configuration and reporting:
 
 ### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-video-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-video-ninja)
 
-> **46 skills** from 7 repositories plus 1 external engine skill + a proven video-pipeline methodology layer
+> **47 skills**: 46 globally installed skills, Anatomy from a synced source repo, and a proven video-pipeline methodology layer
 
 The Video Ninja orchestrates the whole video stack — engine, craft doctrine, workflows and a
 second framework — and adds four techniques the market does not have:
@@ -357,6 +357,7 @@ second framework — and adds four techniques the market does not have:
 | **Engine** | 10 | HyperFrames: HTML → video via headless Chrome + FFmpeg. Core contract, CLI, registry (173 blocks) |
 | **Processing** | 1 (42 tools) | ffmpeg-skill: probe, cut, join, loudness, multicam, export and verification |
 | **Alternative engine** | 1 | fframes-video: Rust/SVG, Skia GPU, frame inspection, snapshots and audio analysis |
+| **Technical visual source** | 1 | Anatomy: isometric machine figures in SVG/HTML for explainers |
 | **Workflows** | 11 | Launch, promo, talking-head recut, captions, explainer, PR, music, motion graphics, slideshow, Figma, changelog |
 | **Craft doctrine** | 7 | Motion law (gateway), transition catalog, seam render-correctness, cursor, caption overlay, business-film critic loop, anti-repetition |
 | **Domains** | 7 | Animation, keyframes, creative direction, audio, media, registry, Studio |
@@ -373,14 +374,16 @@ Motion Canvas/Revideo and MoviePy are documented as optional, not-installed alte
 that already depend on them. Revideo is the higher-priority future adapter because it exposes a
 headless render API, dynamic inputs and a React player.
 
-[`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) is an **evaluated, not-installed**
-optional visual source for isometric technical figures in explainers. It creates SVG/HTML assets;
-HyperFrames still handles video composition and rendering. See the [Anatomy routing notes](ninjas/video-ninja/references/anatomy.md).
+[`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) is an integrated source for
+isometric technical figures in explainers. `sync-repos.sh video-ninja` clones it locally; the Ninja
+loads its `SKILL.md` when a mechanism-based figure would clarify the story. It creates SVG/HTML
+assets; HyperFrames still handles video composition and rendering. See the [Anatomy routing
+notes](ninjas/video-ninja/references/anatomy.md).
 
 The Ninja also documents **WhisperX** as an optional word-alignment/diarization backend, **Lottie**
 as a time-controlled asset when a project supplies a `.json`, and **Manim Community** as a
 specialized option for recurring mathematical explainers. None is installed or counted among the
-46 skills. See the [integration notes](ninjas/video-ninja/references/repos.md).
+47 skills. See the [integration notes](ninjas/video-ninja/references/repos.md).
 
 `fframes-video` is installed globally from the well-known source `fframes.studio`; its Rust
 repository is intentionally not cloned by `sync-repos.sh`.
@@ -393,16 +396,16 @@ repository is intentionally not cloned by `sync-repos.sh`.
 - [Rieranthony/product-film-skill](https://github.com/Rieranthony/product-film-skill) — Screen capture → film (MIT)
 - [tugrawork-creator/saas-motion-kit](https://github.com/tugrawork-creator/saas-motion-kit) — SaaS promo, anti-repetition
 - [tuzhechen2005/opus-video-skills](https://github.com/tuzhechen2005/opus-video-skills) — Procedural art styles (MIT)
+- [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — isometric technical figures; synced locally (MIT)
 - [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) — `fframes-video` via well-known source (MIT; no clone)
-- [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — optional isometric technical figures; evaluated, not installed
 - [m-bain/whisperX](https://github.com/m-bain/whisperX) — optional word timing/diarization backend; evaluated, not installed
 - [airbnb/lottie-web](https://github.com/airbnb/lottie-web) — player for supplied Lottie assets; load on demand
 - [Manim Community](https://github.com/ManimCommunity/manim) — mathematical animation engine candidate; evaluated, not installed
 
-> Unlike the other Ninjas, Video Ninja does **not** clone its sources. All 46 skills are already
-> installed as agent skills (~23 MB), so `sync-repos.sh` skips it. Cloning would download ~506 MB
-> (489 MB from `hyperframes` alone) purely to duplicate what is already installed. See
-> [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync).
+> Video Ninja syncs its eligible source repositories so each routed skill is available locally.
+> It skips only `hyperframes` (~489 MB), whose skills are already installed globally. Anatomy is
+> synced because its skill was not previously installed. See
+> [repository-level sync exclusions](repos.md#exclusão-de-repositórios-da-sincronização-no-sync-repos).
 
 ---
 
@@ -438,12 +441,12 @@ jump-skills/
 │   ├── google-mobile-ninja/SKILL.md  # Mobile dev orchestrator (35+ skills)
 │   ├── google-firebase-ninja/SKILL.md # Firebase orchestrator (18+ skills)
 │   ├── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
-│   ├── video-ninja/SKILL.md          # Video orchestrator (46 skills)
+│   ├── video-ninja/SKILL.md          # Video orchestrator (47 skills)
 │   └── yylo-ninja/SKILL.md           # YYLO orchestrator (7 skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
 ├── tests/                     # Guard tests (run in CI)
-│   └── test-no-sync.sh        #    └── no-sync ninjas are never cloned
+│   └── test-repo-sync-policy.sh #    └── only excluded repositories are skipped
 ├── repos.md                   # Repository definitions per Ninja
 ├── ninjas.md                  # Ninja registry
 │
@@ -459,7 +462,7 @@ jump-skills/
 │   ├── google-mobile-ninja/   #    └── 3 Google repos
 │   ├── google-firebase-ninja/ #    └── 2 Google repos
 │   ├── google-analytics-ninja/#    └── 1 Google repo
-│   ├── video-ninja/            #    └── 7 video repos (installed as skills, no clone)
+│   ├── video-ninja/            #    └── eligible video source repos (Anatomy included)
 │   └── yylo-ninja/             #    └── 1 YYLO repo
 └── .skills-map                # 📄 Auto-generated skill→path mapping
 ```
@@ -478,10 +481,11 @@ Reads `repos.md` and clones all source repositories into `repos/<ninja-name>/`:
 ./sync-repos.sh --status        # Show sync status
 ```
 
-Ninjas marked **`no-sync`** are skipped (their skills are already installed as agent skills, so
-cloning would be dead weight). Currently only `video-ninja` — skipping it avoids ~506 MB. The
-guarantee has two layers (a hardcoded list in the script plus the `repos.md` marker) and is
-covered by `tests/test-no-sync.sh`. See [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync).
+Repositories listed in a Ninja's **`no-sync-repos`** block are skipped individually. Very large
+repositories also have a hardcoded exclusion in the script; currently HyperFrames is skipped to
+avoid a ~489 MB clone. Other sources, including Anatomy, still sync. The policy is covered by
+`tests/test-repo-sync-policy.sh`; see
+[repository-level sync exclusions](repos.md#exclusão-de-repositórios-da-sincronização-no-sync-repos).
 
 ### 2. Skill Mapping
 
@@ -531,9 +535,8 @@ Copies Ninja SKILL.md files to detected agents, replacing `{{JUMP_SKILLS_DIR}}` 
    ./sync-repos.sh my-ninja
    ```
 
-   > If your Ninja's skills are **already installed** as agent skills, skip cloning: add a
-   > `no-sync` marker to the section (see
-   > [no-sync opt-out](repos.md#opt-out-de-clonagem-no-sync)). `sync-repos.sh` will skip it.
+   > Exclude only individual repositories from sync with a `no-sync-repos` block. Avoid a
+   > Ninja-wide skip because that can leave some routed skills unavailable.
 
 4. **Create the Ninja SKILL.md**:
    ```bash

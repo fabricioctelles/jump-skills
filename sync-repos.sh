@@ -53,40 +53,43 @@ parse_repos_for_ninja() {
     ' "$REPOS_FILE"
 }
 
+# Parse repository-level sync exclusions for a specific ninja.
+parse_no_sync_repos_for_ninja() {
+    local ninja="$1"
+    awk -v ninja="$ninja" '
+        $0 ~ "^## \\[" ninja "\\]" { in_section=1; next }
+        /^## \[/ && in_section { in_section=0 }
+        in_section && /^```no-sync-repos$/ { in_block=1; next }
+        in_section && in_block && /^```$/ { in_block=0; next }
+        in_section && in_block && /^https:\/\// { print }
+    ' "$REPOS_FILE"
+}
+
 # Get repo name from URL
 get_repo_name() {
     basename "$1"
 }
 
-# Ninjas that must NEVER be cloned, hardcoded outside repos.md.
-#
-# Why hardcoded: the `no-sync` marker in repos.md is a comment and is easy to
-# delete in an innocent edit (reordering sections, reformatting, a generator
-# rewriting the file). That would silently start cloning multi-hundred-MB
-# repos. This list cannot be removed by editing content, only by editing code.
-#
-# Keep in sync with the `no-sync` marker in repos.md.
-NEVER_CLONE_NINJAS=(
-    "video-ninja|hyperframes is 489 MB; its 42 skills ship installed as agent skills"
+# Repositories that must never be cloned, even if their URL is removed from
+# repos.md's no-sync-repos block. Keep this list limited to prohibitive sizes.
+NEVER_SYNC_REPOS=(
+    "https://github.com/heygen-com/hyperframes|489 MB; its skills are installed globally"
 )
 
-# Check if a ninja opts out of cloning
-ninja_opts_out() {
-    local ninja="$1"
-    local entry
+# Check whether one repository is excluded from sync.
+repo_opts_out() {
+    local ninja="$1" url="$2" entry
 
-    # 1. Hardcoded, unforgeable by content edits
-    for entry in "${NEVER_CLONE_NINJAS[@]}"; do
-        [[ "${entry%%|*}" == "$ninja" ]] && return 0
+    # Hardcoded guard for repositories whose size makes cloning impractical.
+    for entry in "${NEVER_SYNC_REPOS[@]}"; do
+        [[ "${entry%%|*}" == "$url" ]] && return 0
     done
 
-    # 2. Marker in repos.md — secondary, so a NEW ninja can opt out without code
-    awk -v ninja="$ninja" '
-        $0 ~ "^## \\[" ninja "\\]" { in_section=1; next }
-        /^## \[/ && in_section { in_section=0 }
-        in_section && /no-sync/ { found=1 }
-        END { exit !found }
-    ' "$REPOS_FILE"
+    while IFS= read -r excluded; do
+        [[ "$excluded" == "$url" ]] && return 0
+    done < <(parse_no_sync_repos_for_ninja "$ninja")
+
+    return 1
 }
 
 # Clone a single repo (removes .git to avoid IDE confusion)
@@ -183,11 +186,6 @@ sync_ninja() {
     
     echo -e "\n${CYAN}[$ninja]${NC}"
     
-    if ninja_opts_out "$ninja"; then
-        echo -e "  ${YELLOW}⏭  Skipped (no-sync: skills already installed globally)${NC}"
-        return 0
-    fi
-    
     local repos=$(parse_repos_for_ninja "$ninja")
     if [[ -z "$repos" ]]; then
         echo -e "  ${YELLOW}No repos found for $ninja${NC}"
@@ -197,6 +195,11 @@ sync_ninja() {
         while IFS= read -r url; do
             [[ -z "$url" ]] && continue
             local name=$(get_repo_name "$url")
+
+            if repo_opts_out "$ninja" "$url"; then
+                echo -e "  ${YELLOW}⏭  Skipped $name (repository excluded from sync)${NC}"
+                continue
+            fi
             
             if [[ -d "$ninja_repos_dir/$name" ]]; then
                 if reclone_repo "$url" "$ninja"; then
@@ -231,14 +234,13 @@ show_status() {
         echo -e "${CYAN}[$ninja]${NC}"
         local ninja_repos_dir="$REPOS_DIR/$ninja"
         
-        if ninja_opts_out "$ninja"; then
-            echo -e "  ${YELLOW}⏭  no-sync (skills installed globally)${NC}"
-            echo ""
-            continue
-        fi
-        
         for url in $(parse_repos_for_ninja "$ninja"); do
             local name=$(get_repo_name "$url")
+
+            if repo_opts_out "$ninja" "$url"; then
+                echo -e "  ${YELLOW}⏭${NC} $name (excluded from sync)"
+                continue
+            fi
             
             if [[ -d "$ninja_repos_dir/$name" ]]; then
                 echo -e "  ${GREEN}✓${NC} $name"

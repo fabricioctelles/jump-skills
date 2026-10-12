@@ -1,9 +1,10 @@
 # Anatomy as an optional visual source
 
-**Status:** evaluated; not installed in the environment.
+**Status:** integrated source repository; synchronized locally by `./sync-repos.sh video-ninja`.
 
-**Decision:** include it in Video Ninja routing as an optional specialist for isometric figures in
-technical explainers. Do not count it as an installed skill, engine, or synced repository.
+**Decision:** use it as a specialist for isometric figures in technical explainers. It is a synced
+repository skill, not a video renderer or a globally installed agent skill. The router loads its
+instructions from `{{JUMP_SKILLS_DIR}}/repos/video-ninja/anatomy/SKILL.md` when that file exists.
 
 ## What it offers
 
@@ -32,20 +33,22 @@ inside a HyperFrames composition.
   tend to be a poor fit.
 - Geometry audits and Chrome captures help review fit, lines, and states.
 - The 3D mode is in beta; WebGL depends on browser support. SVG remains the most readable baseline.
-- The project is written for Claude Code, and its documented installation places the skill at
-  `~/.claude/skills/anatomy`. **It is not installed** or verified as available in Codex/homelab;
-  the router must check that the skill is present before invoking it.
+- Upstream documents installation through the skills CLI into agent-specific directories. Jump
+  Skills instead syncs the repository under its own `repos/video-ninja/anatomy/` path; this makes
+  the skill instructions available to any installed Ninja without requiring a global `/anatomy`
+  command. The router must check that the local `SKILL.md` exists before using it.
 
-### Suggested workflow when installed
+### Suggested workflow when synced
 
-1. Define the concept, numbers, and mechanism that must be accurate.
-2. Ask Anatomy to build the figure and specify standalone HTML or SVG based on the destination.
+1. Read `{{JUMP_SKILLS_DIR}}/repos/video-ninja/anatomy/SKILL.md` and define the concept, numbers,
+   and mechanism that must be accurate.
+2. Follow Anatomy to build the figure and specify standalone HTML or SVG based on the destination.
 3. Run the audits and captures required by the skill, then review the visual result.
 4. Bring the asset into `/hyperframes`; use `/motion-doctrine` for motion and continuity.
 5. Render and review it through the standard video workflow.
 
-If Anatomy is not installed, compose the scene with available HyperFrames tools or choose another
-representation. Do not describe the skill as an available capability.
+If the local source path is absent, compose the scene with available HyperFrames tools or choose
+another representation. Do not describe Anatomy as available in that environment.
 
 ## Evaluation sources
 
