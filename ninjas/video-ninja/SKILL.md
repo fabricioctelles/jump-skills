@@ -18,7 +18,8 @@ description: >-
   kinetic typography, lower third, kinetic title, storyboard, slideshow, deck, pitch deck,
   changelog video, release video, lyric video, beat sync, render, mp4, composition, HyperFrames,
   Remotion, GSAP, LUT, grade, color grade, BGM, SFX, sound design, voiceover, TTS, thumbnail,
-  screen recording, tutorial video, SaaS video, founder video, Lottie, dotLottie, Rive, title card.
+  screen recording, tutorial video, SaaS video, founder video, YouTube, youtube video,
+  cold open, end card, Lottie, dotLottie, Rive, title card.
 ---
 
 # Video Ninja
@@ -55,7 +56,8 @@ still lacks.
 > that routing; it tells you *which layer to use* and *when HyperFrames alone is not enough*.
 
 For video creation, editing, animation, or rendering, start with `/hyperframes`. Come back here for
-the exceptions: Remotion, screen capture, craft doctrine, and pipeline methods.
+the exceptions: Remotion, screen capture, craft doctrine, pipeline methods, and the YouTube Video
+steer in [references/youtube-video.md](references/youtube-video.md).
 
 ---
 
@@ -112,8 +114,10 @@ The following tools are documented in the references folder for on-demand use:
 | Rive | [references/rive.md](references/rive.md) | Interactive animations with state machines; alternative to Lottie when project has `.riv` assets |
 | Howler.js | [references/howler.md](references/howler.md) | Web audio control: sprites, fades, spatial audio; complements `/hyperframes-audio` |
 | Satori | [references/satori.md](references/satori.md) | JSX → SVG for title cards, thumbnails, OG images; batch generation of text graphics |
+| YouTube Video | [references/youtube-video.md](references/youtube-video.md) | Raw talking-head edited into a polished YouTube video with explanatory motion graphics |
 
 These tools are not installed skills but are documented for when their specific capabilities are needed.
+The YouTube Video row is a pipeline steer, not a library.
 
 ## Engine map
 
@@ -170,6 +174,7 @@ only needs to identify the **layer** to add:
 | Kinetic type showreel / portfolio | **`/kinetic-reel`** | See §Art styles |
 | Technical explainer with an isometric mechanism or object | **Anatomy (when synced)** | Read its local `SKILL.md`, build and inspect SVG/HTML; bring the asset into `/hyperframes` for composition and rendering. See [references/anatomy.md](references/anatomy.md) |
 | Talking-head with word timing or diarization | `/embedded-captions` + **optional WhisperX** (if installed) | Align words or identify speakers, then check against the audio. The “tape” is still needed for cuts that depend on restarts or syllable onsets. See [references/whisperx.md](references/whisperx.md) |
+| Raw talking-head → polished YouTube video with explanatory motion graphics | **YouTube Video steer** (Remotion) | Do not start in HyperFrames. Read [references/youtube-video.md](references/youtube-video.md). Keep the speech language. Do not publish without approval. |
 | Project supplies a Lottie `.json` animation | `/hyperframes` + **Lottie Web on demand** | Disable autoplay and seek explicitly by frame or time for deterministic capture. See [references/lottie.md](references/lottie.md) |
 | High-rigor math explainer | **ManimCE (optional, if installed and justified)** | Specialized math renderer; inspect the final composition. HyperFrames remains the default for other videos |
 | Code-generated motion, loops, or frame animation | **`/hyperframes`** | + `/motion-doctrine`, see §Motion Lab |
@@ -508,6 +513,7 @@ HyperFrames is the default. Use Remotion in three cases:
 | Explicitly porting a Remotion source project to HyperFrames | `/remotion-to-hyperframes` (one-way, Remotion → HF) |
 | Existing Remotion project that should **stay** in Remotion | `/remotion-best-practices` + `/remotion-markup` + `/remotion-render` |
 | **Screen capture → product film** | `/product-film` (AVAssembly; no FFmpeg or editor) |
+| Raw talking-head → polished YouTube video with explanatory graphics | [YouTube Video steer](references/youtube-video.md) + `/remotion-best-practices` + `/remotion-render`; `ffmpeg-skill` for probe, encode, and loudness |
 
 `/product-film` is self-contained. Each frame is a pure function of time, with no CSS transitions or
 `Date.now()`. Non-negotiable rule: **the product's design wins**—use its actual tokens, components,

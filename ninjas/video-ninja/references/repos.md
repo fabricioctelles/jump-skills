@@ -71,6 +71,10 @@ of 47, and do not belong in the `repos` block used by `sync-repos.sh`.
 
 Operational details: [WhisperX](whisperx.md) and [Lottie](lottie.md).
 
+The [YouTube Video steer](youtube-video.md) is a pipeline reference, not a repository. Use it when a
+raw talking-head becomes a polished YouTube video in Remotion. It is not synced and it is not one of
+the installed skills.
+
 ---
 
 ## Separately installed skill, outside the repo sync list
