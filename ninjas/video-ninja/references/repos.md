@@ -1,14 +1,17 @@
 # Video Ninja repositories
 
-Each section describes a source repository for this Ninja's skills. All seven are **installed as
-global skills**, so this Ninja does **not** need `sync-repos.sh` (see the note at the end).
+Each section describes a source repository for this Ninja's skills. The source repositories are
+synced under `repos/video-ninja/` except HyperFrames, whose installed skills are used globally
+because its repository is too large to clone. Anatomy is synced locally so the Ninja can load its
+skill instructions when needed.
 
 ---
 
 ## [video-ninja]
 
-Seven video repositories that complement one another: a rendering engine, a processing engine, a
-quality doctrine, an alternative framework, and three niche toolkits.
+Ten video repositories that complement one another: a rendering engine, a processing engine, a
+quality doctrine, an alternative framework, three niche toolkits, a technical illustration skill,
+an animation library skill set, and a modern Lottie player.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -18,7 +21,13 @@ https://github.com/remotion-dev/skills
 https://github.com/Rieranthony/product-film-skill
 https://github.com/tugrawork-creator/saas-motion-kit
 https://github.com/tuzhechen2005/opus-video-skills
+https://github.com/wheresryan22/anatomy
+https://github.com/greensock/gsap-skills
+https://github.com/LottieFiles/dotlottie-web
 ```
+
+`hyperframes` is excluded from sync because its clone is about 489 MB and its skills are already
+installed globally. See the per-repository `no-sync-repos` block in the root `repos.md`.
 
 | Repository | Organization | Skills | License | Role |
 |---|---|---:|---|---|
@@ -29,6 +38,9 @@ https://github.com/tuzhechen2005/opus-video-skills
 | product-film-skill | Rieranthony | 1 | MIT | Screen capture → product film (AVFoundation) |
 | saas-motion-kit | tugrawork-creator | 1 | — | SaaS promos: tone matrix, 24 transitions, 100 themes |
 | opus-video-skills | tuzhechen2005 | 2 | MIT | Procedural art styles: animated watercolor, kinetic typography |
+| anatomy | wheresryan22 | 1 | MIT | Isometric SVG/HTML figures for technical explainers; synced locally |
+| gsap-skills | greensock | 8 | MIT | Official GSAP skills: timelines, ScrollTrigger, plugins, React cleanup, performance |
+| dotlottie-web | LottieFiles | 1 | MIT | Modern Lottie player: Rust+WASM, .lottie format, state machines, themes, Web Workers |
 
 ---
 
@@ -47,10 +59,10 @@ Remotion remains installed as an alternative framework, but its license is sourc
 free license covers individuals and organizations of up to three people; larger teams should verify
 the Company License before production.
 
-## Evaluated supporting tools that are not installed
+## Evaluated supporting tools that are not integrated
 
-These sources extend specific tasks. They are not installed skills, are not included in the count of
-46, and do not belong in the `repos` block used by `sync-repos.sh`.
+These sources extend specific tasks. They are not integrated skills, are not included in the count
+of 47, and do not belong in the `repos` block used by `sync-repos.sh`.
 
 | Source | Potential use | Limit / routing |
 |---|---|---|
@@ -61,12 +73,11 @@ Operational details: [WhisperX](whisperx.md) and [Lottie](lottie.md).
 
 ---
 
-## Separately installed skill, outside the sync list
+## Separately installed skill, outside the repo sync list
 
 [`fframes-video`](https://github.com/dmtrKovalenko/fframes/tree/main/skills/fframes-video) was
 installed through the well-known source [`fframes.studio`](https://fframes.studio). It is not part
-of the `repos` block because `video-ninja` is marked `no-sync`, and the full Rust repository is not
-needed to use the skill.
+of the `repos` block because the full Rust repository is not needed to use the skill.
 
 | Source | Skill | License | Role |
 |---|---|---|---|
@@ -327,12 +338,12 @@ ln -s ~/opus-video-skills/skills/kinetic-reel ~/.claude/skills/kinetic-reel
 
 ## Installation note
 
-Unlike the other ninjas, **this one does not use `sync-repos.sh`**. The seven repositories are
-already consumed as global skills in `~/.agents/skills/`, mirrored in `~/.claude/skills/`, and
-symlinked into `~/.codex`, `~/.gemini`, and `~/.cursor`.
+The seven original source repositories are also consumed as global skills in `~/.agents/skills/`,
+mirrored in `~/.claude/skills/`, and symlinked into `~/.codex`, `~/.gemini`, and `~/.cursor`.
 
-Practical reason: `hyperframes` is **489 MB**. Cloning all seven into `repos/video-ninja/` would add
-about 510 MB to the repository without a functional benefit—the skills are already available.
+`sync-repos.sh video-ninja` now syncs eligible repositories locally. It skips only `hyperframes`
+(about **489 MB**) through the per-repository exclusion. Anatomy is synced because the router loads
+its `SKILL.md` from that checkout.
 
 **Install ffmpeg-skill** if it is not already installed:
 
@@ -343,3 +354,151 @@ npx ffmpeg-skill doctor       # check FFmpeg components
 
 Full provenance (source, hash, and timestamp for each skill):
 `~/.agents/.skill-lock.json` — filter by `source` to isolate this Ninja.
+
+---
+
+## Details: `greensock/gsap-skills` — official GSAP skills for agents
+
+> ⭐ — eight skills in `skills/`. MIT license.
+
+Official AI skills from GreenSock that teach agents correct GSAP usage: core API, timelines,
+ScrollTrigger, plugins, React/Vue/Svelte, vanilla JS, and performance best practices.
+
+GSAP is 100% free — including every plugin. Following Webflow's acquisition of GSAP, all formerly
+Club GSAP plugins (SplitText, MorphSVG, Flip, Draggable, etc.) are free for everyone, including
+commercial use. No `.npmrc` or private registry required.
+
+| Skill | Description |
+|---|---|
+| `gsap-core` | Core API: `gsap.to()` / `from()` / `fromTo()`, easing, duration, stagger, defaults |
+| `gsap-timeline` | Timelines: sequencing, position parameter, labels, nesting, playback |
+| `gsap-scrolltrigger` | ScrollTrigger: scroll-linked animations, pinning, scrub, triggers, refresh & cleanup |
+| `gsap-plugins` | Plugins: ScrollToPlugin, ScrollSmoother, Flip, Draggable, Inertia, Observer, SplitText, ScrambleText, SVG & physics plugins, CustomEase, EasePack, GSDevTools |
+| `gsap-utils` | `gsap.utils`: clamp, mapRange, normalize, interpolate, random, snap, toArray, selector, wrap, pipe |
+| `gsap-react` | React: `useGSAP` hook, refs, `gsap.context()`, cleanup, SSR |
+| `gsap-performance` | Performance: transforms over layout props, will-change, batching, ScrollTrigger tips |
+| `gsap-frameworks` | Vue, Svelte: lifecycle, scoping selectors, cleanup on unmount |
+
+**Why add it:** HyperFrames uses GSAP as its primary animation engine, but the agent had no
+structured guidance for correct patterns. These skills teach cleanup in React (critical for avoiding
+memory leaks), proper ScrollTrigger refresh after layout changes, and plugin usage.
+
+**Installation:**
+
+```bash
+npx skills add https://github.com/greensock/gsap-skills
+```
+
+Or for specific agents:
+
+```bash
+npx skills add https://github.com/greensock/gsap-skills --agent claude
+npx skills add https://github.com/greensock/gsap-skills --agent cursor
+```
+
+**Canonical GSAP pattern:**
+
+```javascript
+// 1. Imports and plugin registration (once per app)
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
+// 2. Single tween — prefer transform aliases and autoAlpha
+gsap.to(".box", { x: 100, autoAlpha: 1, duration: 0.6, ease: "power2.inOut" });
+
+// 3. Timeline for sequencing (prefer over chained delay)
+const tl = gsap.timeline({ defaults: { duration: 0.5, ease: "power2" } });
+tl.to(".a", { x: 100 })
+  .to(".b", { y: 50 }, "+=0.2")
+  .to(".c", { opacity: 0 }, "-=0.1");
+
+// 4. React: useGSAP + scope + cleanup
+// useGSAP(() => { gsap.to(ref.current, { x: 100 }); }, { scope: containerRef });
+```
+
+---
+
+## Details: `LottieFiles/dotlottie-web` — modern Lottie player
+
+> ⭐ — one skill with `SKILL.md`. MIT license.
+
+The official LottieFiles player for Lottie (`.json`) and dotLottie (`.lottie`) animations on the
+web — a Rust + WASM core powered by ThorVG, with Software, WebGL2, and WebGPU rendering backends
+and full dotLottie v2 support (theming, state machines, and audio).
+
+**Replaces/complements** the `airbnb/lottie-web` reference. The dotLottie format offers:
+
+- **Smaller files** — compressed `.lottie` bundles
+- **Multi-animation** — multiple animations in one file
+- **Embedded assets** — images and fonts bundled
+- **State machines** — interactive animations without code
+- **Theming with slots** — runtime color/value customization
+
+| Package | When to use |
+|---|---|
+| `@lottiefiles/dotlottie-web` | Direct canvas control, framework-agnostic, maximum performance |
+| `@lottiefiles/dotlottie-react` | React applications, declarative component API |
+
+**Web Workers (recommended):**
+
+```javascript
+import { DotLottieWorker } from '@lottiefiles/dotlottie-web';
+
+const dotLottie = new DotLottieWorker({
+  canvas: document.getElementById('canvas'),
+  src: 'animation.lottie',
+  autoplay: true,
+  loop: true,
+});
+```
+
+**React:**
+
+```jsx
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+function Animation() {
+  return <DotLottieReact src="animation.lottie" autoplay loop />;
+}
+```
+
+**State machines (interactivity):**
+
+```javascript
+dotLottie.stateMachineFireEvent('click');
+dotLottie.stateMachineFireEvent('hover');
+dotLottie.stateMachineSetBooleanInput('isActive', true);
+```
+
+**When to use instead of airbnb/lottie-web:**
+
+| Scenario | Use |
+|---|---|
+| Project already uses `airbnb/lottie-web` | Keep it, migrate gradually |
+| New project with Lottie animations | **dotlottie-web** |
+| Need state machines or theming | **dotlottie-web** |
+| Need smallest possible bundle | **dotlottie-web** |
+| Need Web Workers for performance | **dotlottie-web** |
+
+**Installation:**
+
+```bash
+npm install @lottiefiles/dotlottie-web
+npm install @lottiefiles/dotlottie-react  # for React
+```
+
+**HyperFrames integration:** When a composition includes a `.lottie` or `.json` Lottie asset, set
+`autoplay: false` and seek explicitly by frame for deterministic capture:
+
+```javascript
+dotLottie.addEventListener('load', () => {
+  dotLottie.setFrame(targetFrame);
+  // Canvas now shows that exact frame
+});
+```
+
+**Resources:**
+- Documentation: https://developers.lottiefiles.com/docs/dotlottie-player
+- State Machine Guide: https://github.com/LottieFiles/dotlottie-web/wiki/dotLottie-State-Machine-Guide
+- dotLottie 2.0 Spec: https://dotlottie.io/spec/2.0/

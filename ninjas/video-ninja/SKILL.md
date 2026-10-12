@@ -1,9 +1,11 @@
 ---
 name: video-ninja
 description: >-
-  Master orchestrator for video production with agents. Routes to 46 installed video skills
-  across 7 upstream repositories, plus optional evaluated tools for speech timing, reusable motion
-  assets and mathematical explainers, and adds a proven video-pipeline methodology layer.
+  Master orchestrator for video production with agents. Routes to 55 globally installed video
+  skills across 10 upstream repositories and the Anatomy skill from a locally synced source,
+  plus optional evaluated tools for speech timing, reusable motion assets, interactive animations,
+  programmatic graphics, web audio control, and mathematical explainers, and adds a proven
+  video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
   or publishing a video, motion graphic, promo, launch film, product demo, talking-head package,
   changelog reel, explainer, lyric video, slideshow deck, or Remotion project.
@@ -16,14 +18,14 @@ description: >-
   kinetic typography, lower third, kinetic title, storyboard, slideshow, deck, pitch deck,
   changelog video, release video, lyric video, beat sync, render, mp4, composition, HyperFrames,
   Remotion, GSAP, LUT, grade, color grade, BGM, SFX, sound design, voiceover, TTS, thumbnail,
-  screen recording, tutorial video, SaaS video, founder video.
+  screen recording, tutorial video, SaaS video, founder video, Lottie, dotLottie, Rive, title card.
 ---
 
 # Video Ninja
 
-**Jump Skill** — Master orchestrator that routes video tasks to 46 installed skills from 7 upstream
-repositories and one separately installed well-known source, plus a methodology layer distilled from the
-My-Little-Studio pipeline.
+**Jump Skill** — Master orchestrator that routes video tasks to 55 globally installed skills from 10
+upstream repositories, Anatomy from a locally synced repository, and one separately installed
+well-known source, plus a methodology layer distilled from the My-Little-Studio pipeline.
 
 > This ninja routes any video task to the installed skills. It is the required entry point: read it
 > before choosing a video skill.
@@ -32,12 +34,14 @@ My-Little-Studio pipeline.
 
 ## Why this ninja exists
 
-The seven repositories below cover **rendering**, **media processing**, **craft**, **frameworks**,
-and **art styles**, but each is a silo. HyperFrames can render video, but it has no opinion on
-quality. motion-video-kit has a quality doctrine, but no renderer. Remotion is an alternative
-framework, not a plug-in for HyperFrames. opus-video-skills brings distinctive looks such as
-watercolor and kinetic typography, but not the other repositories' craft doctrine. ffmpeg-skill
-works on existing footage; it does not build compositions from scratch.
+The ten repositories below cover **rendering**, **media processing**, **craft**, **frameworks**,
+**animation libraries**, and **art styles**, but each is a silo. HyperFrames can render video, but
+it has no opinion on quality. motion-video-kit has a quality doctrine, but no renderer. Remotion is
+an alternative framework, not a plug-in for HyperFrames. opus-video-skills brings distinctive looks
+such as watercolor and kinetic typography, but not the other repositories' craft doctrine.
+ffmpeg-skill works on existing footage; it does not build compositions from scratch. gsap-skills
+teaches correct GSAP patterns but is not a video engine. dotlottie-web handles Lottie assets but
+does not compose them into video.
 
 This ninja is the layer that **chooses and connects** them, and keeps track of what the ecosystem
 still lacks.
@@ -55,7 +59,7 @@ the exceptions: Remotion, screen capture, craft doctrine, and pipeline methods.
 
 ---
 
-## The seven sources
+## The ten sources
 
 | Repository | Skills | Layer | Status |
 |---|---|---|---|
@@ -66,9 +70,12 @@ the exceptions: Remotion, screen capture, craft doctrine, and pipeline methods.
 | [`Rieranthony/product-film-skill`](https://github.com/Rieranthony/product-film-skill) | 1 | Screen capture | Installed, MIT |
 | [`tugrawork-creator/saas-motion-kit`](https://github.com/tugrawork-creator/saas-motion-kit) | 1 | Variety and anti-repetition | Installed |
 | [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills) | 2 | Procedural art styles | Installed, MIT |
+| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | 1 | Isometric technical figures for explainers | Synced locally, MIT |
+| [`greensock/gsap-skills`](https://github.com/greensock/gsap-skills) | 8 | Official GSAP skills: timelines, ScrollTrigger, plugins, React | Installed, MIT |
+| [`LottieFiles/dotlottie-web`](https://github.com/LottieFiles/dotlottie-web) | 1 | Modern Lottie player: Rust+WASM, state machines, themes | Installed, MIT |
 
-Full provenance is recorded in `~/.agents/.skill-lock.json`. See
-[references/repos.md](references/repos.md).
+Provenance for globally installed skills is recorded in `~/.agents/.skill-lock.json`. Anatomy is
+declared and synchronized through the root `repos.md`. See [references/repos.md](references/repos.md).
 
 ### Separately installed skill
 
@@ -80,18 +87,33 @@ Full provenance is recorded in `~/.agents/.skill-lock.json`. See
 
 | Source | Role | When to consider it | Status |
 |---|---|---|---|
-| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | Isometric machines in SVG/HTML, with optional WebGL, for explaining technical concepts | A technical explainer becomes clearer when it can show a physical mechanism | Evaluated; skill not installed. See [references/anatomy.md](references/anatomy.md) |
 | [`m-bain/whisperX`](https://github.com/m-bain/whisperX) | Local ASR with word-level timestamps and diarization | Talking-head, interview, or podcast work that needs word timing or speaker identification | Optional backend; not installed. See [references/whisperx.md](references/whisperx.md) |
 | [`airbnb/lottie-web`](https://github.com/airbnb/lottie-web) | Player for After Effects Lottie animations | Reuse a project-provided `.json` Lottie asset in a HyperFrames composition | On-demand dependency; not installed by the Ninja. See [references/lottie.md](references/lottie.md) |
 | [`ManimCommunity/manim`](https://github.com/ManimCommunity/manim) | Python engine for mathematical animation | Recurring math explainers that justify another renderer and adapter | Evaluated, not installed. The tweet links to `3b1b/manim` (ManimGL). See [references/repos.md](references/repos.md) |
+| [`rive-app/rive-wasm`](https://github.com/rive-app/rive-wasm) | Interactive animations with native state machines | Project has `.riv` assets from Rive Editor, or needs animations that react to app state | On-demand dependency. See [references/rive.md](references/rive.md) |
+| [`goldfire/howler.js`](https://github.com/goldfire/howler.js) | Web audio control: sprites, fades, spatial audio | Sound effects with precise timing, audio sprites, 3D positional audio | On-demand dependency. See [references/howler.md](references/howler.md) |
+| [`vercel/satori`](https://github.com/vercel/satori) | JSX → SVG for title cards and thumbnails | Batch-generate title cards, thumbnails, or text-heavy graphics from data | On-demand dependency. See [references/satori.md](references/satori.md) |
 
-Anatomy produces a **visual asset or scene**, not the finished video. If it is available in the
-environment, use it to build and inspect the figure, then bring the output into `/hyperframes` and
-follow the motion, composition, and rendering doctrine. Do not count Anatomy as an installed
-capability or a video engine.
+Anatomy produces a **visual asset or scene**, not the finished video. Its source is synchronized at
+`{{JUMP_SKILLS_DIR}}/repos/video-ninja/anatomy/`; read that repository's `SKILL.md` when routing to
+it. Build and inspect the figure, then bring the output into `/hyperframes` and follow the motion,
+composition, and rendering doctrine. If the path is missing, treat Anatomy as unavailable and use
+the fallback described in [references/anatomy.md](references/anatomy.md).
 
 Do not assume WhisperX or Manim is installed or available. Lottie is an asset format: load its player
 only when the project already includes that kind of animation.
+
+### Additional reference documentation
+
+The following tools are documented in the references folder for on-demand use:
+
+| Tool | Reference | Use case |
+|---|---|---|
+| Rive | [references/rive.md](references/rive.md) | Interactive animations with state machines; alternative to Lottie when project has `.riv` assets |
+| Howler.js | [references/howler.md](references/howler.md) | Web audio control: sprites, fades, spatial audio; complements `/hyperframes-audio` |
+| Satori | [references/satori.md](references/satori.md) | JSX → SVG for title cards, thumbnails, OG images; batch generation of text graphics |
+
+These tools are not installed skills but are documented for when their specific capabilities are needed.
 
 ## Engine map
 
@@ -146,7 +168,7 @@ only needs to identify the **layer** to add:
 | Anti-repetition SaaS promo | **`/saas-motion-video`** | See §Doctrine |
 | Watercolor cartoon / karaoke lyric video | **`/painted-animation`** | See §Art styles |
 | Kinetic type showreel / portfolio | **`/kinetic-reel`** | See §Art styles |
-| Technical explainer with an isometric mechanism or object | **Anatomy (optional, if installed)** | Build and inspect SVG/HTML; bring the asset into `/hyperframes` for composition and rendering. See [references/anatomy.md](references/anatomy.md) |
+| Technical explainer with an isometric mechanism or object | **Anatomy (when synced)** | Read its local `SKILL.md`, build and inspect SVG/HTML; bring the asset into `/hyperframes` for composition and rendering. See [references/anatomy.md](references/anatomy.md) |
 | Talking-head with word timing or diarization | `/embedded-captions` + **optional WhisperX** (if installed) | Align words or identify speakers, then check against the audio. The “tape” is still needed for cuts that depend on restarts or syllable onsets. See [references/whisperx.md](references/whisperx.md) |
 | Project supplies a Lottie `.json` animation | `/hyperframes` + **Lottie Web on demand** | Disable autoplay and seek explicitly by frame or time for deterministic capture. See [references/lottie.md](references/lottie.md) |
 | High-rigor math explainer | **ManimCE (optional, if installed and justified)** | Specialized math renderer; inspect the final composition. HyperFrames remains the default for other videos |
@@ -168,7 +190,7 @@ it declares itself the GATEWAY and supersedes generic guidance).
 
 ---
 
-## The eight layers
+## The ten layers
 
 | # | Layer | Skills | Responsibility |
 |---|---|---|---|
@@ -180,6 +202,8 @@ it declares itself the GATEWAY and supersedes generic guidance).
 | 6 | **Domains** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Motion, camera, design, sound, media, and ready-made blocks |
 | 7 | **Second framework** | `remotion-*` (12), `product-film` | When Remotion is the right choice |
 | 8 | **Art styles** | `painted-animation`, `kinetic-reel` | Distinct procedural looks such as watercolor and kinetic typography |
+| 9 | **Animation library** | `gsap-*` (8 skills) | Correct GSAP patterns: timelines, ScrollTrigger, plugins, React cleanup, performance |
+| 10 | **Motion assets** | `dotlottie-web` | Lottie/dotLottie player: state machines, themes, Web Workers, deterministic capture |
 
 ---
 
@@ -410,20 +434,21 @@ transitions connect the shots. The score is synthesized from the same timeline a
 **Overlap:** HyperFrames `/motion-graphics` also supports kinetic typography, but not these specific
 WebGL layers (particle terrain, liquid marble). Choose `/kinetic-reel` when you need those 3D effects.
 
-### Anatomy — isometric illustrations for technical explainers (optional)
+### Anatomy — isometric illustrations for technical explainers
 
-Anatomy is an evaluated external source, **not installed**. It turns a concept into an isometric
-object or machine, with parts, motion, and model-generated data. Use it when showing a physical
-mechanism makes the explanation clearer, such as a cache represented as a lock or a rate limiter as
-a reservoir.
+Anatomy is synchronized as a local source repository at
+`{{JUMP_SKILLS_DIR}}/repos/video-ninja/anatomy/`. It turns a concept into an isometric object or
+machine, with parts, motion, and model-generated data. Use it when showing a physical mechanism makes
+the explanation clearer, such as a cache represented as a lock or a rate limiter as a reservoir.
 
 It can produce standalone HTML, standalone SVG, or React/Next components; WebGL is optional.
 Geometry audits and Chrome captures help check fit, lines, and visual states. Anatomy is not a chart
 library, timeline, editor, or video engine. Its 3D mode is in beta, and detailed figures take time.
 
-**If the skill is installed:** Anatomy builds and checks the figure → `/hyperframes` integrates it
-and renders the video → `/motion-doctrine` governs motion and transitions. If it is not installed,
-use HyperFrames composition tools without implying Anatomy is available.
+**When the source path exists:** read `SKILL.md` from the synced repository and follow its build and
+verification workflow → `/hyperframes` integrates the asset and renders the video →
+`/motion-doctrine` governs motion and transitions. If the source path is missing, use HyperFrames
+composition tools without implying Anatomy is available.
 
 Details, usage criteria, limits, and the original X post: [references/anatomy.md](references/anatomy.md).
 
@@ -559,16 +584,17 @@ saves time and inherits known render correctness.
 | Update one skill | `npx hyperframes skills update <name>` | |
 | Check for stale skills | `npx hyperframes skills check` | Exits nonzero when stale |
 | Update other repositories | `npx skills update -g` | Updates from the lockfile |
-| Sync source repositories (no-op here) | `./sync-repos.sh` | This Ninja is `no-sync`; see below |
+| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy and the other eligible sources; skips HyperFrames because of its size |
 
-### This Ninja is `no-sync`
+### Repository-level sync exclusions
 
-The 46 skills are already available as installed agent skills. Cloning the seven source repositories
-would add ~510 MB (489 MB for `hyperframes` alone) without a functional benefit. That is why
-`video-ninja` is in the `NEVER_CLONE_NINJAS` list in `sync-repos.sh` and marked `no-sync` in
-`repos.md`. Running `./sync-repos.sh` for all repositories or for `video-ninja` **skips it**.
+`sync-repos.sh video-ninja` syncs the sources listed for this Ninja except repositories in its
+`no-sync-repos` block. HyperFrames is excluded because its clone is about 489 MB and its skills are
+already installed globally; Anatomy is cloned because the Ninja needs its local `SKILL.md` to route
+technical isometric explainers. The exclusion is per repository, so it does not block other missing
+sources.
 
-This is covered by `./tests/test-no-sync.sh`, which runs in CI through `no-sync-guard.yml`.
+The sync policy is documented in the root [repos.md](../../repos.md).
 
 > ⚠️ **The six internal doctrine skills** (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
 > `oversized-cursor`, `captions-overlay`, `changelog-video`) have `metadata: internal: true` upstream.
