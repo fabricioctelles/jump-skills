@@ -7,6 +7,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 VIDEO_NINJA="video-ninja"
 HYPERFRAMES="https://github.com/heygen-com/hyperframes"
+THREEJS="https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills"
 ANATOMY="https://github.com/wheresryan22/anatomy"
 TMP_DIR="$(mktemp -d)"
 FAILED=0
@@ -38,7 +39,11 @@ run_sync() {
 
 count_attempts() {
     local dir="$1" url="$2"
-    grep -cF "$url" "$dir/calls.log" 2>/dev/null || echo 0
+    # grep -c alone is not enough: it exits 1 on zero matches, which used to
+    # append a second "0" to the capture. wc -l always prints a single number.
+    local matches
+    matches=$(grep -F "$url" "$dir/calls.log" 2>/dev/null | wc -l)
+    echo "$matches"
 }
 
 echo "test-repo-sync-policy: exclusions apply to repositories, not whole Ninjas"
@@ -53,6 +58,12 @@ if [ "$(count_attempts "$SB" "$HYPERFRAMES")" -eq 0 ]; then
     pass "declared exclusion: HyperFrames is not cloned"
 else
     fail "declared exclusion: HyperFrames clone was attempted"
+fi
+
+if [ "$(count_attempts "$SB" "$THREEJS")" -eq 0 ]; then
+    pass "declared exclusion: Three.js pack is not cloned"
+else
+    fail "declared exclusion: Three.js pack clone was attempted"
 fi
 
 if [ "$(count_attempts "$SB" "$ANATOMY")" -eq 1 ]; then
@@ -75,6 +86,12 @@ if [ "$(count_attempts "$SB" "$HYPERFRAMES")" -eq 0 ]; then
     pass "hardcoded guard: HyperFrames remains excluded without markdown block"
 else
     fail "hardcoded guard failed: HyperFrames clone was attempted"
+fi
+
+if [ "$(count_attempts "$SB" "$THREEJS")" -eq 0 ]; then
+    pass "hardcoded guard: Three.js pack remains excluded without markdown block"
+else
+    fail "hardcoded guard failed: Three.js pack clone was attempted"
 fi
 
 if [ "$(count_attempts "$SB" "$ANATOMY")" -eq 1 ]; then
