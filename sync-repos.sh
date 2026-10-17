@@ -74,6 +74,7 @@ get_repo_name() {
 # repos.md's no-sync-repos block. Keep this list limited to prohibitive sizes.
 NEVER_SYNC_REPOS=(
     "https://github.com/heygen-com/hyperframes|489 MB; its skills are installed globally"
+    "https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills|261 MB; its skills are installed globally by its own installer"
 )
 
 # Check whether one repository is excluded from sync.

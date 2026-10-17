@@ -214,9 +214,10 @@ https://github.com/yylo-dev/yylo-skills
 
 ## [video-ninja]
 
-Oito repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
-são clonadas para que suas skills estejam acessíveis ao Ninja; HyperFrames fica excluído porque
-seu clone tem cerca de 489 MB e suas skills já estão instaladas globalmente.
+Onze repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
+são clonadas para que suas skills estejam acessíveis ao Ninja; HyperFrames (~489 MB) e o pack
+Three.js (~261 MB) ficam excluídos porque seus clones são pesados e suas skills já estão
+instaladas globalmente.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -227,10 +228,14 @@ https://github.com/Rieranthony/product-film-skill
 https://github.com/tugrawork-creator/saas-motion-kit
 https://github.com/tuzhechen2005/opus-video-skills
 https://github.com/wheresryan22/anatomy
+https://github.com/greensock/gsap-skills
+https://github.com/LottieFiles/dotlottie-web
+https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 ```
 
 ```no-sync-repos
 https://github.com/heygen-com/hyperframes
+https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 ```
 
 | Repositório | Org | Skills | Descrição |
@@ -243,6 +248,9 @@ https://github.com/heygen-com/hyperframes
 | saas-motion-kit | tugrawork-creator | 1 | Promo SaaS: tone matrix, variety audit, 24 transições, 100 temas de storyboard |
 | opus-video-skills | tuzhechen2005 | 2 | Estilos procedurais: aquarela animada e kinetic typography |
 | anatomy | wheresryan22 | 1 | Skill de ilustração isométrica técnica em SVG/HTML, com WebGL opcional (MIT) |
+| gsap-skills | greensock | 8 | Skills oficiais GSAP: timelines, ScrollTrigger, plugins, React, performance (MIT) |
+| dotlottie-web | LottieFiles | 1 | Player oficial Lottie/dotLottie: Rust+WASM, state machines, temas, Web Workers (MIT) |
+| Threejs-Awesome-Graphics-Agent-Skills | scottstts | 24 | Pack Three.js de graphics avançados: materiais, oceano, nuvens, sombras, VFX, validação (MIT; instalado pelo installer próprio, fora do sync) |
 
 ### Outras fontes avaliadas, ainda não integradas
 
@@ -252,19 +260,26 @@ assets `.json` já fornecidos e [Manim Community](https://github.com/ManimCommun
 explainers matemáticos recorrentes. Nenhuma está instalada; condições e roteamento em
 `ninjas/video-ninja/references/repos.md`.
 
-**Skills incluídas:** 47 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
+Cinco ferramentas de apoio entram como **steering** (documento de rota, sem clone e sem skill):
+Excalidraw (diagramas à mão), Penpot (design source aberto + MCP oficial), Fontsource (fontes
+self-hosted), Lucide (ícones de UI) e SVGO (otimização de SVG) — em
+`ninjas/video-ninja/references/`.
+
+**Skills incluídas:** 79 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
 `-keyframes`, `-creative`, `-audio`, `-cli`, `-registry`, `-studio`, `media-use`,
 `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`,
 `changelog-video`, `general-video`, `product-launch-video`, `talking-head-recut`,
 `embedded-captions`, `faceless-explainer`, `pr-to-video`, `music-to-video`, `motion-graphics`,
 `slideshow`, `figma`, `remotion-to-hyperframes`, `business-motion-film`, `saas-motion-video`,
 `product-film`, `remotion-*` (12), `ffmpeg-skill`, `painted-animation`, `kinetic-reel`,
+`gsap-*` (8), `dotlottie-web`, `threejs-*` (24; pack Three.js fora do sync),
 `fframes-video` (fonte well-known; fora do sync), `anatomy` (checkout local; explainers técnicos).
 
-> ⚠️ As 46 skills já existentes continuam disponíveis globalmente em `~/.agents/skills/`
+> ⚠️ As skills continuam disponíveis globalmente em `~/.agents/skills/`
 > (espelhadas em `~/.claude/` e por symlink em `~/.codex`, `~/.gemini`, `~/.cursor`). Anatomy é
 > fornecida pelo checkout local `repos/video-ninja/anatomy/`; a sincronização ignora apenas
-> HyperFrames, que tem cerca de 489 MB. `fframes-video` continua vindo de uma fonte well-known.
+> HyperFrames (~489 MB) e o pack Three.js (~261 MB), que já estão instalados globalmente.
+> `fframes-video` continua vindo de uma fonte well-known.
 >
 > As 6 skills de doutrina interna (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
 > `oversized-cursor`, `captions-overlay`, `changelog-video`) são `metadata: internal: true` no
@@ -315,11 +330,12 @@ https://github.com/org/repo-grande
 
 `sync-repos.sh` pula apenas as URLs excluídas e clona as demais. Repositórios de tamanho
 proibitivo também ficam protegidos por uma lista no script; atualmente, isso se aplica a
-`heygen-com/hyperframes` (cerca de 489 MB), cujas skills já estão instaladas globalmente.
+`heygen-com/hyperframes` (cerca de 489 MB) e ao pack `scottstts/Threejs-Awesome-Graphics-Agent-Skills`
+(cerca de 261 MB), cujas skills já estão instaladas globalmente.
 
 O Video Ninja usa essa regra por repositório: Anatomy é sincronizado localmente para que o router
-possa carregar sua `SKILL.md`; HyperFrames é excluído do clone, mas continua disponível como skill
-global.
+possa carregar sua `SKILL.md`; HyperFrames e o pack Three.js são excluídos do clone, mas continuam
+disponíveis como skills globais.
 
 #### Proteção para repositórios grandes
 
@@ -329,5 +345,5 @@ O bloco `no-sync-repos` é configuração declarativa. Repositórios muito grand
 1. **`NEVER_SYNC_REPOS`** em `sync-repos.sh` impede clones proibitivos mesmo se o bloco for alterado.
 2. **`no-sync-repos`** em `repos.md` registra a intenção e permite excluir fontes sem mudar o script.
 
-O workflow de política de sincronização cobre o bloqueio do HyperFrames e confirma que Anatomy
-continua sincronizável.
+O workflow de política de sincronização cobre o bloqueio do HyperFrames e do pack Three.js e
+confirma que Anatomy continua sincronizável.

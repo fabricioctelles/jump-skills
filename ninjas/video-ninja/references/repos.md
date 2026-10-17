@@ -9,9 +9,9 @@ skill instructions when needed.
 
 ## [video-ninja]
 
-Ten video repositories that complement one another: a rendering engine, a processing engine, a
+Eleven video repositories that complement one another: a rendering engine, a processing engine, a
 quality doctrine, an alternative framework, three niche toolkits, a technical illustration skill,
-an animation library skill set, and a modern Lottie player.
+an animation library skill set, a modern Lottie player, and an advanced 3D graphics pack.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -24,10 +24,12 @@ https://github.com/tuzhechen2005/opus-video-skills
 https://github.com/wheresryan22/anatomy
 https://github.com/greensock/gsap-skills
 https://github.com/LottieFiles/dotlottie-web
+https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 ```
 
-`hyperframes` is excluded from sync because its clone is about 489 MB and its skills are already
-installed globally. See the per-repository `no-sync-repos` block in the root `repos.md`.
+`hyperframes` and the Three.js pack are excluded from sync: their clones are about 489 MB and
+261 MB respectively, and their skills are already installed globally (the Three.js skills through
+the pack's own installer). See the per-repository `no-sync-repos` block in the root `repos.md`.
 
 | Repository | Organization | Skills | License | Role |
 |---|---|---:|---|---|
@@ -41,12 +43,13 @@ installed globally. See the per-repository `no-sync-repos` block in the root `re
 | anatomy | wheresryan22 | 1 | MIT | Isometric SVG/HTML figures for technical explainers; synced locally |
 | gsap-skills | greensock | 8 | MIT | Official GSAP skills: timelines, ScrollTrigger, plugins, React cleanup, performance |
 | dotlottie-web | LottieFiles | 1 | MIT | Modern Lottie player: Rust+WASM, .lottie format, state machines, themes, Web Workers |
+| Threejs-Awesome-Graphics-Agent-Skills | scottstts | 24 | MIT | Advanced Three.js graphics subsystems: procedural geometry/fields/materials, ocean, clouds, planets, shadows, GTAO, bloom, grading, VFX, validation. Installed by its own installer; excluded from sync |
 
 ---
 
 ## Evaluated engines and frameworks without a skill
 
-Motion Canvas, Revideo, MoviePy, and ManimCE are not part of the seven installed sources. Keeping
+Motion Canvas, Revideo, MoviePy, and ManimCE are not part of the eleven installed sources. Keeping
 them here avoids implying that routing is already available.
 
 | Engine/framework | License | Strength | Integration still needed |
@@ -62,7 +65,7 @@ the Company License before production.
 ## Evaluated supporting tools that are not integrated
 
 These sources extend specific tasks. They are not integrated skills, are not included in the count
-of 47, and do not belong in the `repos` block used by `sync-repos.sh`.
+of 79, and do not belong in the `repos` block used by `sync-repos.sh`.
 
 | Source | Potential use | Limit / routing |
 |---|---|---|
@@ -338,12 +341,21 @@ ln -s ~/opus-video-skills/skills/painted-animation ~/.claude/skills/painted-anim
 ln -s ~/opus-video-skills/skills/kinetic-reel ~/.claude/skills/kinetic-reel
 ```
 
+> ⚠️ **Upstream YAML fix (2026-10-17):** the upstream `kinetic-reel/SKILL.md` has invalid YAML —
+> its `description:` value contains an unquoted `: ` sequence and the parse fails with
+> *“Nested mappings are not allowed in compact mappings.”* The installed copy quotes the value;
+> the lockfile entry was updated by hand to keep GitHub provenance. `npx skills update -g` may
+> fail on `kinetic-reel` until the upstream file is fixed — reinstall from a corrected local copy
+> instead.
+
 ---
 
 ## Installation note
 
-The seven original source repositories are also consumed as global skills in `~/.agents/skills/`,
-mirrored in `~/.claude/skills/`, and symlinked into `~/.codex`, `~/.gemini`, and `~/.cursor`.
+The source repositories are also consumed as global skills in `~/.agents/skills/`, with per-skill
+symlinks for agents that do not read that directory directly (Claude Code, Kiro, Qwen, and
+Windsurf), so the same skill set is visible to every supported agent. The Three.js pack is the
+exception: its own installer places the 24 `threejs-*` skills directly in `~/.agents/skills/`.
 
 `sync-repos.sh video-ninja` now syncs eligible repositories locally. It skips only `hyperframes`
 (about **489 MB**) through the per-repository exclusion. Anatomy is synced because the router loads
@@ -354,6 +366,13 @@ its `SKILL.md` from that checkout.
 ```bash
 npx ffmpeg-skill --all        # install for Claude, Cursor, and Codex
 npx ffmpeg-skill doctor       # check FFmpeg components
+```
+
+The generic CLI also works and preserves the full skill, including the 46 scripts, `mcp/server.py`,
+references, and the `doctor` command:
+
+```bash
+npx skills add https://github.com/kajisho5/ffmpeg-skill -g -y -s ffmpeg-skill
 ```
 
 Full provenance (source, hash, and timestamp for each skill):
@@ -506,3 +525,60 @@ dotLottie.addEventListener('load', () => {
 - Documentation: https://developers.lottiefiles.com/docs/dotlottie-player
 - State Machine Guide: https://github.com/LottieFiles/dotlottie-web/wiki/dotLottie-State-Machine-Guide
 - dotLottie 2.0 Spec: https://dotlottie.io/spec/2.0/
+
+---
+
+## Details: `scottstts/Threejs-Awesome-Graphics-Agent-Skills` — 3D graphics subsystems
+
+> ⭐ 914 — 24 skills in `skills/`. MIT license. About 261 MB in a depth-1 clone (66 MB
+> `example-gallery` + 71 MB `skills`); excluded from sync.
+
+A pack of **Three.js subsystems for agents**: each skill owns one visual system and ships working
+examples and assets that carry much of the implementation value. Start at `threejs-skill-router`,
+which maps a required visual result to the smallest skill set and defines the execution order:
+visual contract → camera → subject → animation → fields → lighting/shadows → image pipeline →
+atomic effects → validation.
+
+| Group | Skills |
+|---|---|
+| Routing and validation | `threejs-skill-router`, `threejs-visual-validation` |
+| Scene building | `threejs-camera-direction`, `threejs-procedural-animation`, `threejs-procedural-fields`, `threejs-procedural-geometry`, `threejs-procedural-architecture`, `threejs-procedural-vegetation` |
+| Surfaces, materials, and planets | `threejs-procedural-materials`, `threejs-parallax-occlusion-mapping`, `threejs-procedural-planets`, `threejs-temporal-surfaces` |
+| Sky and weather | `threejs-atmosphere-aerial-perspective`, `threejs-volumetric-clouds`, `threejs-precipitation-surfaces` |
+| Water | `threejs-spectral-ocean`, `threejs-water-optics` |
+| Space and effects | `threejs-raymarched-space-effects`, `threejs-procedural-vfx` |
+| Image pipeline | `threejs-shadow-systems`, `threejs-screen-space-ambient-occlusion`, `threejs-bloom`, `threejs-exposure-color-grading`, `threejs-image-pipeline` |
+
+**Installation** (the pack's own installer; not the generic `skills` CLI):
+
+```bash
+npx threejs-awesome-graphics-agent-skills@latest install --agent universal
+```
+
+This places the 24 `threejs-*` skills in `~/.agents/skills/` (the universal location). The pack is
+**not recorded in `~/.agents/.skill-lock.json`**, so `npx skills update -g` does not manage it;
+update it by re-running the installer above. Agents that do not read `~/.agents/skills/` directly
+(Claude Code, Kiro, Qwen, Windsurf) need per-skill symlinks to the same directory.
+
+**Routing rules from the pack itself:**
+
+- Do not load a skill for API setup alone; inspect the installed Three.js version and use the
+  official docs.
+- Do not route “make it beautiful” directly to post-processing; find the missing authored system.
+- Prefer one strong, inspectable visual rule over several independent noise layers.
+
+**Boundaries:**
+
+- It does not plan, score, cut, or deliver a film. Render the subsystem, then bring the output into
+  `/hyperframes` (or Remotion) and apply the Ninja's doctrine (`/motion-doctrine`, `/cut-the-curve`,
+  `/seam-craft`).
+- One example (`threejs-precipitation-surfaces`, wet puddle rain) **includes GPL-licensed source
+  material**; its `SKILL.md` requires preserving the license boundary when copying or publishing.
+- WebGPU/TSL paths require a matching Three.js version; validate with `threejs-visual-validation`
+  (fixed-view contracts, seed sweeps, temporal stability, GPU budgets) instead of screenshots alone.
+
+**Why it was chosen over alternatives** (October 2026): `majidmanzarpour/threejs-game-skills`
+(2.5k stars) targets playable browser games; `viettranx/3dviz-pro-max` (789 stars) centers on
+Blender scenes; `dgreenheck/webgpu-claude-skill` (1.25k stars) is narrow (WebGPU/TSL only). The
+chosen pack is the broadest graphics-subsystem library and complements `/kinetic-reel` (simple
+Three.js layers) and `/business-motion-film` (selective Three.js use).

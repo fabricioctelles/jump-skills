@@ -1,11 +1,11 @@
 ---
 name: video-ninja
 description: >-
-  Master orchestrator for video production with agents. Routes to 55 globally installed video
-  skills across 10 upstream repositories and the Anatomy skill from a locally synced source,
+  Master orchestrator for video production with agents. Routes to 79 globally installed video
+  skills across 11 upstream repositories and the Anatomy skill from a locally synced source,
   plus optional evaluated tools for speech timing, reusable motion assets, interactive animations,
-  programmatic graphics, web audio control, and mathematical explainers, and adds a proven
-  video-pipeline methodology layer.
+  programmatic graphics, web audio control, mathematical explainers, and advanced 3D graphics
+  subsystems, and adds a proven video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
   or publishing a video, motion graphic, promo, launch film, product demo, talking-head package,
   changelog reel, explainer, lyric video, slideshow deck, or Remotion project.
@@ -17,14 +17,14 @@ description: >-
   sizzle, explainer, faceless, faceless-explainer, talking head, podcast, interview, overlay,
   kinetic typography, lower third, kinetic title, storyboard, slideshow, deck, pitch deck,
   changelog video, release video, lyric video, beat sync, render, mp4, composition, HyperFrames,
-  Remotion, GSAP, LUT, grade, color grade, BGM, SFX, sound design, voiceover, TTS, thumbnail,
-  screen recording, tutorial video, SaaS video, founder video, YouTube, youtube video,
+  Remotion, GSAP, Three.js, WebGL, LUT, grade, color grade, BGM, SFX, sound design, voiceover, TTS,
+  thumbnail, screen recording, tutorial video, SaaS video, founder video, YouTube, youtube video,
   cold open, end card, Lottie, dotLottie, Rive, title card.
 ---
 
 # Video Ninja
 
-**Jump Skill** — Master orchestrator that routes video tasks to 55 globally installed skills from 10
+**Jump Skill** — Master orchestrator that routes video tasks to 79 globally installed skills from 11
 upstream repositories, Anatomy from a locally synced repository, and one separately installed
 well-known source, plus a methodology layer distilled from the My-Little-Studio pipeline.
 
@@ -35,14 +35,16 @@ well-known source, plus a methodology layer distilled from the My-Little-Studio 
 
 ## Why this ninja exists
 
-The ten repositories below cover **rendering**, **media processing**, **craft**, **frameworks**,
-**animation libraries**, and **art styles**, but each is a silo. HyperFrames can render video, but
-it has no opinion on quality. motion-video-kit has a quality doctrine, but no renderer. Remotion is
+The eleven repositories below cover **rendering**, **media processing**, **craft**, **frameworks**,
+**animation libraries**, **art styles**, and **3D graphics subsystems**, but each is a silo.
+HyperFrames can render video, but it has no opinion on quality. motion-video-kit has a quality
+doctrine, but no renderer. Remotion is
 an alternative framework, not a plug-in for HyperFrames. opus-video-skills brings distinctive looks
 such as watercolor and kinetic typography, but not the other repositories' craft doctrine.
 ffmpeg-skill works on existing footage; it does not build compositions from scratch. gsap-skills
 teaches correct GSAP patterns but is not a video engine. dotlottie-web handles Lottie assets but
-does not compose them into video.
+does not compose them into video. The Three.js pack supplies advanced 3D graphics subsystems, but it
+neither plans nor delivers a film.
 
 This ninja is the layer that **chooses and connects** them, and keeps track of what the ecosystem
 still lacks.
@@ -61,7 +63,7 @@ steer in [references/youtube-video.md](references/youtube-video.md).
 
 ---
 
-## The ten sources
+## The eleven sources
 
 | Repository | Skills | Layer | Status |
 |---|---|---|---|
@@ -75,9 +77,12 @@ steer in [references/youtube-video.md](references/youtube-video.md).
 | [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | 1 | Isometric technical figures for explainers | Synced locally, MIT |
 | [`greensock/gsap-skills`](https://github.com/greensock/gsap-skills) | 8 | Official GSAP skills: timelines, ScrollTrigger, plugins, React | Installed, MIT |
 | [`LottieFiles/dotlottie-web`](https://github.com/LottieFiles/dotlottie-web) | 1 | Modern Lottie player: Rust+WASM, state machines, themes | Installed, MIT |
+| [`scottstts/Threejs-Awesome-Graphics-Agent-Skills`](https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills) | 24 | Advanced Three.js graphics subsystems | Installed by its own installer; excluded from sync (~261 MB), MIT |
 
-Provenance for globally installed skills is recorded in `~/.agents/.skill-lock.json`. Anatomy is
-declared and synchronized through the root `repos.md`. See [references/repos.md](references/repos.md).
+Provenance for globally installed skills is recorded in `~/.agents/.skill-lock.json`. The Three.js
+pack is the exception: its own installer (`npx threejs-awesome-graphics-agent-skills@latest install
+--agent universal`) installs to `~/.agents/skills/` without a lockfile entry. Anatomy is declared
+and synchronized through the root `repos.md`. See [references/repos.md](references/repos.md).
 
 ### Separately installed skill
 
@@ -118,6 +123,13 @@ The following tools are documented in the references folder for on-demand use:
 
 These tools are not installed skills but are documented for when their specific capabilities are needed.
 The YouTube Video row is a pipeline steer, not a library.
+
+Five more pipeline steers cover asset tooling used while producing graphics for a composition:
+[excalidraw.md](references/excalidraw.md) (hand-drawn diagrams as video assets),
+[penpot.md](references/penpot.md) (open-source design source with an official MCP),
+[fontsource.md](references/fontsource.md) (self-hosted fonts for deterministic render),
+[lucide.md](references/lucide.md) (UI icon set), and
+[svgo.md](references/svgo.md) (animation-safe SVG optimization). None of them installs a skill.
 
 ## Engine map
 
@@ -178,6 +190,7 @@ only needs to identify the **layer** to add:
 | Project supplies a Lottie `.json` animation | `/hyperframes` + **Lottie Web on demand** | Disable autoplay and seek explicitly by frame or time for deterministic capture. See [references/lottie.md](references/lottie.md) |
 | High-rigor math explainer | **ManimCE (optional, if installed and justified)** | Specialized math renderer; inspect the final composition. HyperFrames remains the default for other videos |
 | Code-generated motion, loops, or frame animation | **`/hyperframes`** | + `/motion-doctrine`, see §Motion Lab |
+| **3D scene, procedural graphics, or a Three.js subsystem** (materials, ocean, clouds, planets, VFX) | **`threejs-*` pack** (start at `threejs-skill-router`) | Load only the targeted subsystem, then bring the result into `/hyperframes` or the project's engine. See §3D graphics |
 | **Cut, join, or process existing footage** | **`ffmpeg-skill`** | See §FFmpeg |
 | **Adjust loudness for a platform** | **`ffmpeg-skill`** | See §FFmpeg |
 | **Remove recording silences** | **`ffmpeg-skill`** | See §FFmpeg |
@@ -195,7 +208,7 @@ it declares itself the GATEWAY and supersedes generic guidance).
 
 ---
 
-## The ten layers
+## The eleven layers
 
 | # | Layer | Skills | Responsibility |
 |---|---|---|---|
@@ -209,6 +222,7 @@ it declares itself the GATEWAY and supersedes generic guidance).
 | 8 | **Art styles** | `painted-animation`, `kinetic-reel` | Distinct procedural looks such as watercolor and kinetic typography |
 | 9 | **Animation library** | `gsap-*` (8 skills) | Correct GSAP patterns: timelines, ScrollTrigger, plugins, React cleanup, performance |
 | 10 | **Motion assets** | `dotlottie-web` | Lottie/dotLottie player: state machines, themes, Web Workers, deterministic capture |
+| 11 | **3D graphics subsystems** | `threejs-*` (24 skills) | Advanced Three.js graphics: procedural geometry/fields/materials, ocean, clouds, planets, shadows, GTAO, bloom, color grading, VFX, and visual validation |
 
 ---
 
@@ -464,6 +478,50 @@ with varying results.
 
 ---
 
+## §3D graphics — the Three.js pack
+
+Source: [`scottstts/Threejs-Awesome-Graphics-Agent-Skills`](https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills)
+— 24 skills, MIT. Installed globally by the pack's own installer
+(`npx threejs-awesome-graphics-agent-skills@latest install --agent universal`); excluded from the
+repo sync because its clone is about 261 MB.
+
+A library of **Three.js subsystems**, not a workflow: each skill owns one visual system and ships
+working examples and assets that carry much of the implementation value. Start at
+`threejs-skill-router` — it maps a required visual result to the smallest skill set and defines the
+execution order (visual contract → camera → subject → animation → fields → lighting/shadows →
+image pipeline → atomic effects → validation).
+
+| Group | Skills |
+|---|---|
+| Routing and validation | `threejs-skill-router`, `threejs-visual-validation` |
+| Scene building | `threejs-camera-direction`, `threejs-procedural-animation`, `threejs-procedural-fields`, `threejs-procedural-geometry`, `threejs-procedural-architecture`, `threejs-procedural-vegetation` |
+| Surfaces, materials, and planets | `threejs-procedural-materials`, `threejs-parallax-occlusion-mapping`, `threejs-procedural-planets`, `threejs-temporal-surfaces` |
+| Sky and weather | `threejs-atmosphere-aerial-perspective`, `threejs-volumetric-clouds`, `threejs-precipitation-surfaces` |
+| Water | `threejs-spectral-ocean`, `threejs-water-optics` |
+| Space and effects | `threejs-raymarched-space-effects`, `threejs-procedural-vfx` |
+| Image pipeline | `threejs-shadow-systems`, `threejs-screen-space-ambient-occlusion`, `threejs-bloom`, `threejs-exposure-color-grading`, `threejs-image-pipeline` |
+
+**When to use it:** product films and promos that need a hero 3D element, motion graphics with a 3D
+climax, explainers that show a mechanism as a rendered object, or any shot whose value is an
+advanced graphics system (ocean, clouds, planets, bloom). It complements `/kinetic-reel`, which
+already uses simple Three.js layers, and `/business-motion-film`, which uses Three.js selectively.
+
+**Boundaries:**
+
+- It does not plan, score, cut, or deliver a film. Bring the rendered output into `/hyperframes`
+  (or Remotion) and apply the usual doctrine: `/motion-doctrine`, `/cut-the-curve`, `/seam-craft`.
+- Do not load a skill for API setup alone; inspect the installed Three.js version and use the
+  official docs. WebGPU/TSL paths require a matching Three.js version.
+- One example (`threejs-precipitation-surfaces`, wet-puddle rain) includes GPL-licensed source
+  material — keep its license boundary when copying or publishing.
+
+**Coupling to the Ninja's flow:** treat this layer as a **shot generator**. Define the visual
+contract, build the subsystem, validate with `threejs-visual-validation` (fixed-view diagnostics,
+seed sweeps, budget evidence), capture frames deterministically, and only then composite the shot
+into the master timeline.
+
+---
+
 ## §Motion Lab — code-driven motion, from brief to validated loop
 
 Use this method for loops, product films, and code-generated motion. Start with `/hyperframes`, load
@@ -589,14 +647,16 @@ saves time and inherits known render correctness.
 | Published HyperFrames skills | `npx hyperframes skills` | Complete published set |
 | Update one skill | `npx hyperframes skills update <name>` | |
 | Check for stale skills | `npx hyperframes skills check` | Exits nonzero when stale |
-| Update other repositories | `npx skills update -g` | Updates from the lockfile |
-| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy and the other eligible sources; skips HyperFrames because of its size |
+| Update other repositories | `npx skills update -g` | Updates from the lockfile; the kinetic-reel entry may fail while the upstream YAML is invalid (see [references/repos.md](references/repos.md)) |
+| Update the Three.js pack | `npx threejs-awesome-graphics-agent-skills@latest install --agent universal` | The pack's own installer; no lockfile entry |
+| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy and the other eligible sources; skips HyperFrames (~489 MB) and the Three.js pack (~261 MB) because of their size |
 
 ### Repository-level sync exclusions
 
 `sync-repos.sh video-ninja` syncs the sources listed for this Ninja except repositories in its
-`no-sync-repos` block. HyperFrames is excluded because its clone is about 489 MB and its skills are
-already installed globally; Anatomy is cloned because the Ninja needs its local `SKILL.md` to route
+`no-sync-repos` block. HyperFrames (~489 MB) and the Three.js pack (~261 MB) are excluded because
+their clones are heavy and their skills are already installed globally (the Three.js pack through
+its own installer); Anatomy is cloned because the Ninja needs its local `SKILL.md` to route
 technical isometric explainers. The exclusion is per repository, so it does not block other missing
 sources.
 
