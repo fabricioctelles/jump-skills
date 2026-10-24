@@ -1,11 +1,11 @@
 ---
 name: video-ninja
 description: >-
-  Master orchestrator for video production with agents. Routes to 79 globally installed video
-  skills across 11 upstream repositories and the Anatomy skill from a locally synced source,
-  plus optional evaluated tools for speech timing, reusable motion assets, interactive animations,
-  programmatic graphics, web audio control, mathematical explainers, and advanced 3D graphics
-  subsystems, and adds a proven video-pipeline methodology layer.
+  Master orchestrator for video production with agents. Routes to 79 globally installed skills
+  from 10 repositories and one well-known source, plus Anatomy and 12 DaVinci Resolve editing skills
+  from locally synced repositories. It also covers optional tools for speech timing, reusable motion
+  assets, interactive animations, programmatic graphics, web audio, mathematical explainers, and
+  advanced 3D graphics, and adds a proven video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
   or publishing a video, motion graphic, promo, launch film, product demo, talking-head package,
   changelog reel, explainer, lyric video, slideshow deck, or Remotion project.
@@ -17,25 +17,26 @@ description: >-
   sizzle, explainer, faceless, faceless-explainer, talking head, podcast, interview, overlay,
   kinetic typography, lower third, kinetic title, storyboard, slideshow, deck, pitch deck,
   changelog video, release video, lyric video, beat sync, render, mp4, composition, HyperFrames,
-  Remotion, GSAP, Three.js, WebGL, LUT, grade, color grade, BGM, SFX, sound design, voiceover, TTS,
+  Remotion, DaVinci Resolve, Resolve Studio, GSAP, Three.js, WebGL, LUT, grade, color grade, BGM,
+  SFX, sound design, voiceover, TTS,
   thumbnail, screen recording, tutorial video, SaaS video, founder video, YouTube, youtube video,
   cold open, end card, Lottie, dotLottie, Rive, title card.
 ---
 
 # Video Ninja
 
-**Jump Skill** — Master orchestrator that routes video tasks to 79 globally installed skills from 11
-upstream repositories, Anatomy from a locally synced repository, and one separately installed
-well-known source, plus a methodology layer distilled from the My-Little-Studio pipeline.
+**Jump Skill** — Master orchestrator that routes video tasks to 79 globally installed skills from 10
+repositories and one well-known source, Anatomy and DaVinci Resolve editing skills from locally
+synced repositories, plus a methodology layer distilled from the My-Little-Studio pipeline.
 
-> This ninja routes any video task to the installed skills. It is the required entry point: read it
+> This ninja routes any video task to the installed or locally synced skills. It is the required entry point: read it
 > before choosing a video skill.
 
 ---
 
 ## Why this ninja exists
 
-The eleven repositories below cover **rendering**, **media processing**, **craft**, **frameworks**,
+The ten globally installed source repositories cover **rendering**, **media processing**, **craft**, **frameworks**,
 **animation libraries**, **art styles**, and **3D graphics subsystems**, but each is a silo.
 HyperFrames can render video, but it has no opinion on quality. motion-video-kit has a quality
 doctrine, but no renderer. Remotion is
@@ -53,17 +54,20 @@ still lacks.
 
 ## The golden rule
 
-> **`/hyperframes` is the required entry point for video work.**
-> It chooses among the 10 workflows and loads domain skills as needed. This ninja does **not replace**
-> that routing; it tells you *which layer to use* and *when HyperFrames alone is not enough*.
+> **`/hyperframes` is the default entry point for video creation and composition.**
+> It chooses among the 10 workflows and loads domain skills as needed. For footage edits that must
+> be built in DaVinci Resolve Studio, use the optional `video-editor-skills` route instead.
+> This ninja does **not replace** HyperFrames routing; it tells you *which layer to use* and *when
+> HyperFrames alone is not enough*.
 
-For video creation, editing, animation, or rendering, start with `/hyperframes`. Come back here for
-the exceptions: Remotion, screen capture, craft doctrine, pipeline methods, and the YouTube Video
-steer in [references/youtube-video.md](references/youtube-video.md).
+For video creation, animation, composition, and rendering, start with `/hyperframes`. For a
+talking-head, vlog, or class timeline that should be built in Resolve Studio, use the gated
+`video-editor-skills` route. Other exceptions include Remotion, screen capture, craft doctrine,
+pipeline methods, and the YouTube Video steer in [references/youtube-video.md](references/youtube-video.md).
 
 ---
 
-## The eleven sources
+## The globally installed source repositories
 
 | Repository | Skills | Layer | Status |
 |---|---|---|---|
@@ -74,15 +78,24 @@ steer in [references/youtube-video.md](references/youtube-video.md).
 | [`Rieranthony/product-film-skill`](https://github.com/Rieranthony/product-film-skill) | 1 | Screen capture | Installed, MIT |
 | [`tugrawork-creator/saas-motion-kit`](https://github.com/tugrawork-creator/saas-motion-kit) | 1 | Variety and anti-repetition | Installed |
 | [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills) | 2 | Procedural art styles | Installed, MIT |
-| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | 1 | Isometric technical figures for explainers | Synced locally, MIT |
 | [`greensock/gsap-skills`](https://github.com/greensock/gsap-skills) | 8 | Official GSAP skills: timelines, ScrollTrigger, plugins, React | Installed, MIT |
 | [`LottieFiles/dotlottie-web`](https://github.com/LottieFiles/dotlottie-web) | 1 | Modern Lottie player: Rust+WASM, state machines, themes | Installed, MIT |
 | [`scottstts/Threejs-Awesome-Graphics-Agent-Skills`](https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills) | 24 | Advanced Three.js graphics subsystems | Installed by its own installer; excluded from sync (~261 MB), MIT |
 
 Provenance for globally installed skills is recorded in `~/.agents/.skill-lock.json`. The Three.js
 pack is the exception: its own installer (`npx threejs-awesome-graphics-agent-skills@latest install
---agent universal`) installs to `~/.agents/skills/` without a lockfile entry. Anatomy is declared
-and synchronized through the root `repos.md`. See [references/repos.md](references/repos.md).
+--agent universal`) installs to `~/.agents/skills/` without a lockfile entry. `fframes-video` is
+installed separately through `fframes.studio`.
+
+### Locally synced source skills
+
+| Repository | Skill | Role | License |
+|---|---|---|---|
+| [`wheresryan22/anatomy`](https://github.com/wheresryan22/anatomy) | `anatomy` | Isometric technical figures for explainers | MIT |
+| [`appariciojunior/video-editor-skills`](https://github.com/appariciojunior/video-editor-skills) | 12 skills | Optional first-pass editing in DaVinci Resolve Studio | CC BY-NC 4.0; non-commercial use only |
+
+Both are declared in root `repos.md` and synced under `repos/video-ninja/` so the Ninja can load
+their instructions when needed. See [references/repos.md](references/repos.md).
 
 ### Separately installed skill
 
@@ -185,6 +198,7 @@ only needs to identify the **layer** to add:
 | Watercolor cartoon / karaoke lyric video | **`/painted-animation`** | See §Art styles |
 | Kinetic type showreel / portfolio | **`/kinetic-reel`** | See §Art styles |
 | Technical explainer with an isometric mechanism or object | **Anatomy (when synced)** | Read its local `SKILL.md`, build and inspect SVG/HTML; bring the asset into `/hyperframes` for composition and rendering. See [references/anatomy.md](references/anatomy.md) |
+| Talking-head, vlog, or class edit in DaVinci Resolve Studio | **`video-editor-skills` (when synced and license permits)** | Read its local `skills/edit-video/SKILL.md`; check Studio scripting and the commercial-use restriction first. See [§DaVinci Resolve](#davinci-resolve) |
 | Talking-head with word timing or diarization | `/embedded-captions` + **optional WhisperX** (if installed) | Align words or identify speakers, then check against the audio. The “tape” is still needed for cuts that depend on restarts or syllable onsets. See [references/whisperx.md](references/whisperx.md) |
 | Raw talking-head → polished YouTube video with explanatory motion graphics | **YouTube Video steer** (Remotion) | Do not start in HyperFrames. Read [references/youtube-video.md](references/youtube-video.md). Keep the speech language. Do not publish without approval. |
 | Project supplies a Lottie `.json` animation | `/hyperframes` + **Lottie Web on demand** | Disable autoplay and seek explicitly by frame or time for deterministic capture. See [references/lottie.md](references/lottie.md) |
@@ -208,7 +222,7 @@ it declares itself the GATEWAY and supersedes generic guidance).
 
 ---
 
-## The eleven layers
+## Video production layers
 
 | # | Layer | Skills | Responsibility |
 |---|---|---|---|
@@ -223,6 +237,7 @@ it declares itself the GATEWAY and supersedes generic guidance).
 | 9 | **Animation library** | `gsap-*` (8 skills) | Correct GSAP patterns: timelines, ScrollTrigger, plugins, React cleanup, performance |
 | 10 | **Motion assets** | `dotlottie-web` | Lottie/dotLottie player: state machines, themes, Web Workers, deterministic capture |
 | 11 | **3D graphics subsystems** | `threejs-*` (24 skills) | Advanced Three.js graphics: procedural geometry/fields/materials, ocean, clouds, planets, shadows, GTAO, bloom, color grading, VFX, and visual validation |
+| 12 | **Timeline editor** | `video-editor-skills` (12 locally synced skills) | Optional transcript-led first-pass edits in DaVinci Resolve Studio; subject to CC BY-NC 4.0 |
 
 ---
 
@@ -562,6 +577,35 @@ prompts that were embedded in images or videos.
 
 ---
 
+<a id="davinci-resolve"></a>
+
+## §DaVinci Resolve — transcript-led timeline edits
+
+Use [`appariciojunior/video-editor-skills`](https://github.com/appariciojunior/video-editor-skills)
+when the user wants a first-pass edit built in an existing DaVinci Resolve Studio project, especially
+for talking-head footage, vlogs, or classes. Its twelve locally synced skills cover setup, transcript
+cuts, vlog pacing, B-roll, Resolve scripting, voice/audio, music/SFX, captions, motion overlays, and
+YouTube export.
+
+The source is available only after `./sync-repos.sh video-ninja` at
+`{{JUMP_SKILLS_DIR}}/repos/video-ninja/video-editor-skills/`. Read `skills/edit-video/SKILL.md` for
+the whole workflow and load the relevant companion skills from the same checkout. It requires
+DaVinci Resolve Studio with local external scripting enabled, FFmpeg/FFprobe, Python 3.9+, and a
+speech-to-text API that returns word timestamps. The setup is based on a creator-specific project and
+template; adapt its folder, bin, track, and camera assumptions to the project. It writes a new
+timeline and must preserve the user's template, project, and raw footage.
+
+**License gate:** upstream is licensed CC BY-NC 4.0. Use these skills only for non-commercial work
+unless the author grants separate permission. This includes avoiding use in paid videos, products,
+courses, or services. If this gate does not fit, route to the existing `/talking-head-recut`,
+`/embedded-captions`, Remotion, or `ffmpeg-skill` workflows instead.
+
+Do not route to it just because a user says “edit video.” Confirm from the project context that they
+use Resolve Studio and want the Resolve timeline built. If the source path is missing, treat this
+route as unavailable.
+
+---
+
 ## §Remotion — when HyperFrames is not the right fit
 
 HyperFrames is the default. Use Remotion in three cases:
@@ -649,16 +693,16 @@ saves time and inherits known render correctness.
 | Check for stale skills | `npx hyperframes skills check` | Exits nonzero when stale |
 | Update other repositories | `npx skills update -g` | Updates from the lockfile; the kinetic-reel entry may fail while the upstream YAML is invalid (see [references/repos.md](references/repos.md)) |
 | Update the Three.js pack | `npx threejs-awesome-graphics-agent-skills@latest install --agent universal` | The pack's own installer; no lockfile entry |
-| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy and the other eligible sources; skips HyperFrames (~489 MB) and the Three.js pack (~261 MB) because of their size |
+| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy, `video-editor-skills`, and the other eligible sources; skips HyperFrames (~489 MB) and the Three.js pack (~261 MB) |
 
 ### Repository-level sync exclusions
 
 `sync-repos.sh video-ninja` syncs the sources listed for this Ninja except repositories in its
 `no-sync-repos` block. HyperFrames (~489 MB) and the Three.js pack (~261 MB) are excluded because
 their clones are heavy and their skills are already installed globally (the Three.js pack through
-its own installer); Anatomy is cloned because the Ninja needs its local `SKILL.md` to route
-technical isometric explainers. The exclusion is per repository, so it does not block other missing
-sources.
+its own installer); Anatomy and `video-editor-skills` are cloned because the Ninja loads their
+local `SKILL.md` files to route technical illustrations and Resolve timeline edits. The exclusion
+is per repository, so it does not block other missing sources.
 
 The sync policy is documented in the root [repos.md](../../repos.md).
 

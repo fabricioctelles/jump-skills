@@ -214,7 +214,7 @@ https://github.com/yylo-dev/yylo-skills
 
 ## [video-ninja]
 
-Onze repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
+Doze repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
 são clonadas para que suas skills estejam acessíveis ao Ninja; HyperFrames (~489 MB) e o pack
 Three.js (~261 MB) ficam excluídos porque seus clones são pesados e suas skills já estão
 instaladas globalmente.
@@ -231,6 +231,7 @@ https://github.com/wheresryan22/anatomy
 https://github.com/greensock/gsap-skills
 https://github.com/LottieFiles/dotlottie-web
 https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
+https://github.com/appariciojunior/video-editor-skills
 ```
 
 ```no-sync-repos
@@ -251,6 +252,7 @@ https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 | gsap-skills | greensock | 8 | Skills oficiais GSAP: timelines, ScrollTrigger, plugins, React, performance (MIT) |
 | dotlottie-web | LottieFiles | 1 | Player oficial Lottie/dotLottie: Rust+WASM, state machines, temas, Web Workers (MIT) |
 | Threejs-Awesome-Graphics-Agent-Skills | scottstts | 24 | Pack Three.js de graphics avançados: materiais, oceano, nuvens, sombras, VFX, validação (MIT; instalado pelo installer próprio, fora do sync) |
+| video-editor-skills | appariciojunior | 12 | Edição de talking-head, vlog e aulas em DaVinci Resolve Studio: cortes por transcrição, B-roll, áudio, legendas, overlays e exportação. Skill local sincronizada; CC BY-NC 4.0 (uso não comercial) |
 
 ### Outras fontes avaliadas, ainda não integradas
 
@@ -265,7 +267,7 @@ Excalidraw (diagramas à mão), Penpot (design source aberto + MCP oficial), Fon
 self-hosted), Lucide (ícones de UI) e SVGO (otimização de SVG) — em
 `ninjas/video-ninja/references/`.
 
-**Skills incluídas:** 79 no total — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
+**Skills globais:** 79 — `hyperframes` (roteador), `hyperframes-core`, `-animation`,
 `-keyframes`, `-creative`, `-audio`, `-cli`, `-registry`, `-studio`, `media-use`,
 `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`,
 `changelog-video`, `general-video`, `product-launch-video`, `talking-head-recut`,
@@ -273,12 +275,14 @@ self-hosted), Lucide (ícones de UI) e SVGO (otimização de SVG) — em
 `slideshow`, `figma`, `remotion-to-hyperframes`, `business-motion-film`, `saas-motion-video`,
 `product-film`, `remotion-*` (12), `ffmpeg-skill`, `painted-animation`, `kinetic-reel`,
 `gsap-*` (8), `dotlottie-web`, `threejs-*` (24; pack Three.js fora do sync),
-`fframes-video` (fonte well-known; fora do sync), `anatomy` (checkout local; explainers técnicos).
+`fframes-video` (fonte well-known; fora do sync). Além delas, 11 skills são carregadas de clones
+locais: `anatomy` (ilustração técnica) e as 12 skills de `video-editor-skills` (edição em DaVinci
+Resolve Studio). Total acessível ao Ninja: 92 instruções de skill.
 
 > ⚠️ As skills continuam disponíveis globalmente em `~/.agents/skills/`
-> (espelhadas em `~/.claude/` e por symlink em `~/.codex`, `~/.gemini`, `~/.cursor`). Anatomy é
-> fornecida pelo checkout local `repos/video-ninja/anatomy/`; a sincronização ignora apenas
-> HyperFrames (~489 MB) e o pack Three.js (~261 MB), que já estão instalados globalmente.
+> (espelhadas em `~/.claude/` e por symlink em `~/.codex`, `~/.gemini`, `~/.cursor`). Anatomy e
+> `video-editor-skills` são fornecidas pelos clones locais em `repos/video-ninja/`; a sincronização
+> ignora HyperFrames (~489 MB) e o pack Three.js (~261 MB), cujas skills já estão instaladas globalmente.
 > `fframes-video` continua vindo de uma fonte well-known.
 >
 > As 6 skills de doutrina interna (`motion-doctrine`, `cut-the-curve`, `seam-craft`,
@@ -333,9 +337,9 @@ proibitivo também ficam protegidos por uma lista no script; atualmente, isso se
 `heygen-com/hyperframes` (cerca de 489 MB) e ao pack `scottstts/Threejs-Awesome-Graphics-Agent-Skills`
 (cerca de 261 MB), cujas skills já estão instaladas globalmente.
 
-O Video Ninja usa essa regra por repositório: Anatomy é sincronizado localmente para que o router
-possa carregar sua `SKILL.md`; HyperFrames e o pack Three.js são excluídos do clone, mas continuam
-disponíveis como skills globais.
+O Video Ninja usa essa regra por repositório: Anatomy e `video-editor-skills` são sincronizados
+localmente para que o router possa carregar suas `SKILL.md`; HyperFrames e o pack Three.js são
+excluídos do clone, mas continuam disponíveis como skills globais.
 
 #### Proteção para repositórios grandes
 
@@ -346,4 +350,4 @@ O bloco `no-sync-repos` é configuração declarativa. Repositórios muito grand
 2. **`no-sync-repos`** em `repos.md` registra a intenção e permite excluir fontes sem mudar o script.
 
 O workflow de política de sincronização cobre o bloqueio do HyperFrames e do pack Three.js e
-confirma que Anatomy continua sincronizável.
+confirma que Anatomy e `video-editor-skills` continuam sincronizáveis.

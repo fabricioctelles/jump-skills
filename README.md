@@ -81,10 +81,10 @@ Think of Ninjas as **expert dispatchers** — they understand the entire landsca
 > 3. Run `./install-ninjas.sh` to install Ninjas to your agents
 
 > [!NOTE]
-> **Video Ninja has one repository-level exception.** Its globally installed sources are already
-> available, but Anatomy is not, so `sync-repos.sh` clones Anatomy and the other eligible sources.
-> It skips only HyperFrames, whose repository is about 489 MB and whose skills are installed
-> globally. See [repository-level sync exclusions](repos.md#exclusão-de-repositórios-da-sincronização-no-sync-repos).
+> **Video Ninja has locally synced source skills.** `sync-repos.sh` clones Anatomy and
+> `video-editor-skills` so the Ninja can load their instructions. It skips HyperFrames (~489 MB)
+> and the Three.js pack (~261 MB), whose skills are already installed globally. See
+> [repository-level sync exclusions](repos.md#exclusão-de-repositórios-da-sincronização-no-sync-repos).
 
 ---
 
@@ -347,7 +347,7 @@ The Google Analytics Ninja handles GA4 configuration and reporting:
 
 ### <img src="https://img.shields.io/badge/Video-E11D48?style=flat&logo=adobepremierepro&logoColor=white" height="20"/> Video Ninja [![Security: A — Skills Directory](https://www.skillsdirectory.com/api/skills/fabricioctelles-video-ninja/badge)](https://www.skillsdirectory.com/skills/fabricioctelles-video-ninja)
 
-> **47 skills**: 46 globally installed skills, Anatomy from a synced source repo, and a proven video-pipeline methodology layer
+> **92 skill instructions**: 79 globally installed, plus Anatomy and 12 DaVinci Resolve skills from synced source repositories
 
 The Video Ninja orchestrates the whole video stack — engine, craft doctrine, workflows and a
 second framework — and adds four techniques the market does not have:
@@ -358,6 +358,7 @@ second framework — and adds four techniques the market does not have:
 | **Processing** | 1 (42 tools) | ffmpeg-skill: probe, cut, join, loudness, multicam, export and verification |
 | **Alternative engine** | 1 | fframes-video: Rust/SVG, Skia GPU, frame inspection, snapshots and audio analysis |
 | **Technical visual source** | 1 | Anatomy: isometric machine figures in SVG/HTML for explainers |
+| **Timeline editor** | 12 | `video-editor-skills`: optional transcript-led first-pass editing in DaVinci Resolve Studio (CC BY-NC 4.0) |
 | **Workflows** | 11 | Launch, promo, talking-head recut, captions, explainer, PR, music, motion graphics, slideshow, Figma, changelog |
 | **Craft doctrine** | 7 | Motion law (gateway), transition catalog, seam render-correctness, cursor, caption overlay, business-film critic loop, anti-repetition |
 | **Domains** | 7 | Animation, keyframes, creative direction, audio, media, registry, Studio |
@@ -380,10 +381,17 @@ loads its `SKILL.md` when a mechanism-based figure would clarify the story. It c
 assets; HyperFrames still handles video composition and rendering. See the [Anatomy routing
 notes](ninjas/video-ninja/references/anatomy.md).
 
+[`appariciojunior/video-editor-skills`](https://github.com/appariciojunior/video-editor-skills) adds
+an optional first-pass editing route for talking-head footage, vlogs, and classes in DaVinci Resolve
+Studio. The Ninja reads its twelve skills from a local sync and routes only when Resolve Studio is the
+target editor. **Its CC BY-NC 4.0 license limits use to non-commercial work unless the author grants
+separate permission.** It requires Resolve Studio scripting, FFmpeg/FFprobe, Python, and word-timed
+transcription. See the [integration notes](ninjas/video-ninja/references/repos.md).
+
 The Ninja also documents **WhisperX** as an optional word-alignment/diarization backend, **Lottie**
 as a time-controlled asset when a project supplies a `.json`, and **Manim Community** as a
 specialized option for recurring mathematical explainers. None is installed or counted among the
-47 skills. See the [integration notes](ninjas/video-ninja/references/repos.md).
+92 skill instructions. See the [integration notes](ninjas/video-ninja/references/repos.md).
 
 `fframes-video` is installed globally from the well-known source `fframes.studio`; its Rust
 repository is intentionally not cloned by `sync-repos.sh`.
@@ -397,14 +405,15 @@ repository is intentionally not cloned by `sync-repos.sh`.
 - [tugrawork-creator/saas-motion-kit](https://github.com/tugrawork-creator/saas-motion-kit) — SaaS promo, anti-repetition
 - [tuzhechen2005/opus-video-skills](https://github.com/tuzhechen2005/opus-video-skills) — Procedural art styles (MIT)
 - [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — isometric technical figures; synced locally (MIT)
+- [appariciojunior/video-editor-skills](https://github.com/appariciojunior/video-editor-skills) — optional DaVinci Resolve workflow; synced locally (CC BY-NC 4.0, non-commercial use only)
 - [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) — `fframes-video` via well-known source (MIT; no clone)
 - [m-bain/whisperX](https://github.com/m-bain/whisperX) — optional word timing/diarization backend; evaluated, not installed
 - [airbnb/lottie-web](https://github.com/airbnb/lottie-web) — player for supplied Lottie assets; load on demand
 - [Manim Community](https://github.com/ManimCommunity/manim) — mathematical animation engine candidate; evaluated, not installed
 
-> Video Ninja syncs its eligible source repositories so each routed skill is available locally.
-> It skips only `hyperframes` (~489 MB), whose skills are already installed globally. Anatomy is
-> synced because its skill was not previously installed. See
+> Video Ninja syncs eligible source repositories so routed local skills are available to the Ninja.
+> It skips `hyperframes` (~489 MB) and the Three.js pack (~261 MB), whose skills are already
+> installed globally. Anatomy and `video-editor-skills` are synced locally. See
 > [repository-level sync exclusions](repos.md#exclusão-de-repositórios-da-sincronização-no-sync-repos).
 
 ---
@@ -441,7 +450,7 @@ jump-skills/
 │   ├── google-mobile-ninja/SKILL.md  # Mobile dev orchestrator (35+ skills)
 │   ├── google-firebase-ninja/SKILL.md # Firebase orchestrator (18+ skills)
 │   ├── google-analytics-ninja/SKILL.md # Analytics orchestrator (3+ skills)
-│   ├── video-ninja/SKILL.md          # Video orchestrator (47 skills)
+│   ├── video-ninja/SKILL.md          # Video orchestrator (92 skill instructions)
 │   └── yylo-ninja/SKILL.md           # YYLO orchestrator (7 skills)
 ├── sync-repos.sh              # Clone/update source repositories
 ├── install-ninjas.sh          # Install Ninjas to agents
@@ -462,7 +471,7 @@ jump-skills/
 │   ├── google-mobile-ninja/   #    └── 3 Google repos
 │   ├── google-firebase-ninja/ #    └── 2 Google repos
 │   ├── google-analytics-ninja/#    └── 1 Google repo
-│   ├── video-ninja/            #    └── eligible video source repos (Anatomy included)
+│   ├── video-ninja/            #    └── eligible video source repos (Anatomy and Resolve skills included)
 │   └── yylo-ninja/             #    └── 1 YYLO repo
 └── .skills-map                # 📄 Auto-generated skill→path mapping
 ```

@@ -1,17 +1,19 @@
 # Video Ninja repositories
 
 Each section describes a source repository for this Ninja's skills. The source repositories are
-synced under `repos/video-ninja/` except HyperFrames, whose installed skills are used globally
-because its repository is too large to clone. Anatomy is synced locally so the Ninja can load its
-skill instructions when needed.
+synced under `repos/video-ninja/` except HyperFrames and the Three.js pack, whose skills are
+already installed globally and whose repositories are too large to clone. Anatomy and
+`video-editor-skills` are synced locally so the Ninja can load their instructions when needed. The
+latter is an optional, license-restricted DaVinci Resolve workflow.
 
 ---
 
 ## [video-ninja]
 
-Eleven video repositories that complement one another: a rendering engine, a processing engine, a
-quality doctrine, an alternative framework, three niche toolkits, a technical illustration skill,
-an animation library skill set, a modern Lottie player, and an advanced 3D graphics pack.
+Twelve video repositories that complement one another: a rendering engine, a processing engine, a
+quality doctrine, an alternative framework, three niche toolkits, technical illustration, an
+animation library skill set, a modern Lottie player, an advanced 3D graphics pack, and an optional
+DaVinci Resolve editing workflow.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -25,6 +27,7 @@ https://github.com/wheresryan22/anatomy
 https://github.com/greensock/gsap-skills
 https://github.com/LottieFiles/dotlottie-web
 https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
+https://github.com/appariciojunior/video-editor-skills
 ```
 
 `hyperframes` and the Three.js pack are excluded from sync: their clones are about 489 MB and
@@ -44,12 +47,13 @@ the pack's own installer). See the per-repository `no-sync-repos` block in the r
 | gsap-skills | greensock | 8 | MIT | Official GSAP skills: timelines, ScrollTrigger, plugins, React cleanup, performance |
 | dotlottie-web | LottieFiles | 1 | MIT | Modern Lottie player: Rust+WASM, .lottie format, state machines, themes, Web Workers |
 | Threejs-Awesome-Graphics-Agent-Skills | scottstts | 24 | MIT | Advanced Three.js graphics subsystems: procedural geometry/fields/materials, ocean, clouds, planets, shadows, GTAO, bloom, grading, VFX, validation. Installed by its own installer; excluded from sync |
+| video-editor-skills | appariciojunior | 12 | CC BY-NC 4.0 | Optional DaVinci Resolve Studio workflow for talking-head, vlog, and class edits: transcript cuts, pacing, B-roll, Resolve scripting, audio, captions, overlays, and export. Synced locally; non-commercial use only |
 
 ---
 
 ## Evaluated engines and frameworks without a skill
 
-Motion Canvas, Revideo, MoviePy, and ManimCE are not part of the eleven installed sources. Keeping
+Motion Canvas, Revideo, MoviePy, and ManimCE are not part of the ten globally installed sources. Keeping
 them here avoids implying that routing is already available.
 
 | Engine/framework | License | Strength | Integration still needed |
@@ -77,6 +81,23 @@ Operational details: [WhisperX](whisperx.md) and [Lottie](lottie.md).
 The [YouTube Video steer](youtube-video.md) is a pipeline reference, not a repository. Use it when a
 raw talking-head becomes a polished YouTube video in Remotion. It is not synced and it is not one of
 the installed skills.
+
+## Optional editing workflow: `appariciojunior/video-editor-skills`
+
+This source adds a DaVinci Resolve Studio route for transcript-based first-pass edits of talking-head
+footage, vlogs, and classes. It covers the keep-list, natural pacing, B-roll, Resolve scripting,
+voice/audio, captions, motion overlays, and YouTube export. The Ninja reads the local skills from
+`{{JUMP_SKILLS_DIR}}/repos/video-ninja/video-editor-skills/`; it does not install them globally.
+
+Route to this workflow only when the project is in DaVinci Resolve Studio and the user wants the
+timeline built there. It requires Resolve Studio external scripting, FFmpeg/FFprobe, Python 3.9+, and
+a speech-to-text API with word timestamps. Its setup assumes a creator-specific Resolve project and
+template, so adapt it instead of assuming its example bins or track layout.
+
+**License gate:** the upstream uses CC BY-NC 4.0. Do not use these skills for commercial work,
+including videos or services sold or used in paid products or courses, unless the author grants
+separate permission. Continue routing other projects through the existing HyperFrames, Remotion, or
+FFmpeg workflows.
 
 ---
 
@@ -357,9 +378,9 @@ symlinks for agents that do not read that directory directly (Claude Code, Kiro,
 Windsurf), so the same skill set is visible to every supported agent. The Three.js pack is the
 exception: its own installer places the 24 `threejs-*` skills directly in `~/.agents/skills/`.
 
-`sync-repos.sh video-ninja` now syncs eligible repositories locally. It skips only `hyperframes`
-(about **489 MB**) through the per-repository exclusion. Anatomy is synced because the router loads
-its `SKILL.md` from that checkout.
+`sync-repos.sh video-ninja` syncs eligible repositories locally. It skips HyperFrames (about
+**489 MB**) and the Three.js pack (about **261 MB**). Anatomy and `video-editor-skills` are synced
+because the router loads their `SKILL.md` files from those checkouts.
 
 **Install ffmpeg-skill** if it is not already installed:
 
