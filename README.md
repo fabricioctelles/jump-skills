@@ -364,6 +364,7 @@ second framework — and adds four techniques the market does not have:
 | **Domains** | 7 | Animation, keyframes, creative direction, audio, media, registry, Studio |
 | **Framework 2nd** | 13 | Remotion official (port, projects) + screen-recording → product film |
 | **Art styles** | 2 | Painted animation and kinetic reel |
+| **Film families & styles** | map | 8 storytelling families (3D cinema → hand-animated character) × 81 film styles from Lemo-Opuscar (66) and MG Styles (15), plus the ClaudeAnimationBase character kit |
 
 **Methodology layer (My-Little-Studio):** sha256 staleness tracking that refuses to run on changed
 inputs · letter-level ASR preserving retakes · reusable color Setups per camera/light/set · body map
@@ -393,6 +394,17 @@ as a time-controlled asset when a project supplies a `.json`, and **Manim Commun
 specialized option for recurring mathematical explainers. None is installed or counted among the
 92 skill instructions. See the [integration notes](ninjas/video-ninja/references/repos.md).
 
+**Film families and styles.** Step 2b of the routing picks how a short film tells its story (eight
+families: 3D cinema, 2D motion with 3D objects, phone and chat, device in 3D, kinetic typography,
+map and diagram, presenter on camera, hand-animated character) and then one of 81 film styles.
+[`lemomo-ai/lemo-opuscar`](https://github.com/lemomo-ai/lemo-opuscar) runs its 66 styles through its
+own `lemo-opuscar` skill (installed only with the user's approval);
+[`Vincentwei1021/mg-styles-15`](https://github.com/Vincentwei1021/mg-styles-15) provides 15 prompts,
+a renderer and a review rubric by sparse checkout; and
+[`JohnHeibel/ClaudeAnimationBase`](https://github.com/JohnHeibel/ClaudeAnimationBase) is synced
+locally for character animation (its Clawd mascot is used only when the video is about Claude; otherwise create your own character). See the
+[family and style map](ninjas/video-ninja/references/film-families-and-styles.md).
+
 `fframes-video` is installed globally from the well-known source `fframes.studio`; its Rust
 repository is intentionally not cloned by `sync-repos.sh`.
 
@@ -406,6 +418,9 @@ repository is intentionally not cloned by `sync-repos.sh`.
 - [tuzhechen2005/opus-video-skills](https://github.com/tuzhechen2005/opus-video-skills) — Procedural art styles (MIT)
 - [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) — isometric technical figures; synced locally (MIT)
 - [appariciojunior/video-editor-skills](https://github.com/appariciojunior/video-editor-skills) — optional DaVinci Resolve workflow; synced locally (CC BY-NC 4.0, non-commercial use only)
+- [lemomo-ai/lemo-opuscar](https://github.com/lemomo-ai/lemo-opuscar) — 66 film styles via the `lemo-opuscar` skill (MIT code, CC BY 4.0 demo films; not synced, ~195 MB)
+- [Vincentwei1021/mg-styles-15](https://github.com/Vincentwei1021/mg-styles-15) — 15 motion-design style prompts (MIT; not synced, ~1.2 GB, sparse checkout on demand)
+- [JohnHeibel/ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) — hand-painted character kit; synced locally (MIT)
 - [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) — `fframes-video` via well-known source (MIT; no clone)
 - [m-bain/whisperX](https://github.com/m-bain/whisperX) — optional word timing/diarization backend; evaluated, not installed
 - [airbnb/lottie-web](https://github.com/airbnb/lottie-web) — player for supplied Lottie assets; load on demand

@@ -9,6 +9,9 @@ VIDEO_NINJA="video-ninja"
 HYPERFRAMES="https://github.com/heygen-com/hyperframes"
 THREEJS="https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills"
 ANATOMY="https://github.com/wheresryan22/anatomy"
+OPUSCAR="https://github.com/lemomo-ai/lemo-opuscar"
+MG_STYLES="https://github.com/Vincentwei1021/mg-styles-15"
+ANIMATION_BASE="https://github.com/JohnHeibel/ClaudeAnimationBase"
 TMP_DIR="$(mktemp -d)"
 FAILED=0
 trap 'rm -rf "$TMP_DIR"' EXIT
@@ -72,6 +75,24 @@ else
     fail "Anatomy was not cloned for video-ninja"
 fi
 
+if [ "$(count_attempts "$SB" "$OPUSCAR")" -eq 0 ]; then
+    pass "declared exclusion: Lemo-Opuscar is not cloned"
+else
+    fail "declared exclusion: Lemo-Opuscar clone was attempted"
+fi
+
+if [ "$(count_attempts "$SB" "$MG_STYLES")" -eq 0 ]; then
+    pass "declared exclusion: MG Styles is not cloned"
+else
+    fail "declared exclusion: MG Styles clone was attempted"
+fi
+
+if [ "$(count_attempts "$SB" "$ANIMATION_BASE")" -eq 1 ]; then
+    pass "ClaudeAnimationBase remains syncable for video-ninja"
+else
+    fail "ClaudeAnimationBase was not cloned for video-ninja"
+fi
+
 # Removing the markdown exclusion must not remove the hardcoded large-repo guard.
 SB="$TMP_DIR/hardcoded"
 awk '
@@ -92,6 +113,12 @@ if [ "$(count_attempts "$SB" "$THREEJS")" -eq 0 ]; then
     pass "hardcoded guard: Three.js pack remains excluded without markdown block"
 else
     fail "hardcoded guard failed: Three.js pack clone was attempted"
+fi
+
+if [ "$(count_attempts "$SB" "$MG_STYLES")" -eq 0 ]; then
+    pass "hardcoded guard: MG Styles remains excluded without markdown block"
+else
+    fail "hardcoded guard failed: MG Styles clone was attempted"
 fi
 
 if [ "$(count_attempts "$SB" "$ANATOMY")" -eq 1 ]; then

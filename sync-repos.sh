@@ -75,6 +75,7 @@ get_repo_name() {
 NEVER_SYNC_REPOS=(
     "https://github.com/heygen-com/hyperframes|489 MB; its skills are installed globally"
     "https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills|261 MB; its skills are installed globally by its own installer"
+    "https://github.com/Vincentwei1021/mg-styles-15|1.2 GB, mostly demo films; fetch prompts by sparse checkout on demand"
 )
 
 # Check whether one repository is excluded from sync.

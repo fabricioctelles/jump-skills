@@ -214,10 +214,12 @@ https://github.com/yylo-dev/yylo-skills
 
 ## [video-ninja]
 
-Doze repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
+Quinze repositórios de vídeo que se complementam. A sincronização é por repositório: fontes leves
 são clonadas para que suas skills estejam acessíveis ao Ninja; HyperFrames (~489 MB) e o pack
 Three.js (~261 MB) ficam excluídos porque seus clones são pesados e suas skills já estão
-instaladas globalmente.
+instaladas globalmente. Lemo-Opuscar (~195 MB) e MG Styles (~1,2 GB) também ficam fora: o primeiro
+mantém sua biblioteca esparsa pela própria skill e o segundo é buscado por sparse checkout quando
+um estilo MG for usado.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -232,11 +234,16 @@ https://github.com/greensock/gsap-skills
 https://github.com/LottieFiles/dotlottie-web
 https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 https://github.com/appariciojunior/video-editor-skills
+https://github.com/lemomo-ai/lemo-opuscar
+https://github.com/Vincentwei1021/mg-styles-15
+https://github.com/JohnHeibel/ClaudeAnimationBase
 ```
 
 ```no-sync-repos
 https://github.com/heygen-com/hyperframes
 https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
+https://github.com/lemomo-ai/lemo-opuscar
+https://github.com/Vincentwei1021/mg-styles-15
 ```
 
 | Repositório | Org | Skills | Descrição |
@@ -253,6 +260,9 @@ https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 | dotlottie-web | LottieFiles | 1 | Player oficial Lottie/dotLottie: Rust+WASM, state machines, temas, Web Workers (MIT) |
 | Threejs-Awesome-Graphics-Agent-Skills | scottstts | 24 | Pack Three.js de graphics avançados: materiais, oceano, nuvens, sombras, VFX, validação (MIT; instalado pelo installer próprio, fora do sync) |
 | video-editor-skills | appariciojunior | 12 | Edição de talking-head, vlog e aulas em DaVinci Resolve Studio: cortes por transcrição, B-roll, áudio, legendas, overlays e exportação. Skill local sincronizada; CC BY-NC 4.0 (uso não comercial) |
+| lemo-opuscar | lemomo-ai | 1 | 66 estilos de filme feitos em código, dirigidos pela skill `lemo-opuscar` (plugin Claude). Código MIT, filmes de exemplo CC BY 4.0; fora do sync (~195 MB) |
+| mg-styles-15 | Vincentwei1021 | 0 (15 prompts) | 15 estilos de motion design com prompt, código, renderer e rubrica de revisão. MIT; fora do sync (~1,2 GB), sparse checkout sob demanda |
+| ClaudeAnimationBase | JohnHeibel | 0 (guia) | Kit p5.brush de personagem pintado à mão: 31 emoções, olhares, gestos, chapéus. MIT; sincronizado localmente. O mascote Clawd só entra quando o vídeo fala de Claude; nos demais, criar personagem próprio |
 
 ### Outras fontes avaliadas, ainda não integradas
 

@@ -2,18 +2,19 @@
 
 Each section describes a source repository for this Ninja's skills. The source repositories are
 synced under `repos/video-ninja/` except HyperFrames and the Three.js pack, whose skills are
-already installed globally and whose repositories are too large to clone. Anatomy and
-`video-editor-skills` are synced locally so the Ninja can load their instructions when needed. The
-latter is an optional, license-restricted DaVinci Resolve workflow.
+already installed globally and whose repositories are too large to clone, and the two film-style
+libraries (Lemo-Opuscar and MG Styles), which are fetched on demand. Anatomy, `video-editor-skills`
+and ClaudeAnimationBase are synced locally so the Ninja can load their instructions when needed.
+`video-editor-skills` is an optional, license-restricted DaVinci Resolve workflow.
 
 ---
 
 ## [video-ninja]
 
-Twelve video repositories that complement one another: a rendering engine, a processing engine, a
+Fifteen video repositories that complement one another: a rendering engine, a processing engine, a
 quality doctrine, an alternative framework, three niche toolkits, technical illustration, an
-animation library skill set, a modern Lottie player, an advanced 3D graphics pack, and an optional
-DaVinci Resolve editing workflow.
+animation library skill set, a modern Lottie player, an advanced 3D graphics pack, an optional
+DaVinci Resolve editing workflow, two film-style libraries, and a hand-painted character kit.
 
 ```repos
 https://github.com/heygen-com/hyperframes
@@ -28,11 +29,17 @@ https://github.com/greensock/gsap-skills
 https://github.com/LottieFiles/dotlottie-web
 https://github.com/scottstts/Threejs-Awesome-Graphics-Agent-Skills
 https://github.com/appariciojunior/video-editor-skills
+https://github.com/lemomo-ai/lemo-opuscar
+https://github.com/Vincentwei1021/mg-styles-15
+https://github.com/JohnHeibel/ClaudeAnimationBase
 ```
 
 `hyperframes` and the Three.js pack are excluded from sync: their clones are about 489 MB and
 261 MB respectively, and their skills are already installed globally (the Three.js skills through
-the pack's own installer). See the per-repository `no-sync-repos` block in the root `repos.md`.
+the pack's own installer). `lemo-opuscar` (~195 MB) is also excluded because its skill keeps its own
+sparse library in `~/lemo-opuscar`, and `mg-styles-15` (~1.2 GB, mostly demo films) because only its
+prompts, harness and audio toolkit are needed, by sparse checkout. See the per-repository
+`no-sync-repos` block in the root `repos.md`.
 
 | Repository | Organization | Skills | License | Role |
 |---|---|---:|---|---|
@@ -48,6 +55,11 @@ the pack's own installer). See the per-repository `no-sync-repos` block in the r
 | dotlottie-web | LottieFiles | 1 | MIT | Modern Lottie player: Rust+WASM, .lottie format, state machines, themes, Web Workers |
 | Threejs-Awesome-Graphics-Agent-Skills | scottstts | 24 | MIT | Advanced Three.js graphics subsystems: procedural geometry/fields/materials, ocean, clouds, planets, shadows, GTAO, bloom, grading, VFX, validation. Installed by its own installer; excluded from sync |
 | video-editor-skills | appariciojunior | 12 | CC BY-NC 4.0 | Optional DaVinci Resolve Studio workflow for talking-head, vlog, and class edits: transcript cuts, pacing, B-roll, Resolve scripting, audio, captions, overlays, and export. Synced locally; non-commercial use only |
+| lemo-opuscar | lemomo-ai | 1 | MIT code; CC BY 4.0 demo films | 66 film styles made in code, directed by the `lemo-opuscar` skill (Claude plugin), which keeps a sparse library in `~/lemo-opuscar`. Excluded from sync (~195 MB) |
+| mg-styles-15 | Vincentwei1021 | 0 (15 prompts) | MIT | 15 motion-design styles, each with prompt, full source, renderer and review rubric. Excluded from sync (~1.2 GB); sparse checkout on demand |
+| ClaudeAnimationBase | JohnHeibel | 0 (guide) | MIT | p5.brush hand-painted character kit with `ANIMATION_GUIDE.md`: 31 emotions, views, gestures, hats, contact-sheet review. Synced locally; use the Clawd mascot only in videos about Claude |
+
+Family/style routing for these three sources: [film-families-and-styles.md](film-families-and-styles.md).
 
 ---
 

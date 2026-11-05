@@ -3,7 +3,8 @@ name: video-ninja
 description: >-
   Master orchestrator for video production with agents. Routes to 79 globally installed skills
   from 10 repositories and one well-known source, plus Anatomy and 12 DaVinci Resolve editing skills
-  from locally synced repositories. It also covers optional tools for speech timing, reusable motion
+  from locally synced repositories, plus a film-family and film-style map (8 families, 81 styles from
+  Lemo-Opuscar and MG Styles, and the ClaudeAnimationBase character kit). It also covers optional tools for speech timing, reusable motion
   assets, interactive animations, programmatic graphics, web audio, mathematical explainers, and
   advanced 3D graphics, and adds a proven video-pipeline methodology layer.
   Use for ANY video task: making, editing, cutting, captioning, animating, rendering, reviewing
@@ -20,7 +21,8 @@ description: >-
   Remotion, DaVinci Resolve, Resolve Studio, GSAP, Three.js, WebGL, LUT, grade, color grade, BGM,
   SFX, sound design, voiceover, TTS,
   thumbnail, screen recording, tutorial video, SaaS video, founder video, YouTube, youtube video,
-  cold open, end card, Lottie, dotLottie, Rive, title card.
+  cold open, end card, Lottie, dotLottie, Rive, title card, Reels, film style, estilo de vídeo,
+  família de vídeo, Opuscar, MG styles, personagem animado, character animation.
 ---
 
 # Video Ninja
@@ -96,6 +98,17 @@ installed separately through `fframes.studio`.
 
 Both are declared in root `repos.md` and synced under `repos/video-ninja/` so the Ninja can load
 their instructions when needed. See [references/repos.md](references/repos.md).
+
+### Film style libraries and the character kit
+
+| Repository | What it adds | How the Ninja uses it | License |
+|---|---|---|---|
+| [`lemomo-ai/lemo-opuscar`](https://github.com/lemomo-ai/lemo-opuscar) | 66 film styles made in code, each with a demo film, `STYLE.md` and a director's guide | Through the `lemo-opuscar` skill (Claude plugin), which keeps its own sparse library in `~/lemo-opuscar`. Not synced (~195 MB) | MIT code; demo films CC BY 4.0 |
+| [`Vincentwei1021/mg-styles-15`](https://github.com/Vincentwei1021/mg-styles-15) | 15 motion-design styles with full prompt, source, renderer and review rubric | Sparse checkout of `prompts/`, `harness/` and `lib/` on demand. Not synced (~1.2 GB) | MIT |
+| [`JohnHeibel/ClaudeAnimationBase`](https://github.com/JohnHeibel/ClaudeAnimationBase) | p5.brush hand-painted character kit: 31 emotions, views, gestures, hats, contact-sheet review | Synced locally under `repos/video-ninja/ClaudeAnimationBase/`; read its `ANIMATION_GUIDE.md` | MIT; Clawd only in videos about Claude, otherwise your own character |
+
+Families, styles, install steps and license notes:
+[references/film-families-and-styles.md](references/film-families-and-styles.md).
 
 ### Separately installed skill
 
@@ -213,6 +226,28 @@ only needs to identify the **layer** to add:
 | Existing Motion Canvas/Revideo project | **Motion Canvas/Revideo** | Keep it only if the dependency already exists; apply §Doctrine |
 | Python composition or data pipeline | **MoviePy** | Use only when Python is a requirement; finish with §FFmpeg |
 | Explainer, PR, music, deck, motion, open-ended video | The 10 workflows | — |
+| Film in a **named style** (e.g. Blueprint, Ukiyo-e, Satellite Briefing, Bauhaus) or "which styles are there?" | **`lemo-opuscar`** for the 66 Opuscar styles; **MG Styles prompt + harness** for the 15 MG styles | See Step 2b and [references/film-families-and-styles.md](references/film-families-and-styles.md). If `lemo-opuscar` is not installed, ask before installing it |
+| Hand-animated character that acts (emotions, gestures), no text | **ClaudeAnimationBase (when synced)** or `/painted-animation` | Read its `ANIMATION_GUIDE.md`; use the Clawd mascot only when the video is about Claude. See §Art styles |
+
+### Step 2b — Pick the film family, then the style
+
+For short-form films (Reels, Shorts, promos, explainers), name the **family** (how the story is
+told) before the **style** (how it looks):
+
+| Family | Primary route |
+|---|---|
+| A · 3D cinema | `threejs-*` pack; Blender only if the project already has it |
+| B · 2D motion with 3D objects | `/hyperframes` + `/motion-graphics`, `threejs-*` for objects |
+| C · Phone and chat | `/hyperframes` registry blocks, `/product-launch-video` |
+| D · Device in 3D | `/product-film` or `/hyperframes` device frame + `threejs-*` |
+| E · Kinetic typography | `/kinetic-reel` or `/motion-graphics` |
+| F · Map and diagram | Anatomy, `/hyperframes` data blocks, `remotion-maps` |
+| G · You on camera | `/talking-head-recut`, `/embedded-captions`, YouTube steer, `video-editor-skills` |
+| H · Hand-animated character | ClaudeAnimationBase, `/painted-animation` |
+
+Then pick at most one of the 81 styles that fits the family and the use case. Upstream examples are
+16:9: recompose for 9:16 instead of cropping. Full table, fit lists and production steps:
+[references/film-families-and-styles.md](references/film-families-and-styles.md).
 
 ### Step 3 — Load the relevant domains
 
@@ -233,7 +268,7 @@ it declares itself the GATEWAY and supersedes generic guidance).
 | 5 | **Craft doctrine** | `motion-doctrine`, `cut-the-curve`, `seam-craft`, `oversized-cursor`, `captions-overlay`, `business-motion-film`, `saas-motion-video` | **An opinion on quality.** What separates “it rendered” from “it looks good” |
 | 6 | **Domains** | `hyperframes-animation`, `hyperframes-keyframes`, `hyperframes-creative`, `hyperframes-audio`, `media-use`, `hyperframes-registry`, `hyperframes-studio` | Motion, camera, design, sound, media, and ready-made blocks |
 | 7 | **Second framework** | `remotion-*` (12), `product-film` | When Remotion is the right choice |
-| 8 | **Art styles** | `painted-animation`, `kinetic-reel` | Distinct procedural looks such as watercolor and kinetic typography |
+| 8 | **Art styles** | `painted-animation`, `kinetic-reel`, `lemo-opuscar` (66 styles), MG Styles (15), ClaudeAnimationBase | Distinct procedural looks and film styles; see the family/style map |
 | 9 | **Animation library** | `gsap-*` (8 skills) | Correct GSAP patterns: timelines, ScrollTrigger, plugins, React cleanup, performance |
 | 10 | **Motion assets** | `dotlottie-web` | Lottie/dotLottie player: state machines, themes, Web Workers, deterministic capture |
 | 11 | **3D graphics subsystems** | `threejs-*` (24 skills) | Advanced Three.js graphics: procedural geometry/fields/materials, ocean, clouds, planets, shadows, GTAO, bloom, color grading, VFX, and visual validation |
@@ -439,7 +474,10 @@ This would extend the Ninja without duplicating what `ffmpeg-skill` already hand
 
 ---
 
-## §Art styles — watercolor, kinetic typography, and technical illustrations
+## §Art styles — watercolor, kinetic typography, film styles, characters, and technical illustrations
+
+> For the full family × style map (8 families, 81 styles), see
+> [references/film-families-and-styles.md](references/film-families-and-styles.md).
 
 Source: [`tuzhechen2005/opus-video-skills`](https://github.com/tuzhechen2005/opus-video-skills)
 
@@ -467,6 +505,39 @@ transitions connect the shots. The score is synthesized from the same timeline a
 
 **Overlap:** HyperFrames `/motion-graphics` also supports kinetic typography, but not these specific
 WebGL layers (particle terrain, liquid marble). Choose `/kinetic-reel` when you need those 3D effects.
+
+### Film style libraries — Lemo-Opuscar (66) and MG Styles (15)
+
+Two catalogs of complete film styles, each with an example film made entirely in code (picture,
+music, voice). Opuscar groups its styles as Evidence Films, Edit & Documentary, Information &
+Keynote, Graphic & Type, Hand-drawn & Painting, Materials & 3D, Print & Printmaking, Cartoon &
+Anime, Games, East Asian Traditions, and Cinema & Eras. MG Styles covers motion-design looks such as
+flat vector, isometric 2.5D, shape morph, Bauhaus, synthwave, aurora glass, sticker explainer, HUD,
+and vertical variety captions.
+
+- **Opuscar** runs through its own `lemo-opuscar` skill. It directs the whole film from its
+  `AGENTS.md` and `DIRECTOR.md`. Install it only with the user's approval:
+  `claude plugin marketplace add lemomo-ai/lemo-opuscar` and
+  `claude plugin install lemo-opuscar@lemolab`.
+- **MG Styles** is a prompt library: copy `prompts/<slug>.md`, replace the Creative seed, keep the
+  Signature features, set Output to 1080×1920 for Reels, and review twice with `rubric.md`.
+- Evidence and documentary styles require sourced numbers and real material; do not invent them.
+
+### ClaudeAnimationBase — a hand-painted character that acts
+
+Locally synced at `{{JUMP_SKILLS_DIR}}/repos/video-ninja/ClaudeAnimationBase/`. It is a p5.js +
+p5.brush kit for a painted character with 31 emotions, views, gazes, gestures, hats, and dances.
+Its `ANIMATION_GUIDE.md` makes the agent storyboard first, build shot by shot, and check its own
+contact sheets and frame strips before rendering.
+
+**Use it for:** top-of-funnel shorts where a character lives the audience's situation, without text.
+
+**Mascot rule:** the kit's character (Clawd) is Anthropic's mascot. Use Clawd when the video is
+about Claude. For any other subject, brand, or client, create a new character with the same kit.
+Either way, a person reviews the character before external use.
+
+**Overlap:** `/painted-animation` uses the same p5.brush medium and adds beat-cut music videos and
+karaoke lyrics. Choose ClaudeAnimationBase when the film needs a ready character rig and its review loop.
 
 ### Anatomy — isometric illustrations for technical explainers
 
@@ -679,7 +750,10 @@ saves time and inherits known render correctness.
    result, but the scan must still happen.
 6. **Check before rendering.** `render`, `publish`, and `batch-render` cost time and API usage.
    `check` is cheap; always run it.
-7. **Pin the version.** Each project pins `hyperframes@<version>`; the pin does not update itself.
+7. **Styles are drafts, not licenses.** Use the Clawd mascot only in videos about Claude, never reuse
+   the three Opuscar demo voice tracks excluded from CC BY 4.0, and credit LemoLab if you reuse an
+   Opuscar demo film. A person reviews brand, rights, and content before publication.
+8. **Pin the version.** Each project pins `hyperframes@<version>`; the pin does not update itself.
    Before the first render, run `npx hyperframes@latest upgrade --project . --check`.
 
 ---
@@ -693,15 +767,19 @@ saves time and inherits known render correctness.
 | Check for stale skills | `npx hyperframes skills check` | Exits nonzero when stale |
 | Update other repositories | `npx skills update -g` | Updates from the lockfile; the kinetic-reel entry may fail while the upstream YAML is invalid (see [references/repos.md](references/repos.md)) |
 | Update the Three.js pack | `npx threejs-awesome-graphics-agent-skills@latest install --agent universal` | The pack's own installer; no lockfile entry |
-| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy, `video-editor-skills`, and the other eligible sources; skips HyperFrames (~489 MB) and the Three.js pack (~261 MB) |
+| Sync source repositories | `./sync-repos.sh video-ninja` | Syncs Anatomy, `video-editor-skills`, ClaudeAnimationBase, and the other eligible sources; skips HyperFrames (~489 MB), the Three.js pack (~261 MB), Lemo-Opuscar (~195 MB), and MG Styles (~1.2 GB) |
+| Update the Opuscar library | `sh <lemo-opuscar skill>/scripts/setup.sh` | The skill keeps `~/lemo-opuscar` in sync with upstream `main` |
 
 ### Repository-level sync exclusions
 
 `sync-repos.sh video-ninja` syncs the sources listed for this Ninja except repositories in its
 `no-sync-repos` block. HyperFrames (~489 MB) and the Three.js pack (~261 MB) are excluded because
 their clones are heavy and their skills are already installed globally (the Three.js pack through
-its own installer); Anatomy and `video-editor-skills` are cloned because the Ninja loads their
-local `SKILL.md` files to route technical illustrations and Resolve timeline edits. The exclusion
+its own installer). Lemo-Opuscar (~195 MB) keeps its own sparse library through its skill, and MG
+Styles (~1.2 GB, mostly films) is fetched by sparse checkout on demand. Anatomy, `video-editor-skills`,
+and ClaudeAnimationBase are cloned because the Ninja loads their local instructions (`SKILL.md`
+files, or `ANIMATION_GUIDE.md` for the character kit) to route technical illustrations, Resolve
+timeline edits, and hand-animated characters. The exclusion
 is per repository, so it does not block other missing sources.
 
 The sync policy is documented in the root [repos.md](../../repos.md).

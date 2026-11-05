@@ -172,3 +172,8 @@ coverage/
 *.db
 .history/
 .ionide/
+
+# --------------------------------------------
+# Local video projects (HyperFrames scaffolds, renders, caches): never versioned
+# --------------------------------------------
+videos/
